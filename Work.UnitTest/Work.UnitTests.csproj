@@ -115,9 +115,9 @@
       <Project>{81f31d0b-5d7a-44f7-ba5b-362bf27fcc8d}</Project>
       <Name>Work.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Work.WebProj\Work.WebProj.Mami520.csproj">
+    <ProjectReference Include="..\Work.WebProj\Work.WebProj.ChangYu.csproj">
       <Project>{821195b6-1744-4e05-b003-7da64385cfb6}</Project>
-      <Name>Work.WebProj.Mami520</Name>
+      <Name>Work.WebProj.ChangYu</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
