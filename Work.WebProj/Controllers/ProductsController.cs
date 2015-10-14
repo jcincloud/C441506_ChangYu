@@ -12,12 +12,11 @@ using DotWeb.CommSetup;
 using DotWeb.Controller;
 namespace DotWeb.Controllers
 {
-    public class IndexController : WebUserController
+    public class ProductsController : WebUserController
     {
-        public ActionResult Index()
+        public ActionResult Products()
         {
-
-            return View("Index");
+            return View("Products");
         }
     }
 }

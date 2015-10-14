@@ -238,7 +238,7 @@
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\Api\GetActionController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
-    <Compile Include="Controllers\SalesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -354,6 +354,15 @@
     <Content Include="Content\font\MElleHK.otf" />
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
+    <Content Include="Content\images\banner1.jpg" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bgFooter.png" />
+    <Content Include="Content\images\iconArrow.png" />
+    <Content Include="Content\images\iconAward.png" />
+    <Content Include="Content\images\iconContact.gif" />
+    <Content Include="Content\images\iconProducts.png" />
+    <Content Include="Content\images\iconZoom.png" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />
@@ -366,13 +375,16 @@
     <Content Include="Content\sass\component\_label.scss" />
     <Content Include="Content\sass\component\_magnific.scss" />
     <Content Include="Content\sass\component\_tooltip.scss" />
+    <Content Include="Content\sass\helper\mixins\_arrow.scss" />
     <Content Include="Content\sass\helper\mixins\_form.scss" />
     <Content Include="Content\sass\helper\mixins\_grid.scss" />
     <Content Include="Content\sass\helper\mixins\_map-get.scss" />
     <Content Include="Content\sass\helper\mixins\_media.scss" />
+    <Content Include="Content\sass\helper\mixins\_position.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix-animation.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix-gradient.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix.scss" />
+    <Content Include="Content\sass\helper\mixins\_size.scss" />
     <Content Include="Content\sass\helper\mixins\_state.scss" />
     <Content Include="Content\sass\helper\mixins\_tab-focus.scss" />
     <Content Include="Content\sass\helper\mixins\_table.scss" />
@@ -380,7 +392,9 @@
     <Content Include="Content\sass\helper\_mixins.scss" />
     <Content Include="Content\sass\helper\_var.scss" />
     <Content Include="Content\sass\index.scss" />
+    <Content Include="Content\sass\layout\_grid.scss" />
     <Content Include="Content\sass\layout\_layout.scss" />
+    <Content Include="Content\sass\page.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />
@@ -826,12 +840,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Shared\Manage\Menu.tablet.bak.cshtml" />
-    <Content Include="Views\Sales\Login.cshtml" />
-    <Content Include="Views\Sales\Menu.cshtml" />
-    <Content Include="Views\Sales\New.cshtml" />
-    <Content Include="Views\Sales\Schedule.cshtml" />
-    <Content Include="Views\Sales\Visit_content.cshtml" />
-    <Content Include="Views\Sales\Visit_list.cshtml" />
+    <Content Include="Views\Products\Products.cshtml" />
     <Content Include="Scripts\src\jsx\t-login.jsx" />
     <Content Include="Scripts\src\jsx\t-New.jsx" />
     <Content Include="Views\Shared\Manage\RLayout.tablet.cshtml" />
@@ -1045,7 +1054,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Active\Views\Shared\" />
     <Folder Include="Areas\Base\Views\Shared\" />
-    <Folder Include="Content\sass\vendor\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="_Code\CReport\" />
     <Folder Include="_Code\CSS\css\fa\" />

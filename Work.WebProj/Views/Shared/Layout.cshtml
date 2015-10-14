@@ -29,28 +29,19 @@
 
     <section id="header">
         <div class="wrap">
-            <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">OLEC富利源企業有限公司</h1>
+            <h1 onclick="location.href='@Url.Content("~/index")'" title="回首頁">倡譽興業有限公司</h1>
             <nav id="menu">
                 <a href="~/index">HOME</a>
                 <a href="~/AboutUs">公司簡介</a>
                 <a href="~/Products">產品介紹</a>
-                <a href="~/News">最新消息</a>
+                <a href="~/Inquire">線上諮詢</a>
                 <a href="~/ContactUs">聯絡我們</a>
             </nav>
-            <nav class="top-nav">
-                <a href="@Url.Action("SetLanguage")?L=zh-TW&A=index">::繁體中文</a>
-                <a href="@Url.Action("SetLanguage")?L=en-US&A=index">::English</a>
-            </nav>
+            <ul class="award">
+                <li><strong>Quality Assurance</strong>ISO 9001　TS 16949</li>
+                <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
+            </ul>
         </div><!-- wrap //-->
-        <div id="banner">
-            @if (ViewBag.IsFirstPage)
-            {
-                <header>ENVIRONMENTAL PROTECTION</header>
-                <h2>致力於接著劑(膠)及綠能遮光材料開發與製造加工<br>並以ＯＬＥＣ品牌銷售世界30餘國</h2>
-            }
-            else
-            { }
-        </div><!-- banner //-->
     </section><!-- header //-->
 
     <main>
@@ -60,13 +51,28 @@
 </div><!-- wrapper //-->
 
 <section id="footer">
-    <ul class="list-inline">
-        <li>桃園市龍潭區高楊北路452巷28號</li>
-        <li><em>TEL:</em>+886 3-411-7500<br><em>FAX:</em>+886 3-411-7963</li>
-        <li><em>Mail:</em><a href="mailto:super@olecgroup.com">super@olecgroup.com</a></li>
+    <ul class="menu">
+        <li>公司簡介<em>ABOUT US</em></li>
+        <li>
+            產品介紹<em>PRODUCTS</em>
+            <ul class="list-inline">
+                <li><a href="">被動元件</a></li>
+                <li><a href="">線材組</a></li>
+                <li><a href="">Magnet 永久磁鐵</a></li>
+            </ul>
+        </li>
+        <li>
+            聯絡我們<em>CONTACT US</em>
+            <ul class="list-inline">
+                <li><em>電話：</em><strong>0921-874-565</strong></li>
+                <li><em>傳真：</em><strong>886-3-4961359</strong></li>
+                <li><em>地址：</em>桃園市楊梅區幼獅路二段392巷29弄17號</li>
+                <li><em>E-mail：</em><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></li>
+            </ul>
+        </li>
+        <li>線上諮詢<em>INQUIRE</em></li>
     </ul>
-    <div class="copyright"><span>OLEC</span>&copy; 2015 富利源企業有限公司 86597773</div>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1810.3706362840921!2d121.20784130000001!3d24.838520100000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34683c48d5c20e31%3A0x72e8b31495e66ceb!2zMzI15qGD5ZyS5biC6b6N5r2t5Y2A6auY5qWK5YyX6LevMjjomZ8!5e0!3m2!1szh-TW!2stw!4v1440400062208" width="620" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
+    <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
 </section><!-- footer -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

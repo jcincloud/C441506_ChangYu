@@ -1,26 +1,25 @@
 @charset "UTF-8";
 
+// var 變數，需放在 @import "helper/var" 之上才能覆蓋掉
+// ------------------------------------------------------------
 $img-path2:             '../images/index';
 
+$wrapper-bg:            #fff url(../images/bg.gif) center 0 repeat-y;
 $content-spacing:       0;
 
 $header-height:         560px;
-$banner-bg:             url(#{$img-path2}/banner.png) center 0 no-repeat;
+$menu:                  (top, 55px), (right, 1.5%);
 $banner-height:         600px;
 
 $footer-bg:             #406947;
 $footer-height:         390px;
 $footer-height2:        126px;
 $footer-contact-color:  #D5E8C2;
+$copyright-color:       #323232;
 
 
 // import
 // ------------------------------------------------------------
-// helper      non-CSS outputs (mixins,variables) & non-component
-// basic       通用: table,form,classes
-// component   元件
-// layout      布局相關
-//
 @import "helper/var";
 @import "helper/mixins";
 
@@ -45,23 +44,33 @@ $footer-contact-color:  #D5E8C2;
     }
 }
 
-#banner {
-    header, h2 {
-        position: relative;
-        left: 50%; top: 250px;
-        margin-left: -500px;
-    }
-    header {
-        @include text-pic('index/slogan.png',523px,157px)
-    }
-    h2 {
-        @include text-pic('index/sub-slogan.png',609px,98px);
-        margin-left: -513px;
+@for $i from 1 through 3 {
+    #banner .i#{$i} {
+        background-image: url(#{$img-path2}/banner#{$i}.jpg);
     }
 }
 
+
 // footer
 // ----------------------------------------------------------------------
+.copyright, #footer iframe {
+    display: inline-block;
+    vertical-align: middle;
+}
+.copyright {
+    margin-right: 140px;
+
+    span {
+        display: block;
+        background-image: url(#{$img-path2}/logo_s.gif);
+        width: 73px;
+        height: 20px;
+        margin-bottom: 10px;
+    }
+}
+#footer iframe {
+    margin: 20px 0 30px;
+}
 
 
 // main
@@ -115,7 +124,7 @@ $footer-contact-color:  #D5E8C2;
 
 .news {
     background: #94BC1B;
-    padding: 80px 0;
+    padding: 60px 0 30px 0;
 
     header {
         color: #406947;
@@ -127,9 +136,9 @@ $footer-contact-color:  #D5E8C2;
     .swiper {
         &-container {
             width: 100%;
-            max-width: 1220px;
-            padding: 0 90px;
-            height: 420px;
+            max-width: 1150px;
+            padding: 0 70px;
+            height: 480px;
             overflow: hidden;
             margin: auto;
         }
@@ -138,19 +147,43 @@ $footer-contact-color:  #D5E8C2;
         }
         &-slide {
             @extend .text-left;
+            @extend .float-l;
 
             width: 435px;
         }
-        &-button-prev {
-            // @include prefix(transform, translateX(-20px));
+        &-pagination-bullet-active {
+            background: #D2E6B8;
         }
     }
     .cover {
-        height: 155px;
-        margin: auto;
+        height: 160px;
         overflow: hidden;
+
+        img {
+            max-width: 100%;
+            @include prefix(transform, translateY(-40%))
+        }
     }
     .btn {
         margin-top: 20px;
+    }
+}
+
+.swiper-button {
+    &-prev, &-next {
+        background: url(#{$img-path2}/arrow.gif) 0 0 no-repeat;
+        width: 30px; height: 60px;
+        margin-top: -45px;
+    }
+
+    &-prev, .swiper-container-rtl &-next {
+      left: 10px;
+      right: auto;
+    }
+
+    &-next, .swiper-container-rtl &-prev {
+        background-position: -89px 0;
+        right: 10px;
+        left: auto;
     }
 }
