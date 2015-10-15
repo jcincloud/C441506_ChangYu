@@ -13,17 +13,18 @@ namespace ProcCore.Business.DB0
     using System.Collections.Generic;
     
     using Newtonsoft.Json;
-    public partial class Product : BaseEntityTable
+    public partial class Product_Category_L1 : BaseEntityTable
     {
-        public int product_id { get; set; }
-        public string product_sn { get; set; }
-        public string product_name { get; set; }
-        public string product_name_c { get; set; }
-        public string standard { get; set; }
-        public int product_brand_id { get; set; }
-        public int product_category_id { get; set; }
-        public string brand { get; set; }
-        public string unit_name { get; set; }
+        public Product_Category_L1()
+        {
+            this.Product_Category_L2 = new HashSet<Product_Category_L2>();
+        }
+    
+        public int product_category_l1_id { get; set; }
+        public string l1_name { get; set; }
+        public Nullable<int> l1_sort { get; set; }
+        public string memo { get; set; }
+        public bool i_Hide { get; set; }
         public string i_InsertUserID { get; set; }
         public Nullable<int> i_InsertDeptID { get; set; }
         public Nullable<System.DateTime> i_InsertDateTime { get; set; }
@@ -31,7 +32,8 @@ namespace ProcCore.Business.DB0
         public Nullable<int> i_UpdateDeptID { get; set; }
         public Nullable<System.DateTime> i_UpdateDateTime { get; set; }
         public string i_Lang { get; set; }
-        public string category { get; set; }
+    
+    	[JsonIgnore]
+        public virtual ICollection<Product_Category_L2> Product_Category_L2 { get; set; }
     }
 }
-

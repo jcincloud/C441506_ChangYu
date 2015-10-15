@@ -13,26 +13,13 @@ namespace ProcCore.Business.DB0
     using System.Collections.Generic;
     
     using Newtonsoft.Json;
-    public partial class Customer : BaseEntityTable
+    public partial class Product_Category_L2 : BaseEntityTable
     {
-        public int customer_id { get; set; }
-        public string customer_name { get; set; }
-        public int customer_type { get; set; }
-        public string sno { get; set; }
-        public Nullable<System.DateTime> birthday { get; set; }
-        public string tel_1 { get; set; }
-        public string tel_2 { get; set; }
-        public string tw_zip_1 { get; set; }
-        public string tw_city_1 { get; set; }
-        public string tw_country_1 { get; set; }
-        public string tw_address_1 { get; set; }
-        public string tw_zip_2 { get; set; }
-        public string tw_city_2 { get; set; }
-        public string tw_country_2 { get; set; }
-        public string tw_address_2 { get; set; }
+        public int product_category_l2_id { get; set; }
+        public int l1_id { get; set; }
+        public string l2_name { get; set; }
+        public Nullable<int> l2_sort { get; set; }
         public string memo { get; set; }
-        public string account { get; set; }
-        public string password { get; set; }
         public bool i_Hide { get; set; }
         public string i_InsertUserID { get; set; }
         public Nullable<int> i_InsertDeptID { get; set; }
@@ -41,6 +28,9 @@ namespace ProcCore.Business.DB0
         public Nullable<int> i_UpdateDeptID { get; set; }
         public Nullable<System.DateTime> i_UpdateDateTime { get; set; }
         public string i_Lang { get; set; }
-        public string customer_sn { get; set; }
+    
+    	[JsonIgnore]
+        public virtual Product_Category_L1 Product_Category_L1 { get; set; }
     }
 }
+

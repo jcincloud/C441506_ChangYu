@@ -13,10 +13,10 @@ namespace ProcCore.Business.DB0
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class C43A0_Mani520Entities : DbContext
+    public partial class C44A0_ChangYuEntities : DbContext
     {
-        public C43A0_Mani520Entities()
-            : base("name=C43A0_Mani520Entities")
+        public C44A0_ChangYuEntities()
+            : base("name=C44A0_ChangYuEntities")
         {
         }
     
@@ -35,7 +35,7 @@ namespace ProcCore.Business.DB0
         public virtual DbSet<i_SN> i_SN { get; set; }
         public virtual DbSet<i_UserLoginLog> i_UserLoginLog { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Product_Category_L1> Product_Category_L1 { get; set; }
+        public virtual DbSet<Product_Category_L2> Product_Category_L2 { get; set; }
     }
 }

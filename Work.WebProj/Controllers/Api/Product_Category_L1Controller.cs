@@ -5,72 +5,54 @@ using ProcCore.WebCore;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace DotWeb.Api
 {
-    public class StockController : ajaxBaseApi
+    public class Product_Category_L1Controller : ajaxApi<Product_Category_L1, q_Product_Category_L1>
     {
         public async Task<IHttpActionResult> Get(int id)
         {
             using (db0 = getDB0())
             {
-                var item = await db0.Stock
-                    .Where(x => x.stock_id == id)
-                    .Select(x => new
-                    {
-                        x.stock_id,
-                        x.y,
-                        x.m,
-                        x.agent_id,
-                        x.state,
-                        x.users_id
-                    }).FirstAsync();
-                string UserName = db0.AspNetUsers.Find(item.users_id).UserName;
-                var r = new { data = item, user_name = UserName };
-                return Ok(r);
+                item = await db0.Product_Category_L1.FindAsync(id);
+                r = new ResultInfo<Product_Category_L1>() { data = item };
             }
+
+            return Ok(r);
         }
-        public async Task<IHttpActionResult> Get([FromUri]q_Stock q)
+        public async Task<IHttpActionResult> Get([FromUri]q_Product_Category_L1 q)
         {
             #region 連接BusinessLogicLibary資料庫並取得資料
 
             using (db0 = getDB0())
             {
-                var items = db0.Stock
-                    .OrderByDescending(x => x.y)//依日期排序(新到舊)
-                    .OrderByDescending(x => x.m)
-                    .Select(x => new
-                    {
-                        x.stock_id,
-                        x.users_id,
-                        x.Agent.agent_name,
-                        x.y,
-                        x.m
-                    });
-                var getRoles = db0.AspNetUsers.FirstOrDefault(x => x.Id == this.UserId).AspNetRoles;
-                string getRolesName = getRoles.FirstOrDefault().Name;
-                if (getRolesName != "Admins" && getRolesName != "Managers")
-                {
-                    items = items.Where(x => x.users_id == this.UserId);
-                }
-                if (q.year != null)
-                {
-                    items = items.Where(x => x.y == q.year);
-                }
-                if (q.month != null)
-                {
-                    items = items.Where(x => x.m == q.month);
-                }
-                int page = (q.page == null ? 1 : (int)q.page);
-                int startRecord = PageCount.PageInfo(page, this.defPageSize, items.Count());
-                var resultItems = await items.Skip(startRecord).Take(this.defPageSize).ToListAsync();
+                var qr = db0.Product_Category_L1
+                    .OrderByDescending(x => x.l1_sort).AsQueryable();
 
-                return Ok<GridInfo>(new GridInfo()
+                if (q.name != null)
                 {
-                    rows = resultItems.ToArray(),
+                    qr = qr.Where(x => x.l1_name.Contains(q.name));
+                }
+
+                var result = qr.Select(x => new m_Product_Category_L1()
+                {
+                    product_category_l1_id=x.product_category_l1_id,
+                    l1_name=x.l1_name,
+                    l1_sort=x.l1_sort,
+                    i_Hide=x.i_Hide
+                });
+
+                int page = (q.page == null ? 1 : (int)q.page);
+                int position = PageCount.PageInfo(page, this.defPageSize, qr.Count());
+                var segment = await result.Skip(position).Take(this.defPageSize).ToListAsync();
+
+                return Ok<GridInfo<m_Product_Category_L1>>(new GridInfo<m_Product_Category_L1>()
+                {
+                    rows = segment,
                     total = PageCount.TotalPage,
                     page = PageCount.Page,
                     records = PageCount.RecordCount,
@@ -80,18 +62,19 @@ namespace DotWeb.Api
             }
             #endregion
         }
-        public async Task<IHttpActionResult> Put([FromBody]Stock md)
+        public async Task<IHttpActionResult> Put([FromBody]Product_Category_L1 md)
         {
             ResultInfo r = new ResultInfo();
+
             try
             {
                 db0 = getDB0();
 
-                var item = await db0.Stock.FindAsync(md.stock_id);
-
-                item.agent_id = md.agent_id;
-                item.y = md.y;
-                item.m = md.m;
+                item = await db0.Product_Category_L1.FindAsync(md.product_category_l1_id);
+                item.l1_name = md.l1_name;
+                item.l1_sort = md.l1_sort;
+                item.memo = md.memo;
+                item.i_Hide = md.i_Hide;
 
                 item.i_UpdateUserID = this.UserId;
                 item.i_UpdateDateTime = DateTime.Now;
@@ -99,6 +82,7 @@ namespace DotWeb.Api
 
                 await db0.SaveChangesAsync();
                 r.result = true;
+                r.id = md.product_category_l1_id;
             }
             catch (Exception ex)
             {
@@ -111,27 +95,11 @@ namespace DotWeb.Api
             }
             return Ok(r);
         }
-        public async Task<IHttpActionResult> Post([FromBody]Stock md)
+        public async Task<IHttpActionResult> Post([FromBody]Product_Category_L1 md)
         {
-
             ResultInfo r = new ResultInfo();
-            db0 = getDB0();
-            var is_exist = db0.Stock.Any(
-                x =>
-                        x.agent_id == md.agent_id &&
-                        x.m == md.m &&
-                        x.y == md.y
-                );
 
-            if (is_exist)
-            {
-                r.message = "該項產品本月已登錄";
-                r.result = false;
-                return Ok(r);
-            }
-
-            md.stock_id = GetNewId(ProcCore.Business.CodeTable.Base);
-            md.users_id = this.UserId;
+            md.product_category_l1_id = GetNewId(ProcCore.Business.CodeTable.Product_Category_L1);
 
             if (!ModelState.IsValid)
             {
@@ -139,23 +107,37 @@ namespace DotWeb.Api
                 r.result = false;
                 return Ok(r);
             }
-
             try
             {
                 #region working a
+                db0 = getDB0();
+
 
                 md.i_InsertUserID = this.UserId;
                 md.i_InsertDateTime = DateTime.Now;
                 md.i_InsertDeptID = this.departmentId;
                 md.i_Lang = "zh-TW";
-                db0.Stock.Add(md);
-
+                db0.Product_Category_L1.Add(md);
                 await db0.SaveChangesAsync();
 
                 r.result = true;
-                r.id = md.stock_id;
+                r.id = md.product_category_l1_id;
                 return Ok(r);
                 #endregion
+            }
+            catch (DbEntityValidationException ex)
+            {
+                r.result = false;
+
+                foreach (var m in ex.EntityValidationErrors)
+                {
+
+                    foreach (var n in m.ValidationErrors)
+                    {
+                        r.message += "[" + n.PropertyName + ":" + n.ErrorMessage + "]";
+                    }
+                }
+                return Ok(r);
             }
             catch (Exception ex)
             {
@@ -166,6 +148,7 @@ namespace DotWeb.Api
             finally
             {
                 db0.Dispose();
+                //tx.Dispose();
             }
         }
         public async Task<IHttpActionResult> Delete([FromUri]int[] ids)
@@ -177,9 +160,9 @@ namespace DotWeb.Api
 
                 foreach (var id in ids)
                 {
-                    var item = new Stock() { stock_id = id };
-                    db0.Stock.Attach(item);
-                    db0.Stock.Remove(item);
+                    item = new Product_Category_L1() { product_category_l1_id = id };
+                    db0.Product_Category_L1.Attach(item);
+                    db0.Product_Category_L1.Remove(item);
                 }
 
                 await db0.SaveChangesAsync();
@@ -212,6 +195,5 @@ namespace DotWeb.Api
                 db0.Dispose();
             }
         }
-
     }
 }

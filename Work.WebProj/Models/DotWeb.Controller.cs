@@ -29,7 +29,7 @@ namespace DotWeb.Controller
     public abstract class SourceController : System.Web.Mvc.Controller
     {
         //protected string IP;
-        protected C43A0_Mani520Entities db0;
+        protected C44A0_ChangYuEntities db0;
         protected bool isTablet = false;
         protected virtual string getRecMessage(string MsgId)
         {
@@ -56,7 +56,7 @@ namespace DotWeb.Controller
         {
             return System.Globalization.CultureInfo.CurrentCulture.Name;
         }
-        protected static C43A0_Mani520Entities getDB0()
+        protected static C44A0_ChangYuEntities getDB0()
         {
             LogicCenter.SetDB0EntityString(CommSetup.CommWebSetup.DB0_CodeString);
             return LogicCenter.getDB0;

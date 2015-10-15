@@ -14,11 +14,11 @@ namespace ProcCore.Business
 {
     public enum CodeTable
     {
-        Base, Customer,News, VisitTimeRecorder
+        Base, Product, Product_Category_L1, Product_Category_L2
     }
     public enum SNType
     {
-        Orders, Product, Receiver, Import, Stock, Export, StockAdj,
+        Orders, Product, Receiver, Import, Stock, Export, StockAdj
     }
     /// <summary>
     /// 客戶類別
@@ -47,16 +47,16 @@ namespace ProcCore.Business.LogicConect
     #region Parm Section
     public enum ParmDefine
     {
-        Open, ValidDate, Apply_Max_Day, bufferNorth_Max, bufferSouth_Max, N_Max_joinnum, S_Max_joinnum, receiveMails, BccMails
+        Open, product_cn, product_us
     }
     #endregion
 
     public class LogicCenter
     {
         private static string db0_connectionstring;
-        protected C43A0_Mani520Entities db0;
+        protected C44A0_ChangYuEntities db0;
         protected TransactionScope tx;
-        private const string DatabaseName = "C43A0_Mani520";
+        private const string DatabaseName = "C44A0_ChangYu";
         public int DepartmentId { get; set; }
         public string Lang { get; set; }
         public string IP { get; set; }
@@ -99,11 +99,11 @@ namespace ProcCore.Business.LogicConect
             db0_connectionstring = LogicCenter.GetDB0EntityString(db0_configstring);
         }
 
-        public static C43A0_Mani520Entities getDB0
+        public static C44A0_ChangYuEntities getDB0
         {
             get
             {
-                return new C43A0_Mani520Entities(db0_connectionstring);
+                return new C44A0_ChangYuEntities(db0_connectionstring);
             }
         }
         public int GetNewId(ProcCore.Business.CodeTable tab)
