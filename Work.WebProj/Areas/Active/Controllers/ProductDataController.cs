@@ -1,8 +1,10 @@
 ﻿using DotWeb.CommSetup;
 using DotWeb.Controller;
+using ProcCore.Business.DB0;
 using ProcCore.HandleResult;
 using System;
 using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace DotWeb.Areas.Active.Controllers
@@ -37,6 +39,16 @@ namespace DotWeb.Areas.Active.Controllers
                 return defJSON(new
                 {
                     // options_equipment_category = db0.Equipment_Category.OrderBy(x=>x.sort)
+                });
+            }
+        }
+        public string l2_Init()
+        {
+            using (var db0 = getDB0())
+            {
+                return defJSON(new
+                {
+                    options_category_l1 = db0.Product_Category_L1.Where(x => !x.i_Hide).OrderByDescending(x => x.l1_sort).Select(x => new option() { val = x.product_category_l1_id, Lname = x.l1_name })
                 });
             }
         }

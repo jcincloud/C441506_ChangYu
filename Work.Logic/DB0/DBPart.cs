@@ -208,6 +208,14 @@ namespace ProcCore.Business.DB0
     {
         public string l1_name { get; set; }
     }
+    /// <summary>
+    /// 分類選單用
+    /// </summary>
+    public class option
+    {
+        public int val { get; set; }
+        public string Lname { get; set; }
+    }
     #endregion
 
     #region q_Model_Define
@@ -230,8 +238,8 @@ namespace ProcCore.Business.DB0
     public class q_Product_Category_L2 : QueryBase
     {
         public string name { get; set; }
-        public string l1_name { get; set; }
-        public int l1_id { get; set; }
+        public bool? i_Hide { get; set; }
+        public int? l1_id { get; set; }
     }
     #endregion
 

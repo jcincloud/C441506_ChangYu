@@ -17,7 +17,8 @@
 					<td className="text-center"><GridCheckDel iKey={this.props.ikey} chd={this.props.itemData.check_del} delCheck={this.delCheck} /></td>
 					<td className="text-center"><GridButtonModify modify={this.modify}/></td>
 					<td>{this.props.itemData.l1_name}</td>
-					<td>{this.props.itemData.l1_sort}</td>
+					<td>{this.props.itemData.l2_name}</td>
+					<td>{this.props.itemData.l2_sort}</td>
 					<td>{this.props.itemData.i_Hide?<span className="label label-default">隱藏</span>:<span className="label label-primary">顯示</span>}</td>
 				</tr>
 			);
@@ -33,21 +34,34 @@ var GirdForm = React.createClass({
 			fieldData:{},
 			searchData:{title:null},
 			edit_type:0,
-			checkAll:false
+			checkAll:false,
+			category_l1:[]
 		};  
 	},
 	getDefaultProps:function(){
 		return{	
 			fdName:'fieldData',
 			gdName:'searchData',
-			apiPathName:gb_approot+'api/Product_Category_L2'
+			apiPathName:gb_approot+'api/Product_Category_L2',
+			initPathName:gb_approot+'Active/ProductData/l2_Init'
 		};
 	},	
 	componentDidMount:function(){
 		this.queryGridData(1);
+		this.getAjaxInitData();//載入init資料
 	},
 	shouldComponentUpdate:function(nextProps,nextState){
 		return true;
+	},
+	getAjaxInitData:function(){
+		jqGet(this.props.initPathName)
+		.done(function(data, textStatus, jqXHRdata) {
+			this.setState({category_l1:data.options_category_l1});
+			//載入下拉是選單內容
+		}.bind(this))
+		.fail(function( jqXHR, textStatus, errorThrown ) {
+			showAjaxError(errorThrown);
+		});
 	},
 	handleSubmit: function(e) {
 
@@ -167,7 +181,8 @@ var GirdForm = React.createClass({
 		});
 	},
 	insertType:function(){
-		this.setState({edit_type:1,fieldData:{}});
+		var defaultC=this.state.category_l1;
+		this.setState({edit_type:1,fieldData:{l1_id:defaultC[0].val}});
 	},
 	updateType:function(id){
 		jqGet(this.props.apiPathName,{id:id})
@@ -211,11 +226,6 @@ var GirdForm = React.createClass({
 		}
 		this.setState({fieldData:obj});
 	},
-	onHideChange:function(e){
-		var obj = this.state.searchData;
-		obj['i_Hide'] = e.target.value;
-		this.setState({searchData:obj});
-	},
 	render: function() {
 		var outHtml = null;
 
@@ -235,16 +245,28 @@ var GirdForm = React.createClass({
 								<div className="form-inline">
 									<div className="form-group">
 
-										<label>主分類名稱</label> { }
+										<label>次分類名稱</label> { }
 										<input type="text" className="form-control input-sm" 
 										value={searchData.name}
 										onChange={this.changeGDValue.bind(this,'name')}
-										placeholder="主分類名稱..." /> { }
+										placeholder="次分類名稱..." /> { }
+
+										<label>主分類</label> { }
+										<select className="form-control input-sm" 
+												value={searchData.l1_id}
+												onChange={this.changeGDValue.bind(this,'l1_id')}>
+											<option value="">全部</option>
+										{
+											this.state.category_l1.map(function(itemData,i) {
+												return <option key={i} value={itemData.val}>{itemData.Lname}</option>
+											})
+										}
+										</select> { }
 
 										<label>狀態</label> { }
 										<select className="form-control input-sm" 
 												value={searchData.i_Hide}
-												onChange={this.onHideChange}>
+												onChange={this.changeGDValue.bind(this,'i_Hide')}>
 											<option value="">全部</option>
 											<option value="true">隱藏</option>
 											<option value="false">顯示</option>
@@ -268,6 +290,7 @@ var GirdForm = React.createClass({
 									</th>
 									<th className="col-xs-1 text-center">修改</th>
 									<th className="col-xs-2">主分類名稱</th>
+									<th className="col-xs-4">次分類名稱</th>
 									<th className="col-xs-2">排序</th>
 									<th className="col-xs-2">狀態</th>
 								</tr>
@@ -312,12 +335,27 @@ var GirdForm = React.createClass({
 				<form className="form-horizontal clearfix" onSubmit={this.handleSubmit}>
 				<div className="col-xs-9">
 					<div className="form-group">
-						<label className="col-xs-2 control-label">主分類名稱</label>
+						<label className="col-xs-2 control-label">主分類</label>
+						<div className="col-xs-4">
+							<select className="form-control" 
+							value={fieldData.l1_id}
+							onChange={this.changeFDValue.bind(this,'l1_id')}>
+							{
+								this.state.category_l1.map(function(itemData,i) {
+									return <option key={i} value={itemData.val}>{itemData.Lname}</option>;
+								})
+							}
+							</select>
+						</div>
+						<small className="help-inline col-xs-6 text-danger">(必填)</small>
+					</div>
+					<div className="form-group">
+						<label className="col-xs-2 control-label">次分類名稱</label>
 						<div className="col-xs-4">
 							<input type="text" 							
 							className="form-control"	
-							value={fieldData.l1_name}
-							onChange={this.changeFDValue.bind(this,'l1_name')}
+							value={fieldData.l2_name}
+							onChange={this.changeFDValue.bind(this,'l2_name')}
 							maxLength="64"
 							required />
 						</div>
@@ -328,8 +366,8 @@ var GirdForm = React.createClass({
 						<div className="col-xs-4">
 							<input type="number" 
 							className="form-control"	
-							value={fieldData.l1_sort}
-							onChange={this.changeFDValue.bind(this,'l1_sort')} />
+							value={fieldData.l2_sort}
+							onChange={this.changeFDValue.bind(this,'l2_sort')} />
 						</div>
 						<small className="col-xs-2 help-inline">數字越大越前面</small>
 					</div>

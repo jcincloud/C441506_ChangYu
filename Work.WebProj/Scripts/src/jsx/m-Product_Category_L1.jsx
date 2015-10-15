@@ -211,11 +211,6 @@ var GirdForm = React.createClass({
 		}
 		this.setState({fieldData:obj});
 	},
-	onHideChange:function(e){
-		var obj = this.state.searchData;
-		obj['i_Hide'] = e.target.value;
-		this.setState({searchData:obj});
-	},
 	render: function() {
 		var outHtml = null;
 
@@ -244,7 +239,7 @@ var GirdForm = React.createClass({
 										<label>狀態</label> { }
 										<select className="form-control input-sm" 
 												value={searchData.i_Hide}
-												onChange={this.onHideChange}>
+												onChange={this.changeGDValue.bind(this,'i_Hide')}>
 											<option value="">全部</option>
 											<option value="true">隱藏</option>
 											<option value="false">顯示</option>

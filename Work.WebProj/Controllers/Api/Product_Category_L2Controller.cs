@@ -37,9 +37,18 @@ namespace DotWeb.Api
                 {
                     qr = qr.Where(x => x.l2_name.Contains(q.name));
                 }
+                if (q.i_Hide != null)
+                {
+                    qr = qr.Where(x => x.i_Hide == q.i_Hide);
+                }
+                if (q.l1_id != null)
+                {
+                    qr = qr.Where(x => x.l1_id == q.l1_id);
+                }
 
                 var result = qr.Select(x => new m_Product_Category_L2()
                 {
+                    product_category_l2_id=x.product_category_l2_id,
                     l1_id = x.l1_id,
                     l1_name = x.Product_Category_L1.l1_name,
                     l2_name = x.l2_name,
