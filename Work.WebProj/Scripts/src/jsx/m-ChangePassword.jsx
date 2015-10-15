@@ -91,9 +91,6 @@ var GirdForm = React.createClass({
 			outHtml =
 			(
 			<div>
-				<ul className="breadcrumb">
-					<li><i className="fa-list-alt"></i> {this.props.menuName}</li>
-				</ul>
 				<h3 className="title">
 					{this.props.caption}
 				</h3>

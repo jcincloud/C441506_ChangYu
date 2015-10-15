@@ -197,6 +197,13 @@ namespace ProcCore.Business.DB0
     }
 
     #region Model Expand
+    public class DocInfo
+    {
+        public String Name { get; set; }
+        public int Sort { get; set; }
+        public String Momo { get; set; }
+        public String Link { get; set; }
+    }
     public partial class m_Product_Category_L2 : BaseEntityTable
     {
         public string l1_name { get; set; }
