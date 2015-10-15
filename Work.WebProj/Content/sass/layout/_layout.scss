@@ -94,11 +94,11 @@ main {
     }
 }
 
-h1, #menu, .award {
+.logo, #menu, .award {
     position: absolute;
 }
 
-h1 {
+.logo {
     cursor: pointer; cursor: hand; // for ie
     left: 0;
     top:10px;
