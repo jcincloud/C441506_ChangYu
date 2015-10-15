@@ -4,3 +4,47 @@
     width: $width;
     height: $height;
 }
+
+// 做圓形
+@mixin circle($size, $center:true, $display:inline-block) {
+	@extend %circle;
+
+	display: $display;
+    width: $size;
+    height: $size;
+
+    @if $center == true {
+    	text-align: center;
+    	line-height: $size;
+    }
+    @else {}
+}
+
+// 做三角形
+@mixin caret($direction, $color, $width, $height:$width/2, $display:inline-block) {
+  display: $display;
+  width:0;
+  height:0;
+  border:$width/2 solid transparent;
+  
+  @if $direction == up {
+    border-bottom-color:$color;
+    border-bottom-width:$height;
+    border-top-width:$width - $height;
+  }
+  @else if $direction == down {
+    border-top-color:$color;
+    border-top-width:$height;
+    border-bottom-width:$width - $height;
+  }
+  @else if $direction == left {
+    border-right-color:$color;
+    border-right-width:$height;
+    border-left-width:$width - $height;
+  }
+  @else if $direction == right {
+    border-left-color:$color;
+    border-left-width:$height;
+    border-right-width:$width - $height;
+  }
+}

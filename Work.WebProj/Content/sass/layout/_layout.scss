@@ -1,7 +1,7 @@
 @charset "UTF-8";
 // wrapper
 $wrapper-bg:            url(#{$img-path}/bg.jpg) center 0 repeat-y fixed;
-$content-spacing:       30px !default;
+$content-spacing:       90px !default;
 
 // header
 $header-bg:             url(#{$img-path}/bgHeader.png) center 0 repeat-x;
@@ -63,12 +63,14 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     }
 }
 
-section, main {
+#header, #main, #footer {
     @extend %container;
     @extend %box;
 }
 
-main {
+#main {
+    @extend %text-left;
+
     z-index: z(main);
 }
 
@@ -202,7 +204,7 @@ main {
     }
 
     .menu {
-        list-style: none;
+        @extend %list-unstyled;
 
         margin-top:35px;
         
@@ -255,7 +257,7 @@ main {
             }
 
             .product {
-                list-style: none;
+                @extend %list-unstyled;
 
                 li {
                     position: relative;
@@ -263,24 +265,20 @@ main {
                     padding-left:22px;
 
                     &::before {
+                        @include circle(5px,false,block);
+
                         content: " ";
-                        display: block;
+                        background:#586e78;
+
                         position: absolute;
-
-                        width:5px;
-                        height:5px;
-
                         left:7px;
                         top:8px;
-
-                        background:#586e78;
-                        border-radius:50%;
                     }
                 }
             }
 
             .contact {
-                list-style: none;
+                @extend %list-unstyled;
 
                 li {
                     background:url(#{$img-path}/iconContact.gif) no-repeat;
@@ -312,11 +310,20 @@ main {
 }
 
 .copyright {
-    @include text-pic('copyright.gif',121px,12px);
+    color:$brand-secondary;
+    font-size: em(12px);
+    font-family: $font-family-slogan;
 
     position: absolute;
     left:0;
     top:235px;
+
+    span {
+        font-size: em(16px, 12px);
+        letter-spacing: 0.1em;
+
+        margin-right:10px;
+    }
 }
 
 .goTop {
