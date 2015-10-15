@@ -233,11 +233,14 @@
     <None Include="Content\bootstrap\js\bootstrap.js" />
     <None Include="Content\bootstrap\js\bootstrap.min.js" />
     <None Include="Content\bootstrap\js\npm.js" />
+    <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\Api\GetActionController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\InquireController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -349,12 +352,13 @@
     <Content Include="Content\bootstrap\sass\_bootstrap-sprockets.scss" />
     <Content Include="Content\css\bootstrap-datetimepicker-build.css" />
     <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\page.css" />
     <Content Include="Content\css\swiper.min.css" />
     <Content Include="Content\css\toastr.css" />
     <Content Include="Content\font\MElleHK.otf" />
     <Content Include="Content\font\MElleHK.ttf" />
     <Content Include="Content\font\MElleHK.woff" />
-    <Content Include="Content\images\banner1.jpg" />
+    <Content Include="Content\images\Index\banner1.jpg" />
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bgFooter.png" />
     <Content Include="Content\images\iconArrow.png" />
@@ -840,7 +844,6 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Shared\Manage\Menu.tablet.bak.cshtml" />
-    <Content Include="Views\Products\Products.cshtml" />
     <Content Include="Scripts\src\jsx\t-login.jsx" />
     <Content Include="Scripts\src\jsx\t-New.jsx" />
     <Content Include="Views\Shared\Manage\RLayout.tablet.cshtml" />
@@ -963,6 +966,11 @@
     <Content Include="Scripts\src\jsx\w-index.jsx" />
     <Content Include="Scripts\src\jsx\t-VisitView.jsx" />
     <Content Include="Scripts\src\jsx\m-Stock_view.jsx" />
+    <Content Include="Views\AboutUs\AboutUs.cshtml" />
+    <Content Include="Views\ContactUs\ContactUs.cshtml" />
+    <Content Include="Views\Inquire\Inquire.cshtml" />
+    <Content Include="Views\Products\Products_content.cshtml" />
+    <Content Include="Views\Products\Products_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

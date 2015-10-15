@@ -1,25 +1,21 @@
 @charset "UTF-8";
 // wrapper
-$wrapper-bg:            #fff !default;
+$wrapper-bg:            url(#{$img-path}/bg.jpg) center 0 repeat-y fixed;
 $content-spacing:       30px !default;
 
 // header
-$header-bg:             #315400 !default;
-$header-height:         183px !default;
+$header-bg:             url(#{$img-path}/bgHeader.png) center 0 repeat-x;
+$header-height:         228px;
 
-$menu:                  (top, 38px), (right, 1.5%) !default;
-$menu-link:             #C2D217 !default;
-$menu-link-hover:       #D5E8C2 !default;
-
-$banner-height:         270px !default;
+$menu:                  (top, 158px), (left, 0);
+$menu-height:           70px; 
+$menu-link:             transparent;
+$menu-link-hover:       $brand-secondary;
 
 // footer
-$footer-height:         178px !default;
-$footer-bg:             #E5E6DE !default;
+$footer-height:         298px !default;
+$footer-bg:             #113a4d;
 $goTop:                 (bottom, 10px), (right, 15px) !default;
-$footer-height2:        140px !default;
-$footer-contact-color:  #406947 !default;
-$copyright-color:       #E3E5DC !default;
 
 
 /*      layout
@@ -61,6 +57,10 @@ $copyright-color:       #E3E5DC !default;
     @extend %box;
     @extend %center;
     @extend .text-left;
+
+    @media screen and (max-width: ($max-width)-1) {
+        width: $min-width;
+    }
 }
 
 section, main {
@@ -79,29 +79,32 @@ main {
     height: $header-height;
     z-index: z(header);
 
+    //background: $header-bg;
+
     &::before {
-        content: '';
-        background: $header-bg;
-        height: 125px;
-        width: 100%;
+        content:" ";
+        display: block;
         position: absolute;
-        z-index: z(banner) + 1;
+
+        width:100%;
+        height: $menu-height;
+        top:158px;
+        left:0;
+        background: $brand-primary;
     }
 }
 
-h1, #menu, .top-nav {
+h1, #menu, .award {
     position: absolute;
 }
 
 h1 {
     cursor: pointer; cursor: hand; // for ie
     left: 0;
+    top:10px;
     z-index: z(logo);
 
-    @include text-pic('logo.gif',305px,125px);
-    @include media('(min-width:992px) and (max-width: 1366px)') {
-        left: cp(20px);
-    }
+    @include text-pic('logo.png',340px,135px);
 }
 
 #menu {
@@ -111,19 +114,20 @@ h1 {
         #{$attr}: $value;
     };
 
+    width:100%;
     z-index: z(menu);
 
     a {
-        background-position: center 5px;
-        color: $menu-link;
-        font-size: em(18px);
+        background: $menu-link;
+        color: #fff;
+        font-size: em(22px);
         font-weight: bold;
         text-align: center;
 
         display: block;
         float: left;
-        padding-top: 24px;
-        width: 135px;
+        width:20%;
+        line-height: $menu-height;
 
         $selector: ();
 
@@ -135,36 +139,39 @@ h1 {
 
         &:hover,
         #{$selector} {
-            background: url(#{$img-path}/icon-menu.png) center 0 no-repeat;
-            color: $menu-link-hover;
+            background: $menu-link-hover;
         }
     }
 }
 
-.top-nav {
-    font-size: em(12px);
-
-    right: 46px; top: 10px;
+.award {
+    right:0;
+    top:16px;
     z-index: z(menu)+1;
 
-    a {
-        color: $brand-secondary;
-        margin-right: 5px;
+    li {
+        background:url(#{$img-path}/iconAward.png) no-repeat;
 
-        &:hover {
-            color: lighten($brand-secondary,30%)
+        height:40px;
+        font-size: em(13px);
+        color:#789bb3;
+
+        margin-right:30px;
+        padding:4px 0 0 45px;
+
+        @for $i from 1 through 2 {
+            $icon-y: (0px, -100px);
+            &:nth-child(#{$i}) {
+                background-position: 0 nth($icon-y, $i);
+            }
         }
-    }
-}
 
-#banner {
-    z-index: z(banner);
+        strong {
+            display: block;
 
-    .swiper-slide {
-        background-position: center 0;
-        background-repeat: no-repeat;
-        @include text-hide;
-        @include size(100%, $banner-height);
+            font-size: em(15px,13px);
+            color:#2c5871;
+        }
     }
 }
 
@@ -172,72 +179,144 @@ h1 {
 // footer
 // ----------------------------------------------------------------------
 #footer {
+    background: $footer-bg;
     margin-top: -($footer-height);
     height: $footer-height;
     z-index: z(footer);
+    background: #113a4d;
 
-    .list-inline {
-        background: $footer-bg;
-        color: $footer-contact-color;
-        line-height: $footer-height2;
-        margin: 0;
+    &::before {
+        content:" ";
+        display: block;
+        position: absolute;
 
-        a {
-            color: $footer-contact-color;
+        width: 100%;
+        height:15px;
 
-            &:hover {
-                color: $brand-secondary;
-            }
+        left:0;
+        top:-15px;
+
+        background: url(#{$img-path}/bgFooter.png) 0 0 repeat-x;
+
+        z-index: z(footer)-1;
+    }
+
+    .menu {
+        list-style: none;
+
+        margin-top:35px;
+        
+        @media screen and (max-width: ($max-width)-1) {
+            margin-left:-100px;
         }
-        em {
-            font-style: normal;
 
-            display: inline-block;
-            vertical-align: top;
-            min-width: 45px;
-            margin-right: 5px;
-        }
-        li {
-            background-attachment: fixed;
-            background: url(#{$img-path}/icon-contact.png) 0 0 no-repeat;
-            font-size: em(20px);
-            font-weight: 500;
-            line-height: nth($line-height,2);
-            text-align: left;
-            vertical-align: middle;
-
-            width: cp(290px); max-width: 330px;
-            min-height: 33px;
-            padding-left: 48px;
-
-            &:nth-child(1) {
-                width: cp(390px); max-width: 430px;
+        > li {
+            float:left;
+            width:33.33%;
+            
+            @media screen and (max-width: ($max-width)-1) {
+                width:auto;
+                margin-left:100px;
             }
-            &:nth-child(2) {
-                background-position: 0 -100px;
-            }
-            &:nth-child(3) {
-                background-position: 0 -210px;
 
-                em {
-                    display: block;
-                    margin-bottom: -5px;
+            color: #fff;
+            font-size: em(23px);
+            letter-spacing: 0.03em;
+
+            > em, > a > em {
+                color:#a7a2a5;
+                font-style: normal;
+                font-size: em(16px,23px);
+                letter-spacing: 0;
+
+                margin-left:15px;
+            }
+
+            > a {
+                display: block;
+                color:#fff;
+                margin-bottom:45px;
+
+                &:hover {
+                    > em {color:#fff;}
+                }
+            }
+
+            ul {
+                margin-top:20px;
+
+                li {
+                    font-size: em(18px,23px);
+                    margin-bottom:20px;
+
+                    a {color:#bfbcbe;}
+                    a:hover {color:#fff;}
+                }
+            }
+
+            .product {
+                list-style: none;
+
+                li {
+                    position: relative;
+
+                    padding-left:22px;
+
+                    &::before {
+                        content: " ";
+                        display: block;
+                        position: absolute;
+
+                        width:5px;
+                        height:5px;
+
+                        left:7px;
+                        top:8px;
+
+                        background:#586e78;
+                        border-radius:50%;
+                    }
+                }
+            }
+
+            .contact {
+                list-style: none;
+
+                li {
+                    background:url(#{$img-path}/iconContact.gif) no-repeat;
+                    padding-left:38px;
+
+                    height:23px;
+
+                    font-size: em(14px,23px);
+                    color:#bfbcbe;
+
+                    @for $i from 1 through 4 {
+                        $icon-y: (0px, -105px, -207px, -310px);
+                        &:nth-child(#{$i}) {
+                            background-position: 0 nth($icon-y, $i);
+                        }
+                    }
+
+                    &:nth-child(1),  &:nth-child(2) {float:left;}
+                    &:nth-child(1) {margin-right:40px;}
+                    &:nth-child(3) {clear:both;}
+
+                    em {display:none}
+                    strong {font-size: em(18px,14px);}
                 }
             }
         }
     }
+
 }
 
 .copyright {
-    color: $copyright-color;
-    font-size: em(13px);
+    @include text-pic('copyright.gif',121px,12px);
 
-    span {
-        display: inline-block;
-        vertical-align: middle;
-
-        @include text-pic('logo_s.gif',60px,16px);
-    }
+    position: absolute;
+    left:0;
+    top:235px;
 }
 
 .goTop {

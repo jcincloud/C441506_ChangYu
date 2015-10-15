@@ -31,39 +31,12 @@ $btn-font-size:    17px;
 
 // header
 // ----------------------------------------------------------------------
-#banner {
-    margin-top: 125px;
 
-    // @for $i from 1 through length($page) {
-    //     $item: nth($page, $i);
-
-    //     .#{$item} & {
-    //         background-image: url(#{$img-path}/#{$item}/banner.jpg);
-    //     }
-    // }
-    @each $item in page(2) {
-        @for $i from 1 through 2 {
-            .#{$item} & .i#{$i} {
-                background-image: url(#{$img-path}/#{$item}/banner#{$i}.jpg);
-            }
-        }
-    }
-}
 
 
 // footer
 // ----------------------------------------------------------------------
-#footer iframe {
-    display: none;
-}
-.copyright {
-    background: #406947;
-    line-height: 38px;
 
-    span {
-        margin-right: 15px;
-    }
-}
 
 
 // main

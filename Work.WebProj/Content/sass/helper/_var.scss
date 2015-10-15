@@ -19,8 +19,8 @@ $gray-light:            lighten($gray-base, 46.7%);   // #777
 $gray-lighter:          lighten($gray-base, 93.5%);   // #eee
 
 // 抽象色
-$brand-primary:         #2F5304 !default;             // 主色
-$brand-secondary:       #94BC1B !default;             // 輔色
+$brand-primary:         #2e98b8;             // 主色
+$brand-secondary:       #cb9b0c;             // 輔色
 $success:               #019740 !default;             // 綠
 $info:                  #0180CC !default;             // 藍
 $warning:               #FABE01 !default;             // 黃
@@ -41,13 +41,13 @@ $link-hover-color:      darken($link-color, 15%) !default;     // 滑鼠移過�
 $min-width:             1007px !default;     // 網頁最小尺寸
 $max-width:             1400px !default;     // 網頁最寬尺寸: .wrap
 
-$pages: 'index' 'AboutUs' 'Products' 'News' 'ContactUs';
+$pages: 'index' 'AboutUs' 'Products' 'Inquire' 'ContactUs';
 
 
 // == font
 // ----------------------------------------------------------------------
-// 英文: Georgia / 中文: 微軟正黑體
-$font-family-base:      Georgia, Arial, 'Microsoft Jhenghei', \5FAE\8EDF\6B63\9ED1\9AD4, sans-serif !default;
+// 微軟正黑體
+$font-family-base:      'Microsoft Jhenghei', \5FAE\8EDF\6B63\9ED1\9AD4, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 $font-size-base:        16px !default;
 $font-size-lg:          $font-size-base * 1.25 !default;     // 20px
@@ -189,8 +189,8 @@ $medias: (
 // == z-index
 // ----------------------------------------------------------------------
 $z-index: (
-    header:     1,
-    main:       2,
+    header:     2,
+    main:       1,
     footer:     3,
     banner:     1,
     logo:       50,

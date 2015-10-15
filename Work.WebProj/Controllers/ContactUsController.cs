@@ -12,15 +12,11 @@ using DotWeb.CommSetup;
 using DotWeb.Controller;
 namespace DotWeb.Controllers
 {
-    public class ProductsController : WebUserController
+    public class ContactUsController : WebUserController
     {
-        public ActionResult list()
+        public ActionResult Index()
         {
-            return View("Products_list");
-        }
-        public ActionResult content()
-        {
-            return View("Products_content");
+            return View("ContactUs");
         }
     }
 }

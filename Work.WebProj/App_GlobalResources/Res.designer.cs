@@ -718,7 +718,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查詢類似 好婆婆中壢店 管理系統 的當地語系化字串。
+        ///   查詢類似 倡譽興業有限公司 的當地語系化字串。
         /// </summary>
         internal static string System_Name {
             get {

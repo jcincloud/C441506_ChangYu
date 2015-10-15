@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @* <meta name="keywords" content="@Resources.ResWeb.keywords">
     <meta name="description" content="@Resources.ResWeb.description"> *@
-    <title>@Resources.Res.System_Name:@ViewBag.Title</title>
+    <title>@ViewBag.Title:@Resources.Res.System_Name</title>
     <!--[if lt IE 9]>
     <script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
     <![endif]-->
@@ -33,11 +33,11 @@
             <nav id="menu">
                 <a href="~/index">HOME</a>
                 <a href="~/AboutUs">公司簡介</a>
-                <a href="~/Products">產品介紹</a>
+                <a href="~/Products/list">產品介紹</a>
                 <a href="~/Inquire">線上諮詢</a>
                 <a href="~/ContactUs">聯絡我們</a>
             </nav>
-            <ul class="award">
+            <ul class="award list-inline">
                 <li><strong>Quality Assurance</strong>ISO 9001　TS 16949</li>
                 <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
             </ul>
@@ -51,28 +51,32 @@
 </div><!-- wrapper //-->
 
 <section id="footer">
-    <ul class="menu">
-        <li>公司簡介<em>ABOUT US</em></li>
-        <li>
-            產品介紹<em>PRODUCTS</em>
-            <ul class="list-inline">
-                <li><a href="">被動元件</a></li>
-                <li><a href="">線材組</a></li>
-                <li><a href="">Magnet 永久磁鐵</a></li>
-            </ul>
-        </li>
-        <li>
-            聯絡我們<em>CONTACT US</em>
-            <ul class="list-inline">
-                <li><em>電話：</em><strong>0921-874-565</strong></li>
-                <li><em>傳真：</em><strong>886-3-4961359</strong></li>
-                <li><em>地址：</em>桃園市楊梅區幼獅路二段392巷29弄17號</li>
-                <li><em>E-mail：</em><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></li>
-            </ul>
-        </li>
-        <li>線上諮詢<em>INQUIRE</em></li>
-    </ul>
-    <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
+    <div class="wrap">
+        <ul class="menu">
+            <li>
+                <a href="~/AboutUs">公司簡介<em>ABOUT US</em></a>
+                <a href="~/Inquire">線上諮詢<em>INQUIRE</em></a>
+            </li>
+            <li>
+                產品介紹<em>PRODUCTS</em>
+                <ul class="product">
+                    <li><a href="">被動元件</a></li>
+                    <li><a href="">線材組</a></li>
+                    <li><a href="">Magnet 永久磁鐵</a></li>
+                </ul>
+            </li>
+            <li>
+                聯絡我們<em>CONTACT US</em>
+                <ul class="contact">
+                    <li><em>電話：</em><strong>0921-874-565</strong></li>
+                    <li><em>傳真：</em><strong>886-3-4961359</strong></li>
+                    <li><em>地址：</em>桃園市楊梅區幼獅路二段392巷29弄17號</li>
+                    <li><em>E-mail：</em><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
+    </div>
 </section><!-- footer -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
