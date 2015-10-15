@@ -7,10 +7,20 @@ using System.Web.Mvc;
 
 namespace DotWeb.Areas.Active.Controllers
 {
-    public class CustomerController : AdminController
+    public class ProductDataController : AdminController
     {
         #region Action and function section
         public ActionResult Main()
+        {
+            ActionRun();
+            return View();
+        }
+        public ActionResult CategoryL1()
+        {
+            ActionRun();
+            return View();
+        }
+        public ActionResult CategoryL2()
         {
             ActionRun();
             return View();
