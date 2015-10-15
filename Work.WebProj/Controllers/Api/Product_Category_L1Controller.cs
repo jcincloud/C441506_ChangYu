@@ -37,13 +37,16 @@ namespace DotWeb.Api
                 {
                     qr = qr.Where(x => x.l1_name.Contains(q.name));
                 }
-
+                if (q.i_Hide != null)
+                {
+                    qr = qr.Where(x => x.i_Hide == q.i_Hide);
+                }
                 var result = qr.Select(x => new m_Product_Category_L1()
                 {
-                    product_category_l1_id=x.product_category_l1_id,
-                    l1_name=x.l1_name,
-                    l1_sort=x.l1_sort,
-                    i_Hide=x.i_Hide
+                    product_category_l1_id = x.product_category_l1_id,
+                    l1_name = x.l1_name,
+                    l1_sort = x.l1_sort,
+                    i_Hide = x.i_Hide
                 });
 
                 int page = (q.page == null ? 1 : (int)q.page);

@@ -225,6 +225,7 @@ namespace ProcCore.Business.DB0
     public class q_Product_Category_L1 : QueryBase
     {
         public string name { get; set; }
+        public bool? i_Hide { get; set; }
     }
     public class q_Product_Category_L2 : QueryBase
     {
