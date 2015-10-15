@@ -433,6 +433,10 @@ address {
   clear: both;
 }
 
+.hidden {
+  display: none;
+}
+
 .circle {
   border-radius: 50%;
 }
@@ -540,11 +544,11 @@ main {
   background: #2e98b8;
 }
 
-h1, #menu, .award {
+.logo, #menu, .award {
   position: absolute;
 }
 
-h1 {
+.logo {
   cursor: pointer;
   cursor: hand;
   left: 0;
