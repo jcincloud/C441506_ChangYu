@@ -678,6 +678,14 @@
     <Content Include="Scripts\build\comminc.js" />
     <Content Include="Scripts\build\func\inc\c-Comm.js" />
     <Content Include="Scripts\build\func\inc\c-ImgFileSort.js" />
+    <Content Include="Scripts\build\func\m-ChangePassword.js" />
+    <Content Include="Scripts\build\func\m-login.js" />
+    <Content Include="Scripts\build\func\m-Product.js" />
+    <Content Include="Scripts\build\func\m-Product_Category_L1.js" />
+    <Content Include="Scripts\build\func\m-Product_Category_L2.js" />
+    <Content Include="Scripts\build\func\m-Roles.js" />
+    <Content Include="Scripts\build\func\m-Users.js" />
+    <Content Include="Scripts\build\func\w-index.js" />
     <Content Include="Scripts\build\ts\commangular.js" />
     <Content Include="Scripts\build\ts\commfunc.js" />
     <Content Include="Scripts\build\ts\commupload.js" />
@@ -806,7 +814,7 @@
     <Content Include="Views\Shared\Manage\RLayout.tablet.cshtml" />
     <Content Include="_Code\Ashx\ValidateCodeB.ashx" />
     <Content Include="Scripts\src\jsx\m-Users.jsx" />
-    <Content Include="Scripts\src\jsx\m-ProductCategory.jsx" />
+    <Content Include="Scripts\src\jsx\m-Product_Category_L1.jsx" />
     <Content Include="Scripts\src\jsx\m-Roles.jsx" />
     <Content Include="_Code\CSS\sass\bs\bootstrap.scss" />
     <Content Include="_Code\CSS\sass\bs\mixins\_alerts.scss" />
@@ -905,13 +913,13 @@
     <Content Include="_Code\CSS\sass\_scripts.scss" />
     <Content Include="_Code\CSS\sass\_variables.scss" />
     <Content Include="Scripts\src\jsx\m-ChangePassword.jsx" />
-    <Content Include="Scripts\src\jsx\m-ProductBrand.jsx" />
     <Content Include="Scripts\src\jsx\w-index.jsx" />
     <Content Include="Views\AboutUs\AboutUs.cshtml" />
     <Content Include="Views\ContactUs\ContactUs.cshtml" />
     <Content Include="Views\Inquire\Inquire.cshtml" />
     <Content Include="Views\Products\Products_content.cshtml" />
     <Content Include="Views\Products\Products_list.cshtml" />
+    <Content Include="Scripts\src\jsx\m-Product_Category_L2.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
