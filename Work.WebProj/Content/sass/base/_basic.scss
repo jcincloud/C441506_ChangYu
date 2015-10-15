@@ -55,12 +55,14 @@ img {
 }
 
 @font-face {
-    font-family: MElleHK;
-    src: local('蒙纳繁雅丽'),
-         local('MElleHK-Medium'),
-         url(#{$font-path}MElleHK.woff) format('woff'),
-         url(#{$font-path}MElleHK.otf) format('opentype'),
-         url(#{$font-path}MElleHK.ttf) format('opentype');
+  font-family: 'AvantGardeITCbyBT-Book';
+  src: local('AvantGardeITCbyBT-Book'),
+       url(#{$font-path}AvantGardeITCbyBT-Book.eot?#iefix) format('embedded-opentype'),
+       url(#{$font-path}AvantGardeITCbyBT-Book.woff) format('woff'),
+       url(#{$font-path}AvantGardeITCbyBT-Book.ttf)  format('truetype'),
+       url(#{$font-path}AvantGardeITCbyBT-Book.svg#AvantGardeITCbyBT-Book) format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 // Headings
@@ -119,6 +121,13 @@ small {
 mark {
     background-color: lighten($warning, 30%);
     padding: .2em;
+}
+
+hr, %hr {
+    height:2px;
+
+    border-top: 1px solid #ccc;
+    border-bottom:1px solid #F9F9F9;
 }
 
 
