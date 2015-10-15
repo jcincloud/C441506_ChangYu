@@ -142,9 +142,9 @@ namespace ProcCore.Business.DB0
     }
     #endregion
 
-    public partial class C43A0_Mani520Entities : DbContext
+    public partial class C44A0_ChangYuEntities : DbContext
     {
-        public C43A0_Mani520Entities(string connectionstring)
+        public C44A0_ChangYuEntities(string connectionstring)
             : base(connectionstring)
         {
         }
@@ -197,135 +197,16 @@ namespace ProcCore.Business.DB0
     }
 
     #region Model Expand
-    public partial class Area
+    public class DocInfo
     {
-        public bool is_take { get; set; }
+        public String Name { get; set; }
+        public int Sort { get; set; }
+        public String Momo { get; set; }
+        public String Link { get; set; }
     }
-    public partial class Agent
+    public partial class m_Product_Category_L2 : BaseEntityTable
     {
-        public bool is_take { get; set; }
-    }
-    public partial class Customer
-    {
-        public bool is_set_visit { get; set; }
-    }
-    public partial class m_Product
-    {
-        public string product_category_name { get; set; }
-    }
-    public class ParmGetCustomerVisit
-    {
-        public DateTime? start_date { get; set; }
-        public DateTime? end_date { get; set; }
-        public string users_id { get; set; }
-        public string customer_name { get; set; }
-        public string product_name { get; set; }
-        public int page { get; set; }
-    }
-    public class ParmReportR04 : ParmGetCustomerVisit
-    {
-        public byte? customer_type { get; set; }
-        public byte? channel_type { get; set; }
-        public byte? evaluate { get; set; }
-        public byte? store_type { get; set; }
-        public byte? store_level { get; set; }
-        public Products[] products { get; set; }
-
-        public class Products
-        {
-            public int product_id { get; set; }
-        }
-        public int[] ids { get; set; }
-        public string[] names { get; set; }
-    }
-    public class CustomerVisit
-    {
-        public string customer_name { get; set; }
-        public int customer_id { get; set; }
-        public DateTime visit_date { get; set; }
-        public DateTime? visit_start { get; set; }
-        public DateTime? visit_end { get; set; }
-        public int cumulative_time { get; set; }
-        public int state { get; set; }
-        public string user_name { get; set; }
-        public string users_id { get; set; }
-        public bool checkInsert { get; set; }
-        public string memo { get; set; }
-    }
-    public class VisitProduct
-    {
-        public string customer_name { get; set; }
-        public int customer_id { get; set; }
-        public int product_id { get; set; }
-        public string product_name { get; set; }
-        public string user_name { get; set; }
-        public string users_id { get; set; }
-        public decimal price { get; set; }
-        public DateTime visit_date { get; set; }
-        public int visit_detail_id { get; set; }
-        public bool distributed { get; set; }
-        public string description { get; set; }
-    }
-    public class CustomerAgent
-    {
-        public string customer_name { get; set; }
-        public int y { get; set; }
-        public int m { get; set; }
-        public int customer_id { get; set; }
-        public int product_id { get; set; }
-        public DateTime? i_InsertDateTime { get; set; }
-        public string product_name { get; set; }
-        public decimal qty { get; set; }
-        public string agent_name { get; set; }
-        public int agent_id { get; set; }
-        public int stock_detail_id { get; set; }
-        public int stock_detail_qty_id { get; set; }
-    }
-    public class ExcleCustomerAgent : CustomerAgent
-    {
-        public decimal qty_1 { get; set; }
-        public decimal qty_2 { get; set; }
-        public decimal qty_3 { get; set; }
-        public decimal qty_4 { get; set; }
-        public decimal qty_5 { get; set; }
-        public decimal qty_6 { get; set; }
-        public decimal qty_7 { get; set; }
-        public decimal qty_8 { get; set; }
-        public decimal qty_9 { get; set; }
-        public decimal qty_10 { get; set; }
-        public decimal qty_11 { get; set; }
-        public decimal qty_12 { get; set; }
-        public decimal sum_qtys { get; set; }
-    }
-    public class SalesProductSum
-    {
-        public int product_id { get; set; }
-        public string product_sn { get; set; }
-        public string product_name { get; set; }
-        public int Sum { get; set; }
-    }
-    public class CustomerProduct
-    {
-        public string customer_name { get; set; }
-        public int customer_id { get; set; }
-        public int product_id { get; set; }
-        public string product_name { get; set; }
-        public string agent_name { get; set; }
-        public int agent_id { get; set; }
-        public decimal qty { get; set; }
-        public bool distributed { get; set; }//是否分佈
-        public byte customer_type { get; set; }
-        public byte channel_type { get; set; }
-        public byte? evaluate { get; set; }
-        public byte store_type { get; set; }
-        public byte store_level { get; set; }
-        public int y { get; set; }
-        public int m { get; set; }
-        public DateTime? inester_datetime { get; set; }
-    }
-    public class ExcelCustomerProduct : CustomerProduct {
-        public List<decimal> p_qtys { get; set; }
-        public bool is_hide { get; set; }
+        public string l1_name { get; set; }
     }
     #endregion
 
@@ -340,56 +221,16 @@ namespace ProcCore.Business.DB0
         public string UserName { set; get; }
 
     }
-    public class q_OtherUnit : QueryBase
+
+    public class q_Product_Category_L1 : QueryBase
     {
         public string name { get; set; }
-        public int? category { get; set; }
-        public bool? state { get; set; }
-        public int? hot { get; set; }
-
     }
-    public class q_Product : QueryBase
+    public class q_Product_Category_L2 : QueryBase
     {
-        public string product_name { get; set; }
-        public int? product_category_id { get; set; }
-    }
-    public class q_ProductCategory : QueryBase
-    {
-    }
-    public class q_ProductBrand : QueryBase
-    {
-    }
-    public class q_Customer : QueryBase
-    {
-        public string i_InsertUserID { get; set; }
-        public DateTime? i_InsertDateTime { get; set; }
-        public string customer_name { get; set; }
-        public string city { get; set; }
-        public string country { get; set; }
-        public string address { get; set; }
-        public string tel { get; set; }
-        public int? customer_type { get; set; }
-    }
-    public class q_Visit : QueryBase
-    {
-        public string i_InsertUserID { get; set; }
-        public DateTime? i_InsertDateTime { get; set; }
-    }
-    public class q_MapSalesProduct : QueryBase
-    {
-    }
-    public class q_Agent : QueryBase
-    {
-        public string agent_name { get; set; }
-    }
-    public class q_Stock : QueryBase
-    {
-        public int? year { get; set; }
-        public int? month { get; set; }
-    }
-    public class q_StockDetail : QueryBase
-    {
-        public int stock_id { get; set; }
+        public string name { get; set; }
+        public string l1_name { get; set; }
+        public int l1_id { get; set; }
     }
     #endregion
 
