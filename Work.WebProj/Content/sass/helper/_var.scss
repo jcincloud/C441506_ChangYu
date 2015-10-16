@@ -109,8 +109,28 @@ $table-color: (
     table-border:           lighten($brand-secondary,10%),
     table-th:               $text-color,
     table-td:               #254202,
-    table-caption:          #989898
+    table-caption:          #989898,
+
+    input-bg:               #fff,
+    input-bg-disabled:      $gray-lighter,
+    input-color:            $gray,
+    input-border:           #ccc,
+    input-border-focus:     #66afe9,
+    input-placeholder:      #999,
+    input-addon-bg:         $gray-lighter,
+    input-addon-border:     #ccc
 );
+
+// $table-color: (
+//     table-bg:               transparent,
+//     table-bg-accent:        #f9f9f9,
+//     table-bg-hover:         #D6E9C2,
+//     table-bg-active:        #D6E9C2,
+//     table-border:           lighten($brand-secondary,10%),
+//     table-th:               $text-color,
+//     table-td:               #254202,
+//     table-caption:          #989898
+// );
 // $input-color: (
 //     input-bg:               #fff,
 //     input-bg-disabled:      $gray-lighter,
