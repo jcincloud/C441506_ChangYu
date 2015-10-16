@@ -220,6 +220,7 @@
     <None Include="Content\bootstrap\js\bootstrap.min.js" />
     <None Include="Content\bootstrap\js\npm.js" />
     <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\Product_Category_L2Controller.cs" />
     <Compile Include="Controllers\Api\Product_Category_L1Controller.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />

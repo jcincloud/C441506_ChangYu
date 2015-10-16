@@ -149,10 +149,16 @@
     <Compile Include="DB0\m_Menu.cs">
       <DependentUpon>C44A0_ChangYu.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB0\m_Product.cs">
+      <DependentUpon>C44A0_ChangYu.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB0\m_Product_Category_L1.cs">
       <DependentUpon>C44A0_ChangYu.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\m_Product_Category_L2.cs">
+      <DependentUpon>C44A0_ChangYu.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB0\Product.cs">
       <DependentUpon>C44A0_ChangYu.tt</DependentUpon>
     </Compile>
     <Compile Include="DB0\Product_Category_L1.cs">

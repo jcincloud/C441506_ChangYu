@@ -16,10 +16,11 @@
 				<tr>
 					<td className="text-center"><GridCheckDel iKey={this.props.ikey} chd={this.props.itemData.check_del} delCheck={this.delCheck} /></td>
 					<td className="text-center"><GridButtonModify modify={this.modify}/></td>
-					<td>{this.props.itemData.product_sn}</td>
+					<td>{this.props.itemData.l1_name}</td>
+					<td>{this.props.itemData.l2_name}</td>
 					<td>{this.props.itemData.product_name}</td>
-					<td>{this.props.itemData.product_name_c}</td>
-					<td>{this.props.itemData.product_category_name}</td>
+					<td>{this.props.itemData.sort}</td>
+					<td>{this.props.itemData.i_Hide?<span className="label label-default">隱藏</span>:<span className="label label-primary">顯示</span>}</td>
 				</tr>
 			);
 		}
@@ -35,34 +36,51 @@ var GirdForm = React.createClass({
 			searchData:{title:null},
 			edit_type:0,
 			checkAll:false,
-			option_product_category:[],
-			option_product_brand:[]
+			category_l1:[],
+			category_l2:[]
 		};  
 	},
 	getDefaultProps:function(){
 		return{	
 			fdName:'fieldData',
 			gdName:'searchData',
-			apiPathName:gb_approot+'api/Product'
-
+			apiPathName:gb_approot+'api/Product',
+			initPathName:gb_approot+'Active/ProductData/product_Init'
 		};
 	},	
 	componentDidMount:function(){
 		this.queryGridData(1);
-		this.queryProductCategory();
-		this.queryProductBrand();
+		this.getAjaxInitData();//載入init資料
+	},
+	shouldComponentUpdate:function(nextProps,nextState){
+		return true;
+	},
+	getAjaxInitData:function(){
+		jqGet(this.props.initPathName)
+		.done(function(data, textStatus, jqXHRdata) {
+			this.setState({category_l1:data.options_category});
+			//載入下拉是選單內容
+		}.bind(this))
+		.fail(function( jqXHR, textStatus, errorThrown ) {
+			showAjaxError(errorThrown);
+		});
 	},
 	handleSubmit: function(e) {
 
 		e.preventDefault();
+
 		if(this.state.edit_type==1){
 			jqPost(this.props.apiPathName,this.state.fieldData)
 			.done(function(data, textStatus, jqXHRdata) {
 				if(data.result){
-					tosMessage(null,'新增完成',1);
+					if(data.message!=null){
+						tosMessage(null,'新增完成'+data.message,1);
+					}else{
+						tosMessage(null,'新增完成',1);
+					}
 					this.updateType(data.id);
 				}else{
-					alert(data.message);
+					tosMessage(null,data.message,3);
 				}
 			}.bind(this))
 			.fail(function( jqXHR, textStatus, errorThrown ) {
@@ -73,9 +91,13 @@ var GirdForm = React.createClass({
 			jqPut(this.props.apiPathName,this.state.fieldData)
 			.done(function(data, textStatus, jqXHRdata) {
 				if(data.result){
-					tosMessage(null,'修改完成',1);
+					if(data.message!=null){
+						tosMessage(null,'修改完成'+data.message,1);
+					}else{
+						tosMessage(null,'修改完成',1);
+					}
 				}else{
-					alert(data.message);
+					tosMessage(null,data.message,3);
 				}
 			}.bind(this))
 			.fail(function( jqXHR, textStatus, errorThrown ) {
@@ -108,7 +130,7 @@ var GirdForm = React.createClass({
 				tosMessage(null,'刪除完成',1);
 				this.queryGridData(0);
 			}else{
-				alert(data.message);
+				tosMessage(null,data.message,3);
 			}
 		}.bind(this))
 		.fail(function( jqXHR, textStatus, errorThrown ) {
@@ -160,26 +182,10 @@ var GirdForm = React.createClass({
 			showAjaxError(errorThrown);
 		});
 	},
-	queryProductCategory:function(){
-		jqGet(gb_approot + 'api/GetAction/GetProductCategory',{})
-		.done(function(data, textStatus, jqXHRdata) {
-			this.setState({option_product_category:data});
-		}.bind(this))
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			showAjaxError(errorThrown);
-		});
-	},
-	queryProductBrand:function(){
-		jqGet(gb_approot + 'api/GetAction/GetProductBrand',{})
-		.done(function(data, textStatus, jqXHRdata) {
-			this.setState({option_product_brand:data});
-		}.bind(this))
-		.fail(function(jqXHR, textStatus, errorThrown) {
-			showAjaxError(errorThrown);
-		});
-	},
 	insertType:function(){
-		this.setState({edit_type:1,fieldData:{}});
+		var defaultL1=this.state.category_l1;
+		var defaultL2=defaultL1[0].l2_list;
+		this.setState({edit_type:1,fieldData:{l1_id:defaultL1[0].l1_id,l2_id:defaultL2[0].l2_id}});
 	},
 	updateType:function(id){
 		jqGet(this.props.apiPathName,{id:id})
@@ -203,7 +209,7 @@ var GirdForm = React.createClass({
 		this.setInputValue(this.props.fdName,name,e);
 	},
 	changeGDValue:function(name,e){
-		this.setInputValue(this.props.gdName,name,e);
+		this.onSearchDataChange(name,e);
 	},
 	setFDValue:function(fieldName,value){
 		//此function提供給次元件調用，所以要以屬性往下傳。
@@ -223,6 +229,40 @@ var GirdForm = React.createClass({
 		}
 		this.setState({fieldData:obj});
 	},
+	onL1Change: function (e) {
+        this.listL2(e.target.value);
+        var obj = this.state.searchData;
+        obj['l1_id'] = e.target.value;
+        this.setState({ searchData: obj });
+    },
+    onSearchDataChange: function (name,e) {
+        var obj = this.state.searchData;
+        obj[name] = e.target.value;
+        this.setState({ searchData: obj });
+    },
+    listL2: function (value) {
+		$("#search-l2 option:first").attr("selected", true);
+		var searchData=this.state.searchData;
+		searchData.l2_id=null;
+		
+    	var category_l1=this.state.category_l1;
+        for (var i in category_l1) {
+            var item = category_l1[i];
+            if (item.l1_id == value) {
+                this.setState({ category_l2: item.l2_list});
+                break;
+            }
+        }
+        this.setState({ searchData: searchData });
+    },
+    onFieldDataL2Change:function(e){
+    	var select = $(':selected', e.target);//取得目前選取的option
+    	var obj = this.state.fieldData;
+
+		obj['l1_id'] = select.attr('data-l1');
+		obj['l2_id'] = e.target.value;
+		this.setState({fieldData:obj});
+    },
 	render: function() {
 		var outHtml = null;
 
@@ -233,41 +273,63 @@ var GirdForm = React.createClass({
 			outHtml =
 			(
 			<div>
-				<ul className="breadcrumb">
-					<li><i className="fa-list-alt"></i> {this.props.MenuName}</li>
-				</ul>
-				<h3 className="title">
-					{this.props.Caption}
-				</h3>
+                <h3 className="title">{this.props.Caption} 列表</h3>
+
 				<form onSubmit={this.handleSearch}>
-					<div className="table-responsive">
+					
 						<div className="table-header">
 							<div className="table-filter">
 								<div className="form-inline">
 									<div className="form-group">
-										<label className="sr-only">產品名稱</label> { } 
-										<input type="text" className="form-control" 
-										value={searchData.product_name}
-										onChange={this.changeGDValue.bind(this,'product_name')}
-										placeholder="產品名稱..." />
-										{ } <label className="sr-only">產品分類</label> { } 
-										<select className="form-control" 
-										value={searchData.product_category_id}
-										onChange={this.changeGDValue.bind(this,'product_category_id')}>
-										<option value="">產品分類</option>
-											{
-												this.state.option_product_category.map(function(itemData,i) {
-													var sub_out_option = <option value={itemData.product_category_id}>{itemData.product_category_name}</option>;
-													return sub_out_option;
-												}.bind(this))
-											}
-										</select>
-										{ } <button className="btn-primary" type="submit"><i className="fa-search"></i> 搜尋</button>
+
+										<label>產品名稱</label> { }
+										<input type="text" className="form-control input-sm" 
+										value={searchData.name}
+										onChange={this.changeGDValue.bind(this,'name')}
+										placeholder="產品名稱..." /> { }
+
+										<label>主分類</label> { }
+										<select className="form-control input-sm" 
+												value={searchData.l1_id}
+												onChange={this.onL1Change.bind(this)}>
+											<option value="">全部</option>
+										{
+											this.state.category_l1.map(function(itemData,i) {
+												return <option key={i} value={itemData.l1_id}>{itemData.l1_name}</option>
+											})
+										}
+										</select> { }
+
+										<label>次分類</label> { }
+										<select className="form-control input-sm"
+												id="search-l2"
+												value={searchData.l2_id}
+												onChange={this.changeGDValue.bind(this,'l2_id')}>
+											<option value="">全部</option>
+										{
+											this.state.category_l2.map(function(itemData,i) {
+												return <option key={i} value={itemData.l2_id}>{itemData.l2_name}</option>
+											})
+										}
+										</select> { }
+
+										<label>狀態</label> { }
+										<select className="form-control input-sm" 
+												value={searchData.i_Hide}
+												onChange={this.changeGDValue.bind(this,'i_Hide')}>
+											<option value="">全部</option>
+											<option value="true">隱藏</option>
+											<option value="false">顯示</option>
+
+										</select> { }
+
+
+										<button className="btn-primary" type="submit"><i className="fa-search"></i>{ }搜尋</button>
 									</div>
 								</div>
 							</div>
 						</div>
-						<table>
+						<table className="table-condensed">
 							<thead>
 								<tr>
 									<th className="col-xs-1 text-center">
@@ -277,10 +339,11 @@ var GirdForm = React.createClass({
 										</label>
 									</th>
 									<th className="col-xs-1 text-center">修改</th>
-									<th className="col-xs-2">產品編號</th>
+									<th className="col-xs-2">主分類名稱</th>
+									<th className="col-xs-3">次分類名稱</th>
 									<th className="col-xs-3">產品名稱</th>
-									<th className="col-xs-3">中文名稱</th>
-									<th className="col-xs-2">分類</th>
+									<th className="col-xs-1">排序</th>
+									<th className="col-xs-1">狀態</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -298,7 +361,6 @@ var GirdForm = React.createClass({
 								}
 							</tbody>
 						</table>
-					</div>
 					<GridNavPage 
 					StartCount={this.state.gridData.startcount}
 					EndCount={this.state.gridData.endcount}
@@ -319,110 +381,88 @@ var GirdForm = React.createClass({
 
 			outHtml=(
 			<div>
-				<ul className="breadcrumb">
-					<li><i className="fa-list-alt"></i> {this.props.MenuName}</li>
-				</ul>
-				<h4 className="title">{this.props.Caption} 基本資料維護</h4>
-				<form className="form-horizontal" onSubmit={this.handleSubmit}>
-					<div className="col-xs-6">
-						<div className="alert alert-warning">
-							<p><strong className="text-danger">紅色標題</strong> 為必填欄位。</p>
-						</div>
-						<div className="form-group">
-							<label className="col-xs-2 control-label text-danger">產品編號</label>
-							<div className="col-xs-10">
-								<input type="text" 
-								className="form-control"	
-								value={fieldData.product_sn}
-								onChange={this.changeFDValue.bind(this,'product_sn')}
-								maxLength="16"
-								required />
-							</div>
-						</div>
-						<div className="form-group">
-							<label className="col-xs-2 control-label">產品類別</label>
-							<div className="col-xs-10">
-								<select className="form-control" 
-								value={fieldData.product_category_id}
-								onChange={this.changeFDValue.bind(this,'product_category_id')}>
+                <h3 className="title">{this.props.Caption} 編輯</h3>
+
+				<form className="form-horizontal clearfix" onSubmit={this.handleSubmit}>
+				<div className="col-xs-9">
+					<div className="form-group">
+						<label className="col-xs-2 control-label">產品分類</label>
+						<div className="col-xs-4">
+							<select className="form-control" 
+							value={fieldData.l2_id}
+							onChange={this.onFieldDataL2Change.bind(this)}>
+							{
+								this.state.category_l1.map(function(itemData,i) {
+									var l1_out_html=
+									<optgroup key={itemData.l1_id} label={itemData.l1_name}>
 									{
-										this.state.option_product_category.map(function(itemData,i) {
-											var sub_out_option = <option value={itemData.product_category_id}>{itemData.product_category_name}</option>;
-											return sub_out_option;
+										itemData.l2_list.map(function(L2Data,i) {
+											return <option key={L2Data.l2_id} data-l1={itemData.l1_id} value={L2Data.l2_id}>{L2Data.l2_name}</option>;
 										}.bind(this))
 									}
-								</select>
-							</div>
+									</optgroup>;
+									return l1_out_html;
+								}.bind(this))
+							}
+							</select>
 						</div>
-						<div className="form-group">
-							<label className="col-xs-2 control-label">品牌</label>
-							<div className="col-xs-10">
-								<select className="form-control" 
-								value={fieldData.product_brand_id}
-								onChange={this.changeFDValue.bind(this,'product_brand_id')}>
-									{
-										this.state.option_product_brand.map(function(itemData,i) {
-											var sub_out_option = <option value={itemData.product_brand_id}>{itemData.product_brand_name}</option>;
-											return sub_out_option;
-										}.bind(this))
-									}
-								</select>
-							</div>
+						<small className="help-inline col-xs-6 text-danger">(必填)</small>
+					</div>
+					<div className="form-group">
+						<label className="col-xs-2 control-label">產品名稱</label>
+						<div className="col-xs-4">
+							<input type="text" 							
+							className="form-control"	
+							value={fieldData.product_name}
+							onChange={this.changeFDValue.bind(this,'product_name')}
+							maxLength="64"
+							required />
 						</div>
-						<div className="form-group">
-							<label className="col-xs-2 control-label text-danger">品名</label>
-							<div className="col-xs-6">
-								<input type="text" 							
-								className="form-control"	
-								value={fieldData.product_name}
-								onChange={this.changeFDValue.bind(this,'product_name')}
-								maxLength="6"
-								required />					
-							</div>
-							<small className="col-xs-4 help-inline">最多6個字</small>
+						<small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填)</span></small>
+					</div>
+					<div className="form-group">
+						<label className="col-xs-2 control-label">排序</label>
+						<div className="col-xs-4">
+							<input type="number" 
+							className="form-control"	
+							value={fieldData.sort}
+							onChange={this.changeFDValue.bind(this,'sort')} />
 						</div>
-						<div className="form-group">
-							<label className="col-xs-2 control-label">中文名稱</label>
-							<div className="col-xs-10">
-								<input type="text" 
-								className="form-control"	
-								value={fieldData.product_name_c}
-								onChange={this.changeFDValue.bind(this,'product_name_c')}
-								maxLength="128"
-								 />
+						<small className="col-xs-2 help-inline">數字越大越前面</small>
+					</div>
+					<div className="form-group">
+						<label className="col-xs-2 control-label">狀態</label>
+						<div className="col-xs-4">
+							<div className="radio-inline">
+								<label>
+									<input type="radio" 
+											name="i_Hide"
+											value={true}
+											checked={fieldData.i_Hide===true} 
+											onChange={this.changeFDValue.bind(this,'i_Hide')}
+									/>
+									<span>隱藏</span>
+								</label>
 							</div>
-							{/* 舊的品牌資料為字串,新的改用分類選單
-							<label className="col-xs-2 control-label">品牌</label>
-							<div className="col-xs-4">
-								<input type="text" 							
-								className="form-control"	
-								value={fieldData.brand}
-								onChange={this.changeFDValue.bind(this,'brand')}
-								maxLength="32"
-								 />
-							</div>*/}
-						</div>
-
-						<div className="form-group">
-							<label className="col-xs-2 control-label">規格</label>
-							<div className="col-xs-10">
-								<input type="text" 							
-								className="form-control"	
-								value={fieldData.standard}
-								onChange={this.changeFDValue.bind(this,'standard')}
-								maxLength="32"
-								 />
-							</div>
-
-						</div>
-
-						<div className="form-action">
-							<div className="col-xs-10 col-xs-offset-2">
-								<button type="submit" className="btn-primary"><i className="fa-check"></i> 儲存</button> { }
-								<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+							<div className="radio-inline">
+								<label>
+									<input type="radio" 
+											name="i_Hide"
+											value={false}
+											checked={fieldData.i_Hide===false} 
+											onChange={this.changeFDValue.bind(this,'i_Hide')}
+											/>
+									<span>顯示</span>
+								</label>
 							</div>
 						</div>
 					</div>
+
+					<div className="form-action text-right">
+						<button type="submit" className="btn-primary" name="btn-1"><i className="fa-check"></i> 儲存</button> { }
+						<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+					</div>
+				</div>
 				</form>
 			</div>
 			);

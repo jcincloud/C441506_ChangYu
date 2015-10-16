@@ -208,6 +208,11 @@ namespace ProcCore.Business.DB0
     {
         public string l1_name { get; set; }
     }
+    public partial class m_Product : BaseEntityTable
+    {
+        public string l1_name { get; set; }
+        public string l2_name { get; set; }
+    }
     /// <summary>
     /// 分類選單用
     /// </summary>
@@ -216,12 +221,14 @@ namespace ProcCore.Business.DB0
         public int val { get; set; }
         public string Lname { get; set; }
     }
-    public class L1 {
+    public class L1
+    {
         public int l1_id { get; set; }
         public string l1_name { get; set; }
         public List<L2> l2_list { get; set; }
     }
-    public class L2 {
+    public class L2
+    {
         public int l2_id { get; set; }
         public string l2_name { get; set; }
     }
@@ -249,6 +256,13 @@ namespace ProcCore.Business.DB0
         public string name { get; set; }
         public bool? i_Hide { get; set; }
         public int? l1_id { get; set; }
+    }
+    public class q_Product : QueryBase
+    {
+        public string name { get; set; }
+        public bool? i_Hide { get; set; }
+        public int? l1_id { get; set; }
+        public int? l2_id { get; set; }
     }
     #endregion
 
