@@ -136,7 +136,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         @each $item in $pages {
             $i: index($pages, $item);
 
-            $selector: append($selector, unquote(".#{$item} &:nth-child(#{$i})"), comma);
+            $selector: append($selector, unquote(".#{$item} &:nth-of-type(#{$i})"), comma);
         }
 
         &:hover,
@@ -158,8 +158,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         font-size: em(13px);
         color:#789bb3;
 
-        margin-right:30px;
-        padding:4px 0 0 45px;
+        margin-left:30px;
+        padding-left: 45px;
 
         @for $i from 1 through 2 {
             $icon-y: (0px, -100px);
@@ -173,6 +173,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 
             font-size: em(15px,13px);
             color:#2c5871;
+
+            margin-bottom:5px;
         }
     }
 }

@@ -268,12 +268,12 @@ body {
 }
 
 a {
-  color: #cb9b0c;
+  color: #C1761E;
   text-decoration: none;
   transition: all .35s ease;
 }
 a:hover, a.active {
-  color: #836408;
+  color: #7f4e14;
 }
 a:focus {
   outline: thin dotted;
@@ -585,7 +585,7 @@ address {
   width: 20%;
   line-height: 70px;
 }
-#menu a:hover, .index #menu a:nth-child(1), .AboutUs #menu a:nth-child(2), .Products #menu a:nth-child(3), .Inquire #menu a:nth-child(4), .ContactUs #menu a:nth-child(5) {
+#menu a:hover, .index #menu a:nth-of-type(1), .AboutUs #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .Inquire #menu a:nth-of-type(4), .ContactUs #menu a:nth-of-type(5) {
   background: #cb9b0c;
 }
 
@@ -599,8 +599,8 @@ address {
   height: 40px;
   font-size: 0.8125em;
   color: #789bb3;
-  margin-right: 30px;
-  padding: 4px 0 0 45px;
+  margin-left: 30px;
+  padding-left: 45px;
 }
 .award li:nth-child(1) {
   background-position: 0 0px;
@@ -612,6 +612,7 @@ address {
   display: block;
   font-size: 1.15385em;
   color: #2c5871;
+  margin-bottom: 5px;
 }
 
 #footer {

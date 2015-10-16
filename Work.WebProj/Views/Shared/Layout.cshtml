@@ -27,10 +27,11 @@
 
 <div id="wrapper">
 
-    <section id="header">
+    <header id="header">
         <div class="wrap">
-            <header><h1 class="logo" onclick="location.href='@Url.Content("~/index")'" title="回首頁">倡譽興業有限公司</h1></header>
+            <h1 class="logo" onclick="location.href='@Url.Content("~/index")'" title="回首頁">倡譽興業有限公司</h1>
             <nav id="menu">
+                <header class="hidden"><h2>主選單</h2></header>
                 <a href="~/index">HOME</a>
                 <a href="~/AboutUs">公司簡介</a>
                 <a href="~/Products/list">產品介紹</a>
@@ -42,7 +43,7 @@
                 <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
             </ul>
         </div><!-- wrap //-->
-    </section><!-- header //-->
+    </header><!-- header //-->
 
     <main id="main">
         @RenderBody()
@@ -50,7 +51,7 @@
 
 </div><!-- wrapper //-->
 
-<section id="footer">
+<footer id="footer">
     <div class="wrap">
         <ul class="menu">
             <li>
@@ -70,17 +71,16 @@
                 <ul class="contact">
                     <li><em>電話：</em><strong>0921-874-565</strong></li>
                     <li><em>傳真：</em><strong>886-3-4961359</strong></li>
-                    <li><em>地址：</em>桃園市楊梅區幼獅路二段392巷29弄17號</li>
+                    <li><em>地址：</em><a href="https://goo.gl/maps/JULbvuwcYD92" target="new">桃園市楊梅區幼獅路二段392巷29弄17號</a></li>
                     <li><em>E-mail：</em><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></li>
                 </ul>
             </li>
         </ul>
         <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
     </div>
-</section><!-- footer -->
+</footer><!-- footer -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="~/Content/js/swiper/swiper.min.js"></script>
 @RenderSection("Scripts", required: false)
 
 </body>
