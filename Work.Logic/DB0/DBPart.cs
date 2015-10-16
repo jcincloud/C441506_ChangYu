@@ -216,6 +216,15 @@ namespace ProcCore.Business.DB0
         public int val { get; set; }
         public string Lname { get; set; }
     }
+    public class L1 {
+        public int l1_id { get; set; }
+        public string l1_name { get; set; }
+        public List<L2> l2_list { get; set; }
+    }
+    public class L2 {
+        public int l2_id { get; set; }
+        public string l2_name { get; set; }
+    }
     #endregion
 
     #region q_Model_Define

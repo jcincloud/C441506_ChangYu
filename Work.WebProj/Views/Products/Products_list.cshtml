@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ProcCore.Business.DB0.L1>
+@{
     ViewBag.Title = "產品介紹";
     ViewBag.BodyClass = "Products";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -6,51 +7,34 @@
 
 <div class="wrap">
 
-<ul class="breadcrumb">
-    <li><a href="">HOME</a></li>
-    <li><a href="">產品介紹</a></li>
-    <li>Inductance 電感</li>
-</ul>
+    <ul class="breadcrumb">
+        <li><a href="">HOME</a></li>
+        <li><a href="">產品介紹</a></li>
+        <li>Inductance 電感</li>
+    </ul>
 
-<div class="intro">
-    <h2>PRODUCTS INTRODUCTION</h2>
-    <p class="float-l half">電子產品之電磁封閉性、防止電磁波外洩、緩衝電流脈衝及分享電能熱效應。<br>The electro magnet sealed for products of electro had to  avoid electro wave spilling, to cushion electro current pulses, and to share electro heat reaction.</p>
-    <p class="float-r half">資訊、通訊及一般消費性電子產品所應用。<br>Our products were ideally suited to designs such as computers, communications, and consume electronic products. </p>
-</div>
+    <div class="intro">
+        <h2>PRODUCTS INTRODUCTION</h2>
+        <p class="float-l half">電子產品之電磁封閉性、防止電磁波外洩、緩衝電流脈衝及分享電能熱效應。<br>The electro magnet sealed for products of electro had to  avoid electro wave spilling, to cushion electro current pulses, and to share electro heat reaction.</p>
+        <p class="float-r half">資訊、通訊及一般消費性電子產品所應用。<br>Our products were ideally suited to designs such as computers, communications, and consume electronic products. </p>
+    </div>
 
-<section class="pro-list">
-    <header class="hidden"><h3>產品介紹</h3></header>
-    <article>
-        <header>
-            <h4><em>1</em>被動元件</h4>
-        </header>
-        <ul>
-            <li><a href="~/Products/content">Inductance 電感 (繞線式, 一體式)</a></li>
-            <li><a href="~/Products/content">Resistance 電阻/電感 (積層式)</a></li>
-            <li><a href="~/Products/content">Filter 濾波器</a></li>
-            <li><a href="~/Products/content">Transformer 變壓器</a></li>
-        </ul>
-    </article>
-    <article>
-        <header>
-            <h4><em>2</em>線材組</h4>
-        </header>
-        <ul>
-            <li><a href="~/Products/content">FFC / FPC / 碳膜 FPC 排線</a></li>
-            <li><a href="~/Products/content">POWER CABLE</a></li>
-            <li><a href="~/Products/content">CABLE ASSEMBLY</a></li>
-            <li><a href="~/Products/content">3C Application</a></li>
-        </ul>
-    </article>
-    <article>
-        <header>
-            <h4><em>3</em>Magnet 永久磁鐵</h4>
-        </header>
-        <ul>
-            <li><a href="~/Products/content">3C Application</a></li>
-            <li><a href="~/Products/content">電動腳踏車應用</a></li>
-        </ul>
-    </article>
-</section>
+    <section class="pro-list">
+        <header class="hidden"><h3>產品介紹</h3></header>
+        @foreach (var L1 in Model)
+            {
+            <article>
+                <header>
+                    <h4><em>@(Model.IndexOf(L1)+1)</em>@L1.l1_name</h4>
+                </header>
+                <ul>
+                    @foreach (var L2 in L1.l2_list)
+                    {
+                        <li><a href="~/Products/content?id=@L2.l2_id">@L2.l2_name</a></li>
+                    }
+                </ul>
+            </article>
+        }
+    </section>
 
 </div>
