@@ -1,8 +1,12 @@
-@charset "UTF-8";
-$input-radius: nth($border-radius,1) nth($border-radius,2) nth($border-radius,3);
-$input-height: ($line-height-computed + (nth($padding-base,1) * 2)) (ceil($font-size-lg * nth($line-height,1)) + (nth($padding-large,1) * 2)) (floor($font-size-sm * nth($line-height,2)) + (nth($padding-small,1) * 2));
 
-$form-group-margin-bottom: 10px; // '.form-group' 邊距
+$input-radius-base: nth($border-radius,1) !default;
+$input-radius-large: nth($border-radius,2) !default;
+$input-radius-small: nth($border-radius,3) !default;
+$input-height-base: $line-height-computed + (nth($padding-vertical,1) * 2) !default;
+$input-height-large: ceil($font-size-lg * $line-height-lg) + (nth($padding-vertical,2) * 2) !default;
+$input-height-small: floor($font-size-sm * $line-height-sm) + (nth($padding-vertical,3) * 2) !default;
+
+$form-group-margin-bottom: 10px !default; // '.form-group' 邊距
 
 
 // Forms
@@ -15,8 +19,8 @@ legend {
     margin-bottom: $line-height-computed;
     font-size: em($font-size-base * 1.5);
     line-height: inherit;
-    color: color('legend', 'color');
-    border-bottom: 1px solid color('legend', 'border');
+    color: color(legend-color);
+    border-bottom: 1px solid color(legend-border);
 }
 
 label {
@@ -60,22 +64,22 @@ select[size] {
 // 調整輸出元素
 output {
     display: block;
-    padding-top: (nth($padding-base,1) + 1);
+    padding-top: (nth($padding-vertical,1) + 1);
     font-size: em($font-size-base);
     line-height: $line-height-base;
-    color: color('input', 'color');
+    color: color(input-color);
 }
 
 .form-element {
     display: block;
     width: 100%;
-    height: nth($input-height,1); // Make inputs at least the height of their button counterpart (base line-height + padding + border)
-    padding: nth($padding-base,1) nth($padding-base,2);
-    color: color('input', 'color');
-    background-color: color('input', 'bg');
+    height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+    padding: nth($padding-vertical,1) nth($padding-horizontal,2);
+    color: color(input-color);
+    background-color: color(input-bg);
     background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-    border: 1px solid color('input', 'border-color');
-    border-radius: nth($input-radius,1); // Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS.
+    border: 1px solid color(input-border);
+    border-radius: $input-radius-base; // Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS.
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 
@@ -86,7 +90,7 @@ output {
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
-        background-color: color('input', 'bg')-disabled;
+        background-color: color(input-bg-disabled);
         opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
     }
 
@@ -103,16 +107,16 @@ input:not([type]), #{text-inputs(all)} {
 // iOS 的時間欄位垂直對齊 - safari
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
     #{text-inputs(date time datetime-local month)} {
-        line-height: nth($input-height,1);
+        line-height: $input-height-base;
 
         &.input-sm,
         .input-group-sm & {
-            line-height: nth($input-height,3);
+            line-height: $input-height-small;
         }
 
         &.input-lg,
         .input-group-lg & {
-            line-height: nth($input-height,2);
+            line-height: $input-height-large;
         }
     }
 }

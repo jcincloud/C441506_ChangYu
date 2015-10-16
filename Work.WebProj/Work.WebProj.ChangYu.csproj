@@ -389,6 +389,10 @@
     <Content Include="Content\font\AvantGardeITCbyBT-Book.eot" />
     <Content Include="Content\font\AvantGardeITCbyBT-Book.ttf" />
     <Content Include="Content\font\AvantGardeITCbyBT-Book.woff" />
+    <Content Include="Content\sass\helper\mixins\_animation.scss" />
+    <Content Include="Content\sass\helper\mixins\_gradient.scss" />
+    <Content Include="Content\sass\helper\mixins\_shape.scss" />
+    <Content Include="Content\sass\helper\_function.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />
