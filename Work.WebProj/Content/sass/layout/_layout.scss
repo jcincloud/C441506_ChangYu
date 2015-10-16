@@ -65,7 +65,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     // @media screen and (max-width: ($max-width)-1) {
     //     width: $min-width;
     // }
-}
+    }
 
 #header, #main, #footer {
     @extend %container;
@@ -138,7 +138,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         @each $item in $pages {
             $i: index($pages, $item);
 
-            $selector: append($selector, unquote(".#{$item} &:nth-child(#{$i})"), comma);
+            $selector: append($selector, unquote(".#{$item} &:nth-of-type(#{$i})"), comma);
         }
 
         &:hover,
@@ -159,9 +159,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         font-size: em(13px);
         color:#789bb3;
 
-        margin-right: 30px;
+        margin-right:30px;
         padding:4px 0 0 45px;
-        height:40px;
 
         @for $i from 1 through 2 {
             $icon-y: 0px -100px;
@@ -174,7 +173,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
             display: block;
 
             font-size: em(15px,13px);
-            color: #2c5871;
+            color:#2c5871;
         }
     }
 }
@@ -194,7 +193,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         content:" ";
         display: block;
         z-index: z(footer)-1;
-        
+
         background: url(#{$img-path}/bgFooter.png) 0 0 repeat-x;
 
         @include size(100%, 15px);
@@ -202,24 +201,24 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     }
 
     dt {
-        color: #fff;
-        font-size: em(23px);
-        letter-spacing: 0.03em;
+            color: #fff;
+            font-size: em(23px);
+            letter-spacing: 0.03em;
         margin-bottom: 45px;
 
         em {
-            color:#a7a2a5;
-            font-style: normal;
+                color:#a7a2a5;
+                font-style: normal;
             font-size: em(16px, 23px);
-            letter-spacing: 0;
+                letter-spacing: 0;
 
-            margin-left:15px;            
-        }
+                margin-left:15px;
+            }
         a {
-            display: block;
+                display: block;
             color: #fff;
 
-            &:hover {
+                &:hover {
                 color: #CB9B0C;
                 em { color: #fff; }
             }            
@@ -234,8 +233,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
             color: #bfbcbe;
 
             &:hover {color: #fff; }
-        }        
-    }
+                }
+            }
 
     dl {
         margin-top: 35px;
@@ -246,25 +245,25 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
             margin-left: 15px;
 
             @include media(max-960) { margin-left: 0; }
-        }
+                }
         &.product { width: cp(320px); }
         &.contact { width: cp(370px); }
-    }
+            }
 
     .product dt, .contact dt { margin-bottom: 0; }
 
     .product dd {
-        position: relative;
+                    position: relative;
         padding-left: 22px;
 
-        &::before {
-            content: " ";
+                    &::before {
+                        content: " ";
             background: #586e78;
 
             @include circle(5px,false,block);
             @include absolute(left 7px top 8px);
-        }            
-    }
+                }
+            }
     .contact dd {
         background: url(#{$img-path}/iconContact.gif) no-repeat;
         padding-left: 38px;
@@ -274,12 +273,12 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         font-size: em(14px);
         color: #bfbcbe;
 
-        @for $i from 1 through 4 {
+                    @for $i from 1 through 4 {
             $icon-y: 0px -105px -207px -310px;
-            &:nth-child(#{$i}) {
-                background-position: 0 nth($icon-y, $i);
-            }
-        }
+                        &:nth-child(#{$i}) {
+                            background-position: 0 nth($icon-y, $i);
+                        }
+                    }
 
         &:nth-child(1),  &:nth-child(2) { float: left; }
         &:nth-child(1) { margin-right: 40px; }

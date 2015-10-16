@@ -211,11 +211,11 @@ body {
   line-height: 1.25; }
 
 a {
-  color: #cb9b0c;
+  color: #C1761E;
   text-decoration: none;
   transition: all .35s ease; }
   a:hover, a.active {
-    color: #836408; }
+    color: #7f4e14; }
   a:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
@@ -440,7 +440,7 @@ address {
     display: block;
     float: left;
     width: 20%; }
-    #menu a:hover, .index #menu a:nth-child(1), .AboutUs #menu a:nth-child(2), .Products #menu a:nth-child(3), .Inquire #menu a:nth-child(4), .ContactUs #menu a:nth-child(5) {
+    #menu a:hover, .index #menu a:nth-of-type(1), .AboutUs #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .Inquire #menu a:nth-of-type(4), .ContactUs #menu a:nth-of-type(5) {
       background: #cb9b0c; }
 
 .award {
@@ -452,8 +452,7 @@ address {
     font-size: 0.8125em;
     color: #789bb3;
     margin-right: 30px;
-    padding: 4px 0 0 45px;
-    height: 40px; }
+    padding: 4px 0 0 45px; }
     .award li:nth-child(1) {
       background-position: 0 0px; }
     .award li:nth-child(2) {
