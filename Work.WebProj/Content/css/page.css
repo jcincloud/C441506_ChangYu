@@ -1304,55 +1304,71 @@ caption {
   opacity: 1;
 }
 
-.pro-detail {
-  padding: 15px 0 0 0;
-}
 .pro-detail .pro-img {
-  margin-bottom: 15px;
+  width: 40%;
+  float: left;
+  padding: 0 20px;
 }
 .pro-detail .pro-img li {
-  height: 200px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
 }
 .pro-detail .pro-img li img {
-  height: 100%;
+  max-width: 100%;
+  border: 3px solid #444;
 }
 .pro-detail .pro-content {
-  background: #F6F6F6;
+  width: 60%;
+  color: #eee;
+  float: right;
 }
 .pro-detail .pro-content .title {
+  color: #fff;
+  font-size: 2em;
   margin: 0;
 }
 
+body.fixed {
+  overflow: hidden;
+}
+
 #lb-overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.85);
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   position: fixed;
   left: 0;
   top: 0;
+  overflow-y: auto;
   z-index: 1001;
   display: none;
 }
-#lb-overlay .close {
+
+#lb {
+  text-align: left;
+  position: relative;
+  margin: 0 auto;
+  padding: 15px;
+  z-index: 1000;
+}
+#lb .close {
   position: absolute;
-  right: 0;
-  top: -40px;
+  right: 10px;
+  top: -10px;
   color: #fff;
-  font-size: 1.875em;
+  font-size: 3.125em;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   background: none;
   border: none;
   opacity: 0.8;
   padding: 0;
 }
-#lb-overlay .close:hover {
+#lb .close:hover {
   opacity: 1;
 }
 
-#lb {
-  width: 80%;
-  background: #fff;
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
-  position: relative;
-  margin: 80px auto 0 auto;
+.lb-content {
+  height: 100%;
+  overflow: auto;
 }
