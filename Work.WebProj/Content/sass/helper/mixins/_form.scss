@@ -41,7 +41,7 @@
 }
 
 // 聚焦樣式(WebKit)
-@mixin form-control-focus($color: color('input', 'border-focus')) {
+@mixin form-control-focus($color: color(input-border-focus)) {
     $color-rgba: rgba(red($color), green($color), blue($color), .6);
     &:focus {
         border-color: $color;
@@ -51,7 +51,7 @@
 }
 
 //  輸入欄未輸入資料時顯示的文字顏色
-@mixin placeholder($color: color('input', 'placeholder')) {
+@mixin placeholder($color: color(input-placeholder)) {
     // Firefox
     &::-moz-placeholder,
     &:-ms-input-placeholder,

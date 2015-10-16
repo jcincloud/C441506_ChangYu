@@ -43,7 +43,7 @@ caption {
 
     color: color(table-caption);
     font-size: em(13px);
-    line-height: nth($line-height, 2);
+    line-height: $line-height-sm;
     text-align: left;
 }
 

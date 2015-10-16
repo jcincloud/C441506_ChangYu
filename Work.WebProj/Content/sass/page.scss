@@ -6,6 +6,7 @@ $btn-font-size:    17px;
 
 // import
 // ------------------------------------------------------------
+@import "helper/function";
 @import "helper/var";
 @import "helper/mixins";
 
@@ -222,7 +223,7 @@ $btn-font-size:    17px;
 
         color: #412401;
         font-size: em(15px);
-        line-height: nth($line-height,2);
+        line-height: $line-height-sm;
     }
 }
 

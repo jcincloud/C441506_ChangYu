@@ -1,4 +1,4 @@
-@charset "UTF-8";
+
 // RWD
 @mixin media($screen) {
     @if map-has-key($medias, $screen) {

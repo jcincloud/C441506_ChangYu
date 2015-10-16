@@ -1,4 +1,29 @@
 @charset "UTF-8";
+
+// 函數程式
+// ------------------------------------------------------------
+$gutter-per: cp($gutter);
+$one_col: (100% - ($gutter-per * ($cols - 1))) / $cols;
+// $one_col: (100% - ($gutter * $cols)) / $cols;
+
+@mixin cols($num) {
+    width: ($one_col * $num) + ($gutter-per * ($num - 1));
+}
+
+@mixin make-cols($class: md) {
+    @for $i from 1 through $cols {
+        @if($class == md) {
+            .col-#{$i} { @include cols($i); }
+        }
+        @else {
+            .col-#{$class}-#{$i} { @include cols($i); }
+        }
+    }
+}
+
+
+// output
+// ------------------------------------------------------------
 .row {
     @extend %clearfix;
     @extend %center;
@@ -13,31 +38,7 @@
     }
 }
 
-@include make-col; // 預設: md
-@include media(sm) { @include make-col(sm); }
-@include media(xs) { @include make-col(xs); }
-@include media(lg) { @include make-col(lg); }
-
-// .row {
-//     #{enumerate('.span', 1, $cols, '')} {
-//         float: left;
-//         margin-left: $gutter;
-//     }
-
-// }
-// @for $i from 1 through $cols {
-//     .span#{$i} {
-//         @include cols($i);
-
-//         @for $j from 1 through ($i - 1) {
-//             .span#{$j} {
-//                 @include sub_cols($j, $i);
-//             }
-//         }
-//     }
-// }
-
-// > :first-child,
-// .row > :first-child {
-//     margin-left: 0;
-// }
+@include make-cols; // 預設: md
+@include media(sm) { @include make-cols(sm); }
+@include media(xs) { @include make-cols(xs); }
+@include media(lg) { @include make-cols(lg); }

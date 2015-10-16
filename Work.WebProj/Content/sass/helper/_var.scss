@@ -37,24 +37,28 @@ $link-color:            $brand-secondary !default;             // 文字鏈結�
 $link-hover-color:      darken($link-color, 15%) !default;     // 滑鼠移過色
 
 // layout
-
-$min-width:             1007px !default;     // 網頁最小尺寸
+$min-width:             1008px !default;     // 網頁最小尺寸
 $max-width:             1400px !default;     // 網頁最寬尺寸: .wrap
+$pages:                 'index' 'AboutUs' 'Products' 'Inquire' 'ContactUs';
 
-$pages: 'index' 'AboutUs' 'Products' 'Inquire' 'ContactUs';
+// gird
+$cols:                  12 !default;
+$gutter:                10px !default;
 
 
 // == font
 // ----------------------------------------------------------------------
 // 微軟正黑體
 $font-family-base:      'Microsoft Jhenghei', \5FAE\8EDF\6B63\9ED1\9AD4, "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-slogan:    "AvantGardeITCbyBT-Book", "Helvetica Neue", Helvetica, Arial, 'Microsoft Jhenghei', \5FAE\8EDF\6B63\9ED1\9AD4, sans-serif !default;
+$font-family-slogan:    "AvantGardeITCbyBT-Book", $font-family-base !default;
 
 $font-size-base:        16px !default;
 $font-size-lg:          $font-size-base * 1.25 !default;     // 20px
 $font-size-sm:          $font-size-base * 0.85 !default;     // 13px
 
-$line-height-base:      1.25 !default;                                // 20px/16px
+$line-height-base:      1.25 !default;                       // 20px/16px
+$line-height-lg:        1.33 !default;
+$line-height-sm:        1.5 !default;
 $line-height-computed:  $font-size-base * $line-height-base; // 20px 用在 margin, padding, etc.
 
 $font-size-h1:          $font-size-base * 2.25 !default;
@@ -77,20 +81,14 @@ $heading-small-color:   lighten($brand-primary, 21) !default;
 // 表單元素(停用)上的滑鼠樣式
 $cursor-disabled:           not-allowed;
 
-// 垂直v 水平h
-$padding-base:              2px 4px;
-$padding-large:             5px 10px;
-$padding-small:             1px 3px;
-
-// large small
-$line-height:               1.3333333 1.5;
-
-// base large small
-$border-radius:             5px 15px 3px;
-
 // text bg
 $common-active:             #fff $brand-primary;
 $caret-width:               4px 5px;
+
+// base large small
+$padding-vertical:          2px 5px 1px;
+$padding-horizontal:        4px 10px 3px;
+$border-radius:             5px 15px 3px;
 
 // 配色- 三值分別為: 本文色 背景色 邊框色
 // 情境狀態 + 配色
@@ -127,51 +125,6 @@ $table-color: (
 // 合併配色
 $color: map-merge($state-type, $table-color);
 
-// $color: (
-//     table: (
-//         bg:              transparent,
-//         bg-accent:       #f9f9f9,
-//         bg-hover:        #f5f5f5,
-//         bg-active:       #f5f5f5,
-//         border:          #F29B1A,
-//     ),
-
-//     input: (
-//         bg:              #fff,
-//         bg-disabled:     $gray-lighter,
-//         color:           $gray,
-//         border:          #ccc,
-//         border-focus:    #66afe9,
-//         placeholder:     #999,
-//         addon-bg:        $gray-lighter,
-//         addon-border:    #ccc
-//     ),
-//     legend: (
-//         color:           $gray-dark,
-//         border:          #e5e5e5
-//     ),
-//     dropdown: (
-//         bg:              #fff,
-//         border:          rgba(0,0,0,.15),
-//         fallback-border: #ccc,
-//         divider-bg:      #e5e5e5,
-//         link: (
-//             color:       $gray-dark,
-//             hover:       darken($gray-dark, 5%),
-//             hover-bg:    #f5f5f5,
-//             active:      nth($common-active,1),
-//             active-bg:   nth($common-active,2),
-//             disabled:    $gray-light
-//         ),
-//         header:          $gray-light,
-//         caret:           #000
-//     )
-// );
-
-//== Forms
-// ----------------------------------------------------------------------
-// base large small
-
 
 
 // == media RWD
@@ -181,9 +134,8 @@ $medias: (
     sm:                 (max-width: 768px),    // tablet
     md:                 (min-width: 992px),    // desktop
     lg:                 (min-width: 1220px),   // wide desktop
-    sm-min:             (min-width: 767px),
-    md-max-tablet:      (max-width: 960px),
-    md-max:             '(min-width:992px) and (max-width: 1366px)'
+    min-767:            (min-width: 767px),
+    max-960:            (max-width: 960px),
 );
 
 

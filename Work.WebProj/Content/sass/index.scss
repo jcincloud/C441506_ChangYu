@@ -10,22 +10,20 @@ $banner-height:         770px;
 
 // import
 // ------------------------------------------------------------
+@import "helper/function";
 @import "helper/var";
 @import "helper/mixins";
 
 @import "base/basic";
 
 @import "component/classes";
-@import "component/btn";
+// @import "component/btn";
 
 @import "layout/layout";
 
 
 // header
 // ----------------------------------------------------------------------
-#header {
-}
-
 
 // footer
 // ----------------------------------------------------------------------
@@ -33,18 +31,22 @@ $banner-height:         770px;
 
 // main
 // ----------------------------------------------------------------------
+@include media(max-960) {
+    #main { padding: 0; }
+}
+
 #banner {
-    width:100%;
-    margin-top:-($header-height);
+    width: 100%;
+    margin-top: -($header-height);
 
     ul {
         margin-bottom:0;
         list-style: none;
+
         li {
             height: $banner-height;
-            * {
-                display: none;
-            }
+
+            * { display: none; }
         }
     }
 }

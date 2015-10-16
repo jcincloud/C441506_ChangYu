@@ -1,10 +1,6 @@
-@charset "UTF-8";
-
 // Grid system
 // -----------------------------------------------------------------
 
-$cols:    12 !default;
-$gutter:  2% !default;
 $one_col: (100% - ($gutter * ($cols - 1))) / $cols;
 // $one_col: (100% - ($gutter * $cols)) / $cols;
 
