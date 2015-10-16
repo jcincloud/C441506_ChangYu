@@ -136,6 +136,24 @@
           <Property Name="menu_id" Type="int" Nullable="false" />
           <Property Name="role_id" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="l1_id" Type="int" />
+          <Property Name="l2_id" Type="int" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="sort" Type="int" />
+          <Property Name="i_Hide" Type="bit" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_InsertDeptID" Type="int" />
+          <Property Name="i_InsertDateTime" Type="datetime" />
+          <Property Name="i_UpdateUserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="i_UpdateDeptID" Type="int" />
+          <Property Name="i_UpdateDateTime" Type="datetime" />
+          <Property Name="i_Lang" Type="char" MaxLength="5" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product_Category_L1">
           <Key>
             <PropertyRef Name="product_category_l1_id" />
@@ -247,6 +265,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Product_Category_L1">
+          <End Role="Product_Category_L1" Type="Self.Product_Category_L1" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Category_L1">
+              <PropertyRef Name="product_category_l1_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="l1_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Product_Category_L2">
+          <End Role="Product_Category_L2" Type="Self.Product_Category_L2" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Category_L2">
+              <PropertyRef Name="product_category_l2_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="l2_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="C44A0_ChangYuModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
@@ -260,6 +302,7 @@
           <EntitySet Name="i_UserLoginLog" EntityType="Self.i_UserLoginLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuRole" EntityType="Self.MenuRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Category_L1" EntityType="Self.Product_Category_L1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Category_L2" EntityType="Self.Product_Category_L2" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Department" Association="Self.FK_AspNetUsers_Department">
@@ -285,6 +328,14 @@
           <AssociationSet Name="FK_Product_Category_L2_Product_Category_L1" Association="Self.FK_Product_Category_L2_Product_Category_L1">
             <End Role="Product_Category_L1" EntitySet="Product_Category_L1" />
             <End Role="Product_Category_L2" EntitySet="Product_Category_L2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Product_Category_L1" Association="Self.FK_Product_Product_Category_L1">
+            <End Role="Product_Category_L1" EntitySet="Product_Category_L1" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Product_Category_L2" Association="Self.FK_Product_Product_Category_L2">
+            <End Role="Product_Category_L2" EntitySet="Product_Category_L2" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -461,6 +512,15 @@
             <End Role="Product_Category_L1" EntitySet="Product_Category_L1" />
             <End Role="Product_Category_L2" EntitySet="Product_Category_L2" />
           </AssociationSet>
+          <EntitySet Name="Product" EntityType="C44A0_ChangYuModel.Product" />
+          <AssociationSet Name="FK_Product_Product_Category_L1" Association="C44A0_ChangYuModel.FK_Product_Product_Category_L1">
+            <End Role="Product_Category_L1" EntitySet="Product_Category_L1" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Product_Category_L2" Association="C44A0_ChangYuModel.FK_Product_Product_Category_L2">
+            <End Role="Product_Category_L2" EntitySet="Product_Category_L2" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product_Category_L1">
           <Key>
@@ -479,6 +539,7 @@
           <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Product_Category_L2" Relationship="C44A0_ChangYuModel.FK_Product_Category_L2_Product_Category_L1" FromRole="Product_Category_L1" ToRole="Product_Category_L2" />
+          <NavigationProperty Name="Product" Relationship="C44A0_ChangYuModel.FK_Product_Product_Category_L1" FromRole="Product_Category_L1" ToRole="Product" />
         </EntityType>
         <EntityType Name="Product_Category_L2">
           <Key>
@@ -498,6 +559,7 @@
           <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
           <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Product_Category_L1" Relationship="C44A0_ChangYuModel.FK_Product_Category_L2_Product_Category_L1" FromRole="Product_Category_L2" ToRole="Product_Category_L1" />
+          <NavigationProperty Name="Product" Relationship="C44A0_ChangYuModel.FK_Product_Product_Category_L2" FromRole="Product_Category_L2" ToRole="Product" />
         </EntityType>
         <Association Name="FK_Product_Category_L2_Product_Category_L1">
           <End Type="C44A0_ChangYuModel.Product_Category_L1" Role="Product_Category_L1" Multiplicity="1" />
@@ -508,6 +570,50 @@
             </Principal>
             <Dependent Role="Product_Category_L2">
               <PropertyRef Name="l1_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="l1_id" Type="Int32" />
+          <Property Name="l2_id" Type="Int32" />
+          <Property Name="product_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="i_Hide" Type="Boolean" Nullable="false" />
+          <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_InsertDeptID" Type="Int32" />
+          <Property Name="i_InsertDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_UpdateUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="i_UpdateDeptID" Type="Int32" />
+          <Property Name="i_UpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="i_Lang" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Product_Category_L1" Relationship="C44A0_ChangYuModel.FK_Product_Product_Category_L1" FromRole="Product" ToRole="Product_Category_L1" />
+          <NavigationProperty Name="Product_Category_L2" Relationship="C44A0_ChangYuModel.FK_Product_Product_Category_L2" FromRole="Product" ToRole="Product_Category_L2" />
+        </EntityType>
+        <Association Name="FK_Product_Product_Category_L1">
+          <End Type="C44A0_ChangYuModel.Product_Category_L1" Role="Product_Category_L1" Multiplicity="0..1" />
+          <End Type="C44A0_ChangYuModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Category_L1">
+              <PropertyRef Name="product_category_l1_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="l1_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Product_Category_L2">
+          <End Type="C44A0_ChangYuModel.Product_Category_L2" Role="Product_Category_L2" Multiplicity="0..1" />
+          <End Type="C44A0_ChangYuModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Category_L2">
+              <PropertyRef Name="product_category_l2_id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="l2_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -692,6 +798,25 @@
                 <ScalarProperty Name="l2_name" ColumnName="l2_name" />
                 <ScalarProperty Name="l1_id" ColumnName="l1_id" />
                 <ScalarProperty Name="product_category_l2_id" ColumnName="product_category_l2_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="C44A0_ChangYuModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="i_Lang" ColumnName="i_Lang" />
+                <ScalarProperty Name="i_UpdateDateTime" ColumnName="i_UpdateDateTime" />
+                <ScalarProperty Name="i_UpdateDeptID" ColumnName="i_UpdateDeptID" />
+                <ScalarProperty Name="i_UpdateUserID" ColumnName="i_UpdateUserID" />
+                <ScalarProperty Name="i_InsertDateTime" ColumnName="i_InsertDateTime" />
+                <ScalarProperty Name="i_InsertDeptID" ColumnName="i_InsertDeptID" />
+                <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
+                <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="l2_id" ColumnName="l2_id" />
+                <ScalarProperty Name="l1_id" ColumnName="l1_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

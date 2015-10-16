@@ -15,6 +15,11 @@ namespace ProcCore.Business.DB0
     using Newtonsoft.Json;
     public partial class Product_Category_L2 : BaseEntityTable
     {
+        public Product_Category_L2()
+        {
+            this.Product = new HashSet<Product>();
+        }
+    
         public int product_category_l2_id { get; set; }
         public int l1_id { get; set; }
         public string l2_name { get; set; }
@@ -31,6 +36,8 @@ namespace ProcCore.Business.DB0
     
     	[JsonIgnore]
         public virtual Product_Category_L1 Product_Category_L1 { get; set; }
+    	[JsonIgnore]
+        public virtual ICollection<Product> Product { get; set; }
     }
 }
 
