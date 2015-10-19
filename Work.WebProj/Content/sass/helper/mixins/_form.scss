@@ -5,7 +5,7 @@
 
     $return: ();
 
-    $all-text-input-types: (
+    $all-text-types: (
         text,
         password,
         date,
@@ -22,7 +22,25 @@
         color,
         textarea);
 
-    @if $types == all { $types: $all-text-input-types; }
+    $all-text-input-types: (
+        text,
+        password,
+        date,
+        datetime,
+        datetime-local,
+        month,
+        week,
+        email,
+        number,
+        search,
+        tel,
+        time,
+        url,
+        color);
+
+    @if $types == all { $types: $all-text-types; }
+
+    @if $types == input { $types: $all-text-input-types; }
 
     @each $type in $types {
         @if $type == textarea {

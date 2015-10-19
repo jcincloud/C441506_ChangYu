@@ -2,12 +2,16 @@
 
 // 函數程式
 // ------------------------------------------------------------
-$gutter-per: cp($gutter);
-$one_col: (100% - ($gutter-per * ($cols - 1))) / $cols;
+// $gutter-per: cp($gutter);
+// $one_col: (100% - ($gutter-per * ($cols - 1))) / $cols;
 // $one_col: (100% - ($gutter * $cols)) / $cols;
+$one_col: 100% / $cols;
 
+// @mixin cols($num) {
+//     width: ($one_col * $num) + ($gutter-per * ($num - 1));
+// }
 @mixin cols($num) {
-    width: ($one_col * $num) + ($gutter-per * ($num - 1));
+    width: ($one_col * $num);
 }
 
 @mixin make-cols($class: md) {
@@ -21,24 +25,55 @@ $one_col: (100% - ($gutter-per * ($cols - 1))) / $cols;
     }
 }
 
+// 偏移
+@mixin cols-offset($num) {
+    margin-left: ($one_col * $num);
+}
+
+@mixin make-cols-offset($class: md) {
+    @for $i from 1 through $cols {
+        @if($class == md) {
+            .col-offset-#{$i} { @include cols-offset($i); }
+        }
+        @else {
+            .col-#{$class}-offset-#{$i} { @include cols-offset($i); }
+        }
+    }
+}
+
 
 // output
 // ------------------------------------------------------------
 .row {
     @extend %clearfix;
-    @extend %center;
+    // @extend %center;
+
+    margin-left:-$gutter/2;
+    margin-right:-$gutter/2;
+
+    form & {
+        margin-bottom: $gutter;
+    }
 }
 
 [class*="col-"] {
     float: left;
-    margin-left: $gutter;
+    padding-left: $gutter/2;
+    padding-right: $gutter/2;
 
-    &:first-child, .row &:first-child {
-        margin-left: 0;
-    }
+    // margin-left: $gutter;
+
+    // &:first-child, .row &:first-child {
+    //     margin-left: 0;
+    // }
 }
 
 @include make-cols; // 預設: md
 @include media(sm) { @include make-cols(sm); }
 @include media(xs) { @include make-cols(xs); }
 @include media(lg) { @include make-cols(lg); }
+
+@include make-cols-offset; // 預設: md
+@include media(sm) { @include make-cols-offset(sm); }
+@include media(xs) { @include make-cols-offset(xs); }
+@include media(lg) { @include make-cols-offset(lg); }

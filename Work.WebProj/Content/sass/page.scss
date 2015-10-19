@@ -34,6 +34,12 @@ $btn-font-size:    17px;
 
 // elements
 // ----------------------------------------------------------------------
+h5.title {
+    color:darken($brand-secondary,5%);
+    font-weight: bold;
+    font-size: em(20px);
+}
+
 
 
 // header
@@ -231,7 +237,6 @@ $btn-font-size:    17px;
 }
 
 // == product
-
 .pro-intro {
 
     article {
@@ -502,4 +507,23 @@ body.fixed {overflow:hidden;}
 .lb-content {
     height: 100%;
     overflow: auto;
+}
+
+// == inquire
+.inquire-form {
+
+    label {
+
+        em {
+            color:$error;
+
+            margin-right:$gutter/2;
+        }
+    }
+}
+.inquire-pic {
+    img {
+        max-width: 100%;
+        border-radius:4px;
+    }
 }

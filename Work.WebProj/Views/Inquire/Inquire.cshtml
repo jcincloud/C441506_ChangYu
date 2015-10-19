@@ -18,25 +18,67 @@
     	<p>請留下您的聯絡資料及諮詢事項，本公司收到您的E-mail後，會立刻派專人與您連絡，如您有任何意見或建議也歡迎您來信指教。</p>
     </header>
 
-    <article class="form">
+    <div class="row">
 
-    	<header class="hidden">線上諮詢表單</header>
-    	<h5 class="title">*為必填資料</h5>
+	    <article class="inquire-form col-8">
 
-    	<form action="">
-    		<div class="row">
-    			<label for="" class="col-1">公司名稱</label>
-    			<div class="col-11"><input type="text" class="form-element"></div>
-    		</div>
-    		<div class="row">
-    			<label for="" class="col-1">聯絡人</label>
-    			<div class="col-5"><input type="text" class="form-element"></div>
-    			<label for="" class="col-1">職稱</label>
-    			<div class="col-5"><input type="text" class="form-element"></div>
-    		</div>
-    	</form>
+	    	<header class="hidden">線上諮詢表單</header>
 
-    </article>
+	    	<form action="">
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right">公司名稱</label>
+	    			<div class="col-10"><input type="text" class="form-element"></div>
+	    		</div>
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right"><em>*</em>聯絡人</label>
+	    			<div class="col-5"><input type="text" class="form-element"></div>
+	    			<label for="" class="col-1 text-right">職稱</label>
+	    			<div class="col-4"><input type="text" class="form-element"></div>
+	    		</div>
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right"><em>*</em>聯絡電話</label>
+	    			<div class="col-5"><input type="text" class="form-element"></div>
+	    			<label for="" class="col-1 text-right">分機</label>
+	    			<div class="col-4"><input type="text" class="form-element"></div>
+	    		</div>
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right"><em>*</em>地址</label>
+	    			<div class="col-10"><input type="text" class="form-element"></div>
+	    		</div>
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right"><em>*</em>E-mail</label>
+	    			<div class="col-5"><input type="text" class="form-element"></div>
+	    			<label for="" class="col-1 text-right">傳真</label>
+	    			<div class="col-4"><input type="text" class="form-element"></div>
+	    		</div>
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right"><em>*</em>我想要</label>
+	    			<div class="col-10">
+	    				<input type="checkbox" class="form-element-inline"> 詢價
+	    				<input type="checkbox" class="form-element-inline"> 訂購產品
+	    				<input type="checkbox" class="form-element-inline"> 留言
+	    				<span>，請盡速回覆。</span>
+	    			</div>
+	    		</div>
+	    		<div class="row">
+	    			<label for="" class="col-2 text-right">諮詢內容</label>
+	    			<div class="col-10"><textarea rows="3" class="form-element" placeholder="(若要詢價/訂購產品，請詳細填寫產品規格樣式及數量，謝謝您！)"></textarea></div>
+	    		</div>
+	    		<div class="row">
+	    			<div class="col-10 col-offset-2">
+	    				<button class="btn">填寫完成，寄出</button>
+	    			</div>
+	    		</div>
+	    	</form>
+
+	    </article>
+
+	    <aside class="inquire-pic col-4">
+	    	<header class="hidden">感謝您的填寫</header>
+	    	<img src="~/Content/images/Inquire/pic.jpg" alt="">
+	    </aside>
+
+    </div>
 
 </section>
 

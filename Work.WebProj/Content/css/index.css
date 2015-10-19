@@ -488,6 +488,13 @@ address {
 .wrap, #header, #main, #footer {
   min-width: 1008px;
 }
+@media (min-width: 992px) and (max-width: 1399px) {
+  .wrap, #header, #main, #footer {
+    padding: 0 10px;
+    min-width: auto;
+    width: 100%;
+  }
+}
 @media (max-width: 960px) {
   .wrap, #header, #main, #footer {
     padding: 0 10px;

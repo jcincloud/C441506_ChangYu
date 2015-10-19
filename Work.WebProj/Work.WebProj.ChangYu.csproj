@@ -353,7 +353,9 @@
     <Content Include="Content\images\iconQuote.png" />
     <Content Include="Content\images\iconZoom.png" />
     <Content Include="Content\images\Index\banner1.jpg" />
+    <Content Include="Content\images\Inquire\pic.jpg" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\pro-test.jpg" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />
