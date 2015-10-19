@@ -55,6 +55,15 @@ var GirdForm = React.createClass({
 	shouldComponentUpdate:function(nextProps,nextState){
 		return true;
 	},
+	componentDidUpdate:function(prevProps, prevState){
+        /*
+            在元件更新之後執行。這個方法同樣不在初始化時執行，使用時機為當元件被更新之後需要執行一些操作。
+        */
+        //設定新增時的編輯器
+        if(prevState.edit_type==0 && this.state.edit_type==1){
+            CKEDITOR.replace( 'editor1', {});
+        }
+    },
 	getAjaxInitData:function(){
 		jqGet(this.props.initPathName)
 		.done(function(data, textStatus, jqXHRdata) {
@@ -68,6 +77,7 @@ var GirdForm = React.createClass({
 	handleSubmit: function(e) {
 
 		e.preventDefault();
+		this.state.fieldData.product_content = CKEDITOR.instances.editor1.getData();//編輯器
 
 		if(this.state.edit_type==1){
 			jqPost(this.props.apiPathName,this.state.fieldData)
@@ -191,6 +201,7 @@ var GirdForm = React.createClass({
 		jqGet(this.props.apiPathName,{id:id})
 		.done(function(data, textStatus, jqXHRdata) {
 			this.setState({edit_type:2,fieldData:data.data});
+			CKEDITOR.replace( 'editor1', {});
 		}.bind(this))
 		.fail(function( jqXHR, textStatus, errorThrown ) {
 			showAjaxError(errorThrown);
@@ -409,6 +420,37 @@ var GirdForm = React.createClass({
 						<small className="help-inline col-xs-6 text-danger">(必填)</small>
 					</div>
 					<div className="form-group">
+                        <label className="col-xs-2 control-label">代表圖</label>
+                        <div className="col-xs-4">
+                            <MasterImageUpload
+                            FileKind="Photo1"
+                            MainId={fieldData.product_id}
+                            ParentEditType={this.state.edit_type}
+                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+                            url_list={gb_approot+'Active/ProductData/axFList'}
+                            url_delete={gb_approot+'Active/ProductData/axFDelete'}
+                            url_sort={gb_approot+'Active/ProductData/axFSort'}
+                            />
+                        </div>
+                        <small className="help-inline col-xs-5 text-danger">限 1 張圖片</small>
+                    </div>
+
+                    <div className="form-group">
+                        <label className="col-xs-2 control-label">內頁圖片</label>
+                        <div className="col-xs-4">
+                            <MasterImageUpload
+                            FileKind="Photo2"
+                            MainId={fieldData.product_id}
+                            ParentEditType={this.state.edit_type}
+                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+                            url_list={gb_approot+'Active/ProductData/axFList'}
+                            url_delete={gb_approot+'Active/ProductData/axFDelete'}
+                            url_sort={gb_approot+'Active/ProductData/axFSort'}
+                            />
+                        </div>
+                        <small className="help-inline col-xs-5 text-danger">限 2 張圖片</small>
+                    </div>
+					<div className="form-group">
 						<label className="col-xs-2 control-label">產品名稱</label>
 						<div className="col-xs-4">
 							<input type="text" 							
@@ -455,6 +497,15 @@ var GirdForm = React.createClass({
 									<span>顯示</span>
 								</label>
 							</div>
+						</div>
+					</div>
+					<div className="form-group">
+						<label className="col-xs-2 control-label">產品說明</label>
+						<div className="col-xs-10">
+							<textarea col="30" rows="3" className="form-control" id="editor1"
+							value={fieldData.product_content}
+							onChange={this.changeFDValue.bind(this,'product_content')}
+							maxLength="256"></textarea>
 						</div>
 					</div>
 

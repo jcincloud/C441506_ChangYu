@@ -89,6 +89,7 @@ namespace DotWeb.Api
                 item.l1_id = md.l1_id;
                 item.l2_id = md.l2_id;
                 item.product_name = md.product_name;
+                item.product_content = md.product_content;
                 item.sort = md.sort;
                 item.i_Hide = md.i_Hide;
 

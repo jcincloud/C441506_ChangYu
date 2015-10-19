@@ -224,50 +224,29 @@ namespace DotWeb.CommSetup
                 return imUp;
             }
         }
-        public static ImageUpScope Product
+        public static ImageUpScope ProductIndex
         {
             get
             {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 2 };
+                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 5 };
                 imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="150", width=150}
+                    new ImageSizeParm(){  width=250}
                 };
                 return imUp;
             }
         }
-        public static ImageUpScope Member
+        public static ImageUpScope ProductImgs
         {
             get
             {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 2 };
+                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 2, limitSize = 1024 * 1024 * 5 };
                 imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="162", width=162}
+                    new ImageSizeParm(){  width=500}
                 };
                 return imUp;
             }
         }
-        public static ImageUpScope Company
-        {
-            get
-            {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 1, limitSize = 1024 * 1024 * 2 };
-                imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="162", width=162}
-                };
-                return imUp;
-            }
-        }
-        public static ImageUpScope BannerRotator
-        {
-            get
-            {
-                ImageUpScope imUp = new ImageUpScope() { keepOrigin = true, limitCount = 4, limitSize = 1024 * 1024 * 2 };
-                imUp.Parm = new ImageSizeParm[] {
-                    new ImageSizeParm(){ folderName="800", width=800}
-                };
-                return imUp;
-            }
-        }
+
     }
     public static class SysFileUpParm
     {
