@@ -7,37 +7,37 @@
 
 <div class="wrap">
 
-<ul class="breadcrumb">
-    <li><a href="~/Index">HOME</a></li>
-    <li>產品介紹</li>
-</ul>
+    <ul class="breadcrumb">
+        <li><a href="~/Index">HOME</a></li>
+        <li>產品介紹</li>
+    </ul>
 
-<section id="content">
+    <section id="content">
 
-    <header class="intro">
-    <h2>PRODUCTS INTRODUCTION</h2>
-    <p class="float-l half">電子產品之電磁封閉性、防止電磁波外洩、緩衝電流脈衝及分享電能熱效應。<br>The electro magnet sealed for products of electro had to  avoid electro wave spilling, to cushion electro current pulses, and to share electro heat reaction.</p>
-    <p class="float-r half">資訊、通訊及一般消費性電子產品所應用。<br>Our products were ideally suited to designs such as computers, communications, and consume electronic products. </p>
-    </header>
-
-    <section class="pro-intro">
-    <header class="hidden"><h3>產品介紹</h3></header>
-        @foreach (var L1 in Model)
-            {
-    <article>
-        <header>
-                    <h4><em>@(Model.IndexOf(L1)+1)</em>@L1.l1_name</h4>
+        <header class="intro">
+            <h2>PRODUCTS INTRODUCTION</h2>
+            <p class="float-l half">電子產品之電磁封閉性、防止電磁波外洩、緩衝電流脈衝及分享電能熱效應。<br>The electro magnet sealed for products of electro had to  avoid electro wave spilling, to cushion electro current pulses, and to share electro heat reaction.</p>
+            <p class="float-r half">資訊、通訊及一般消費性電子產品所應用。<br>Our products were ideally suited to designs such as computers, communications, and consume electronic products. </p>
         </header>
-        <ul>
-                    @foreach (var L2 in L1.l2_list)
-                    {
-                        <li><a href="~/Products/content?id=@L2.l2_id">@L2.l2_name</a></li>
-                    }
-        </ul>
-    </article>
-        }
-</section>
 
-</section>
+        <section class="pro-intro">
+            <header class="hidden"><h3>產品介紹</h3></header>
+            @foreach (var L1 in Model)
+            {
+                <article>
+                    <header>
+                        <h4><em>@(Model.IndexOf(L1) + 1)</em>@L1.l1_name</h4>
+                    </header>
+                    <ul>
+                        @foreach (var L2 in L1.l2_list)
+                        {
+                            <li><a href="~/Products/content?l2_id=@L2.l2_id">@L2.l2_name</a></li>
+                        }
+                    </ul>
+                </article>
+            }
+        </section>
+
+    </section>
 
 </div>

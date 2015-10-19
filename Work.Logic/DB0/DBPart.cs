@@ -213,6 +213,16 @@ namespace ProcCore.Business.DB0
         public string l1_name { get; set; }
         public string l2_name { get; set; }
     }
+    public partial class Product : BaseEntityTable
+    {
+        public string imgsrc { get; set; }
+        public string[] imgsrcs { get; set; }
+    }
+    public class ProductContentInfo
+    {
+        public List<L1> p_list { get; set; }
+        public List<Product> p_data { get; set; }
+    }
     /// <summary>
     /// 分類選單用
     /// </summary>
@@ -225,6 +235,7 @@ namespace ProcCore.Business.DB0
     {
         public int l1_id { get; set; }
         public string l1_name { get; set; }
+        public int? first_l2_id { get; set; }
         public List<L2> l2_list { get; set; }
     }
     public class L2

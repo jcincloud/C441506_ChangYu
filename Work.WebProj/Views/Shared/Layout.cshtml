@@ -1,10 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@{
+
+    var sidebar = (List<ProcCore.Business.DB0.L1>)ViewBag.Sidebar;
+
+}
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @* <meta name="keywords" content="@Resources.ResWeb.keywords">
-    <meta name="description" content="@Resources.ResWeb.description"> *@
+        <meta name="description" content="@Resources.ResWeb.description"> *@
     <title>@ViewBag.Title:@Resources.Res.System_Name</title>
     <!--[if lt IE 9]>
     <script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -17,7 +22,9 @@
     @if (ViewBag.IsFirstPage)
     {
         <link href="~/Content/css/index.css" rel="stylesheet">
-    } else {
+    }
+    else
+    {
         <link href="~/Content/css/page.css" rel="stylesheet">
     }
     @RenderSection("css", false)
@@ -25,83 +32,85 @@
 
 <body class="@ViewBag.BodyClass">
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <header id="header">
+        <header id="header">
+            <div class="wrap">
+                <h1 class="logo" onclick="location.href='@Url.Content("~/index")'" title="回首頁">倡譽興業有限公司</h1>
+                <nav id="menu">
+                    <header class="hidden"><h2>主選單</h2></header>
+                    <a href="~/index">HOME</a>
+                    <a href="~/AboutUs">公司簡介</a>
+                    <a href="~/Products/list">產品介紹</a>
+                    <a href="~/Inquire">線上諮詢</a>
+                    <a href="~/ContactUs">聯絡我們</a>
+                </nav>
+                <ul class="award list-inline">
+                    <li><strong>Quality Assurance</strong>ISO 9001　TS 16949</li>
+                    <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
+                </ul>
+            </div><!-- wrap //-->
+        </header><!-- header //-->
+
+        <main id="main">
+            @RenderBody()
+        </main>
+
+    </div><!-- wrapper //-->
+
+    <footer id="footer">
         <div class="wrap">
-            <h1 class="logo" onclick="location.href='@Url.Content("~/index")'" title="回首頁">倡譽興業有限公司</h1>
-            <nav id="menu">
-                <header class="hidden"><h2>主選單</h2></header>
-                <a href="~/index">HOME</a>
-                <a href="~/AboutUs">公司簡介</a>
-                <a href="~/Products/list">產品介紹</a>
-                <a href="~/Inquire">線上諮詢</a>
-                <a href="~/ContactUs">聯絡我們</a>
-            </nav>
-            <ul class="award list-inline">
-                <li><strong>Quality Assurance</strong>ISO 9001　TS 16949</li>
-                <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
-            </ul>
-        </div><!-- wrap //-->
-    </header><!-- header //-->
+            <dl>
+                <dt><a href="~/AboutUs">公司簡介<em>ABOUT US</em></a></dt>
+                <dt><a href="~/Inquire">線上諮詢<em>INQUIRE</em></a></dt>
+            </dl>
 
-    <main id="main">
-        @RenderBody()
-    </main>
+            <dl class="product">
+                <dt>產品介紹<em>PRODUCTS</em></dt>
+                @foreach (var i in sidebar)
+                {
+                    <dd><a href="~/Products/content?l2_id=@i.first_l2_id">@i.l1_name</a></dd>
+                }
 
-</div><!-- wrapper //-->
+            </dl>
 
-<footer id="footer">
-    <div class="wrap">
-        <dl>
-            <dt><a href="~/AboutUs">公司簡介<em>ABOUT US</em></a></dt>
-            <dt><a href="~/Inquire">線上諮詢<em>INQUIRE</em></a></dt>
-        </dl>
+            <dl class="contact">
+                <dt>聯絡我們<em>CONTACT US</em></dt>
+                <dd><span>電話：</span><strong>0921-874-565</strong></dd>
+                <dd><span>傳真：</span><strong>886-3-4961359</strong></dd>
+                <dd><span>地址：</span>桃園市楊梅區幼獅路二段392巷29弄17號</dd>
+                <dd><span>E-mail：</span><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></dd>
+            </dl>
 
-        <dl class="product">
-            <dt>產品介紹<em>PRODUCTS</em></dt>
-            <dd><a href="">被動元件</a></dd>
-            <dd><a href="">線材組</a></dd>
-            <dd><a href="">Magnet 永久磁鐵</a></dd>
-        </dl>
+            <!-- <ul class="menu">
+                <li>
+                    <a href="~/AboutUs">公司簡介<em>ABOUT US</em></a>
+                    <a href="~/Inquire">線上諮詢<em>INQUIRE</em></a>
+                </li>
+                <li>
+                    產品介紹<em>PRODUCTS</em>
+                    <ul class="product">
+                        <li><a href="">被動元件</a></li>
+                        <li><a href="">線材組</a></li>
+                        <li><a href="">Magnet 永久磁鐵</a></li>
+                    </ul>
+                </li>
+                <li>
+                    聯絡我們<em>CONTACT US</em>
+                    <ul class="contact">
+                        <li><em>電話：</em><strong>0921-874-565</strong></li>
+                        <li><em>傳真：</em><strong>886-3-4961359</strong></li>
+                        <li><em>地址：</em><a href="https://goo.gl/maps/JULbvuwcYD92" target="new">桃園市楊梅區幼獅路二段392巷29弄17號</a></li>
+                        <li><em>E-mail：</em><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></li>
+                    </ul>
+                </li>
+            </ul> -->
+            <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
+        </div>
+    </footer><!-- footer -->
 
-        <dl class="contact">
-            <dt>聯絡我們<em>CONTACT US</em></dt>
-            <dd><span>電話：</span><strong>0921-874-565</strong></dd>
-            <dd><span>傳真：</span><strong>886-3-4961359</strong></dd>
-            <dd><span>地址：</span>桃園市楊梅區幼獅路二段392巷29弄17號</dd>
-            <dd><span>E-mail：</span><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></dd>
-        </dl>
-
-        <!-- <ul class="menu">
-            <li>
-                <a href="~/AboutUs">公司簡介<em>ABOUT US</em></a>
-                <a href="~/Inquire">線上諮詢<em>INQUIRE</em></a>
-            </li>
-            <li>
-                產品介紹<em>PRODUCTS</em>
-                <ul class="product">
-                    <li><a href="">被動元件</a></li>
-                    <li><a href="">線材組</a></li>
-                    <li><a href="">Magnet 永久磁鐵</a></li>
-                </ul>
-            </li>
-            <li>
-                聯絡我們<em>CONTACT US</em>
-                <ul class="contact">
-                    <li><em>電話：</em><strong>0921-874-565</strong></li>
-                    <li><em>傳真：</em><strong>886-3-4961359</strong></li>
-                    <li><em>地址：</em><a href="https://goo.gl/maps/JULbvuwcYD92" target="new">桃園市楊梅區幼獅路二段392巷29弄17號</a></li>
-                    <li><em>E-mail：</em><a href="mailto:tpower.lo@msa.hinet.net">tpower.lo@msa.hinet.net</a></li>
-                </ul>
-            </li>
-        </ul> -->
-        <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
-    </div>
-</footer><!-- footer -->
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-@RenderSection("Scripts", required: false)
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>

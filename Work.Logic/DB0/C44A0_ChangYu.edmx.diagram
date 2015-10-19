@@ -21,7 +21,7 @@
         <EntityTypeShape EntityType="C44A0_ChangYuModel.Product_Category_L1" Width="1.5" PointX="8.375" PointY="7.125" />
         <EntityTypeShape EntityType="C44A0_ChangYuModel.Product_Category_L2" Width="1.5" PointX="10.625" PointY="7" />
         <AssociationConnector Association="C44A0_ChangYuModel.FK_Product_Category_L2_Product_Category_L1" />
-        <EntityTypeShape EntityType="C44A0_ChangYuModel.Product" Width="1.5" PointX="12.875" PointY="6.875" />
+        <EntityTypeShape EntityType="C44A0_ChangYuModel.Product" Width="1.5" PointX="12.875" PointY="6.75" />
         <AssociationConnector Association="C44A0_ChangYuModel.FK_Product_Product_Category_L1" />
         <AssociationConnector Association="C44A0_ChangYuModel.FK_Product_Product_Category_L2" />
         </Diagram>

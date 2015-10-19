@@ -16,8 +16,9 @@ namespace ProcCore.Business.DB0
     public partial class Product : BaseEntityTable
     {
         public int product_id { get; set; }
-        public Nullable<int> l1_id { get; set; }
-        public Nullable<int> l2_id { get; set; }
+        public int l1_id { get; set; }
+        public int l2_id { get; set; }
+        public Nullable<int> product_type { get; set; }
         public string product_name { get; set; }
         public string product_content { get; set; }
         public Nullable<int> sort { get; set; }

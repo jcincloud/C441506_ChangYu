@@ -26,7 +26,7 @@ var MasterImageUpload = React.createClass({
 		}
 	},
 	componentDidMount:function(){
-		if(this.props.MainId>0){
+		if(this.props.MainId>0 && this.props.ParentEditType!=1){
 			this.createFileUpLoadObject();
 			this.getFileList();
 		}
@@ -36,7 +36,7 @@ var MasterImageUpload = React.createClass({
 	},
 	componentWillUnmount:function(){
 		console.log('MasterFileUpload','destroy');
-		if(this.props.uploader!=null){
+		if(this.props.uploader!=null || this.props.ParentEditType==1){
 			this.props.uploader.destroy();
 		}
 	},
@@ -180,7 +180,7 @@ var MasterImageUpload = React.createClass({
 		if (this.props.ParentEditType==1) {
 			imgButtonHtml=(
 				<div className="form-control">
-				<small className="col-xs-6 help-inline">請先按儲存後方可上傳圖片</small>
+				<small className="col-xs-8 help-inline">請先按儲存後方可上傳圖片</small>
 				</div>
 				);
 		}else if(this.props.ParentEditType==2){

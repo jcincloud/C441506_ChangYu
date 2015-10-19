@@ -1,331 +1,351 @@
-﻿@{
+﻿@model ProcCore.Business.DB0.ProductContentInfo
+@{
     ViewBag.Title = "產品介紹";
     ViewBag.BodyClass = "Products";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 @section Scripts {
-<div id="lb-overlay">
-    <div id="lb">
-        <button class="close">&times;</button>
+    <div id="lb-overlay">
+        <div id="lb">
+            <button class="close">&times;</button>
+        </div>
     </div>
-</div>
 
-<script>
+    <script>
 
-    // 特效完全載入前先隱藏一下
-    $(window).load(function(){
-        $('#content').removeClass("hidden");
-    });
-
-    // 燈箱 產品介紹
-    $('.lb-content').appendTo('#lb');
-
-    $('.lb-trigger').click(function(event){
-
-        $('body').addClass('fixed');
-        
-        var height = $(window).height();
-        var position = $(window).scrollTop();
-        $("#lb-overlay").fadeIn().css({
-            'height': height
+        // 特效完全載入前先隱藏一下
+        $(window).load(function () {
+            $('#content').removeClass("hidden");
         });
 
-        var lb = $(this).attr("href");
-        $(lb).fadeIn().siblings('.lb-content').hide();
+        // 燈箱 產品介紹
+        $('.lb-content').appendTo('#lb');
 
-        event.preventDefault();
+        $('.lb-trigger').click(function (event) {
 
-    });
+            $('body').addClass('fixed');
 
-    $('#lb-overlay .close').click(function(){
-        $("#lb-overlay").fadeOut();
-        $('.lb-content').hide();
-        $("body").removeClass("fixed");
-    });
+            var height = $(window).height();
+            var position = $(window).scrollTop();
+            $("#lb-overlay").fadeIn().css({
+                'height': height
+            });
+
+            var lb = $(this).attr("href");
+            $(lb).fadeIn().siblings('.lb-content').hide();
+
+            event.preventDefault();
+
+        });
+
+        $('#lb-overlay .close').click(function () {
+            $("#lb-overlay").fadeOut();
+            $('.lb-content').hide();
+            $("body").removeClass("fixed");
+        });
 
 
-    // 次次分類 頁籤切換
-    var tabShow = $(".tab-trigger.active").attr("href");
-    $("ul.pro").hide();
-    $(tabShow).show();
+        // 次次分類 頁籤切換
+        var tabShow = $(".tab-trigger.active").attr("href");
+        $("ul.pro").hide();
+        $(tabShow).show();
 
-    $('.tab-trigger').click(function(event){
+        $('.tab-trigger').click(function (event) {
 
-        $(this).addClass("active");
-        $(".tab-trigger").not(this).removeClass("active");
+            $(this).addClass("active");
+            $(".tab-trigger").not(this).removeClass("active");
 
-        var tab = $(this).attr("href");
-        $(tab).fadeIn().siblings('ul.pro').hide();
+            var tab = $(this).attr("href");
+            $(tab).fadeIn().siblings('ul.pro').hide();
 
-        event.preventDefault();
+            event.preventDefault();
 
-    });
-    
-</script>
+        });
+
+    </script>
 }
 
 <div class="wrap">
 
-<ul class="breadcrumb">
-    <li><a href="~/Index">HOME</a></li>
-    <li><a href="~/Products/list">產品介紹</a></li>
-    <li>Inductance 電感</li>
-</ul>
-
-<aside id="sidebar">
-    <header><h3>產品 Products</h3></header>
-    <article>
-        <header><h4>被動元件</h4></header>
-        <ul class="submenu">
-            <li><a class="active" href="">Inductance 電感(繞線式.一體式)</a></li>
-            <li><a href="">Resistance 電阻/電感(積層式)</a></li>
-            <li><a href="">Filter 濾波器</a></li>
-            <li><a href="">Transformer 變壓器</a></li>
-        </ul>
-    </article>
-    <article>
-        <header><h4>線材組</h4></header>
-        <ul class="submenu">
-            <li><a href="">FFC / FPC / 碳膜FPC  排線</a></li>
-            <li><a href="">POWER CABLE</a></li>
-            <li><a href="">CABLE ASSEMBLY</a></li>
-            <li><a href="">3C Application</a></li>
-        </ul>
-    </article>
-    <article>
-        <header><h4>Magnet 永久磁鐵</h4></header>
-        <ul class="submenu">
-            <li><a href="">3C Application</a></li>
-            <li><a href="">電動腳踏車應用</a></li>
-        </ul>
-    </article>
-</aside>
-
-<section id="content" class="float-r hidden">
-
-    <header class="intro">
-        <h3>INDUCTANCE 電感</h3>
-
-        @* 只有 分類 1-1 才有頁籤切換 *@
-        <ul class="tab list-inline">
-            <li><a class="active tab-trigger" href="#tab1">SMD 繞線式功率電感</a></li>
-            <li><a class="tab-trigger" href="#tab2">一體式電感</a></li>
-        </ul>
-
-        <p class="lead">Multilayer chip beads and inductors</p>
-    </header>
-
-    @* SMD 繞線式功率電感 *@
-    <ul id="tab1" class="pro">
-
-        <li>
-            @* 彈出視窗 *@
-            <div id="pro1" class="pro-detail lb-content">
-
-                @* 產品說明 *@
-                <article class="pro-content">
-                    <header><h4 class="title">一體成形大電流電感 High current Inductors</h4></header>
-
-                    @* 編輯器 *@
-                    <section class="editor">
-                        <h1>A.產品簡介</h1>
-                        <p>一體化粉末合金電感器是一種將線圈預埋在金屬軟磁粉末裡的新式電感器，由於它有著自成閉合磁路結構與軟磁材料選用的多樣性，因此具備了許多與傳統電感器不同的特性，主要有以下幾個方面：</p>
-                        <ul>
-                            <li>a. 抗飽和：具有良好的耐交-直流疊加特性。</li>
-                            <li>b. 耐衝擊：粉末冶金壓鑄結構克服了傳統電感器易碎和噪音大的缺點。</li>
-                            <li>c. 特性好：天生的屏壁式結構使得EMI特性更勝一般普通電感器。</li>
-                            <li>d. 損耗低：鐵基粉末壓鑄使得有效分解從而降低溫升和整機損耗。</li>
-                            <li>e. 頻率寬：可由幾十赫茲到高達30兆赫的寬頻帶下使用。</li>
-                            <li>f. 無污染：從主體材料到生產過程無任何有害物質的流出。</li>
-                        </ul>
-                        <p>其次，一體化粉末合金電感器還具有優秀的磁性能穩定性和溫度穩定性。在生產工藝上獨有的其他任何軟磁材料不具備的特性。就是具有良好的性能可控制性和形狀可控制性，可由控制和改變合金粉末的合理調配等生產工藝條件，生產出各種具有獨特性能的電感器。</p>
-                        <p>主要性能如下：</p>
-                        <ul>
-                            <li>電氣特性～～電感量範圍：0.1uH~100uH（允差±J/K/L/M）</li>
-                            <li>額定電流範圍：0.2A~80A（IDC）</li>
-                            <li>線圈與合金粉末間抗電強度：≧300V（DC/1mA）</li>
-                            <li>溫升：≦40℃</li>
-                            <li>機械特性：衝擊、摔落、震動、離心、耐壓力試驗結果表明均優於傳統電感器。</li>
-                            <li>
-                                環境特性：存儲溫度：-55℃~125℃
-                                <ul>
-                                    <li>工作溫度：-22℃~85℃</li>
-                                    <li>產品壽命：≧60000H</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <h1>B.應用範圍：</h1>
-                        <ol>
-                            <li>平板電腦專用的0402(4*4*2mm)的薄型化電感(SMD)</li>
-                            <li>主機板、顯示卡、AIO、POS機、工業電腦、TV、機上盒</li>
-                            <li>筆記型電腦、平板電腦、音效卡</li>
-                        </ol>
-                    </section>
-                    @* 編輯器 end *@
-
-                </article>
-                @* 產品說明 end *@
-
-                @* 產品說明插圖: 最多2張圖 *@
-                <ul class="pro-img">
-                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
-                    <li><img src="~/Content/images/Products/test2.png" alt=""></li>
-                </ul>
-                @* 產品說明插圖 end *@
-
-            </div>
-            @* 彈出視窗 end *@
-
-            @* 產品縮圖(有產品名稱): 最多1張圖 *@
-            <figure>
-                <a class="fancy-inline lb-trigger" href="#pro1">
-                    <img src="~/Content/images/pro-test.jpg" alt="">
-                    <figcaption>一體成形大電流電感</figcaption>
-                </a>
-            </figure>
-            @* 產品縮圖: 有產品名稱 end *@
-        </li>
-
-        <li>
-            @* 彈出視窗 *@
-            <div id="pro2" class="pro-detail lb-content">
-
-                @* 產品說明(只有插圖沒有文字): 最多2張圖 *@
-                <ul class="pro-img">
-                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
-                    <li><img src="~/Content/images/Products/test2.png" alt=""></li>
-                </ul>
-                @* 產品說明(只有插圖沒有文字): 最多2張圖 end *@
-
-            </div>
-            @* 彈出視窗 end *@
-
-            @* 產品縮圖(沒有產品名稱): 最多1張圖 *@
-            <figure>
-                <a class="zoom lb-trigger" href="#pro2">
-                    <img src="~/Content/images/pro-test.jpg" alt="">
-                </a>
-            </figure>
-            @* 產品縮圖(沒有產品名稱): 最多1張圖 end *@
-        </li>
-
-        <li>
-            @* 彈出視窗 *@
-            <div id="pro3" class="pro-detail lb-content">
-
-                @* 產品說明(只有文字沒有插圖) *@
-                <article class="pro-content full">
-                    <header><h4 class="title">EMI 共模濾波器 Chip common mode choke coil</h4></header>
-
-                    @* 編輯器 *@
-                    <section class="editor">
-                        <h1>FEATURES</h1>
-                        <ul>
-                            <li>This common mode filter is characterized by  its small sized.</li>
-                            <li>Highly effective in noise suppression. High common-mode impedance at noise band and low differential-mode impedance at signal band.</li>
-                            <li>Due to the low differential-mode impedance with high coupling factor, there is almost no distortion on high speed signal.</li>
-                            <li>This series is micro-produced by auto machines for its huge productivity and accuracy with all-day CCD inspection.</li>
-                        </ul>
-                        <p>其次，一體化粉末合金電感器還具有優秀的磁性能穩定性和溫度穩定性。在生產工藝上獨有的其他任何軟磁材料不具備的特性。就是具有良好的性能可控制性和形狀可控制性，可由控制和改變合金粉末的合理調配等生產工藝條件，生產出各種具有獨特性能的電感器。</p>
-                        <h1>APPLICATIONS</h1>
-                        <ul>
-                            <li>Used for noise suppression in any electronic devices such as personal computer and peripheral equipment (USB),   amusement equipment (IEEE 1394), LCD panels (LVDS) etc.</li>
-                        </ul>
-                    </section>
-                    @* 編輯器 end *@
-
-                </article>
-                @* 產品說明(只有文字沒有插圖) end *@
-
-            </div>
-            @* 彈出視窗 end *@
-
-            @* 產品縮圖(有產品名稱): 最多1張圖 *@
-            <figure>
-                <a class="fancy-inline lb-trigger" href="#pro3">
-                    <img src="~/Content/images/pro-test.jpg" alt="">
-                    <figcaption>EMI 共模濾波器</figcaption>
-                </a>
-            </figure>
-            @* 產品縮圖: 有產品名稱 end *@
-        </li>
-
+    <ul class="breadcrumb">
+        <li><a href="~/Index">HOME</a></li>
+        <li><a href="~/Products/list">產品介紹</a></li>
+        <li>Inductance 電感</li>
     </ul>
 
-    @* 一體式電感 *@
-    <ul id="tab2" class="pro">
-
-        <li>
-            @* 彈出視窗 *@
-            <div id="pro1" class="pro-detail lb-content">
-
-                @* 產品說明 *@
-                <article class="pro-content">
-                    <header><h4 class="title">一體成形大電流電感 High current Inductors</h4></header>
-
-                    @* 編輯器 *@
-                    <section class="editor">
-                        <h1>A.產品簡介</h1>
-                        <p>一體化粉末合金電感器是一種將線圈預埋在金屬軟磁粉末裡的新式電感器，由於它有著自成閉合磁路結構與軟磁材料選用的多樣性，因此具備了許多與傳統電感器不同的特性，主要有以下幾個方面：</p>
-                        <ul>
-                            <li>a. 抗飽和：具有良好的耐交-直流疊加特性。</li>
-                            <li>b. 耐衝擊：粉末冶金壓鑄結構克服了傳統電感器易碎和噪音大的缺點。</li>
-                            <li>c. 特性好：天生的屏壁式結構使得EMI特性更勝一般普通電感器。</li>
-                            <li>d. 損耗低：鐵基粉末壓鑄使得有效分解從而降低溫升和整機損耗。</li>
-                            <li>e. 頻率寬：可由幾十赫茲到高達30兆赫的寬頻帶下使用。</li>
-                            <li>f. 無污染：從主體材料到生產過程無任何有害物質的流出。</li>
-                        </ul>
-                        <p>其次，一體化粉末合金電感器還具有優秀的磁性能穩定性和溫度穩定性。在生產工藝上獨有的其他任何軟磁材料不具備的特性。就是具有良好的性能可控制性和形狀可控制性，可由控制和改變合金粉末的合理調配等生產工藝條件，生產出各種具有獨特性能的電感器。</p>
-                        <p>主要性能如下：</p>
-                        <ul>
-                            <li>電氣特性～～電感量範圍：0.1uH~100uH（允差±J/K/L/M）</li>
-                            <li>額定電流範圍：0.2A~80A（IDC）</li>
-                            <li>線圈與合金粉末間抗電強度：≧300V（DC/1mA）</li>
-                            <li>溫升：≦40℃</li>
-                            <li>機械特性：衝擊、摔落、震動、離心、耐壓力試驗結果表明均優於傳統電感器。</li>
-                            <li>
-                                環境特性：存儲溫度：-55℃~125℃
-                                <ul>
-                                    <li>工作溫度：-22℃~85℃</li>
-                                    <li>產品壽命：≧60000H</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <h1>B.應用範圍：</h1>
-                        <ol>
-                            <li>平板電腦專用的0402(4*4*2mm)的薄型化電感(SMD)</li>
-                            <li>主機板、顯示卡、AIO、POS機、工業電腦、TV、機上盒</li>
-                            <li>筆記型電腦、平板電腦、音效卡</li>
-                        </ol>
-                    </section>
-                    @* 編輯器 end *@
-
-                </article>
-                @* 產品說明 end *@
-
-                @* 產品說明插圖: 最多2張圖 *@
-                <ul class="pro-img">
-                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
-                    <li><img src="~/Content/images/Products/test2.png" alt=""></li>
+    <aside id="sidebar">
+        <header><h3>產品 Products</h3></header>
+        @foreach (var i in Model.p_list)
+        {
+            <article>
+                <header><h4>@i.l1_name</h4></header>
+                <ul class="submenu">
+                    @foreach (var j in i.l2_list)
+                    {
+                        if (ViewBag.l2_id == j.l2_id)
+                        {
+                            <li><a class="active" href="~/Products/content?l2_id=@j.l2_id">@j.l2_name</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Products/content?l2_id=@j.l2_id">@j.l2_name</a></li>
+                        }
+                    }
                 </ul>
-                @* 產品說明插圖 end *@
+            </article>
+        }
+    </aside>
 
-            </div>
-            @* 彈出視窗 end *@
+    <section id="content" class="float-r hidden">
 
-            @* 產品縮圖(有產品名稱): 最多1張圖 *@
-            <figure>
-                <a class="fancy-inline lb-trigger" href="#pro1">
-                    <img src="~/Content/images/pro-test.jpg" alt="">
-                    <figcaption>一體成形大電流電感</figcaption>
-                </a>
-            </figure>
-            @* 產品縮圖: 有產品名稱 end *@
-        </li>
+        <header class="intro">
+            <h3>@ViewBag.l2_name</h3>
 
-    </ul>
+            @* 只有 分類 1-1 才有頁籤切換 *@
+            @if (ViewBag.l2_id == 1)
+            {
+                <ul class="tab list-inline">
+                    <li><a class="active tab-trigger" href="#tab1">SMD 繞線式功率電感</a></li>
+                    <li><a class="tab-trigger" href="#tab2">一體式電感</a></li>
+                </ul>
+            }
+            else
+            {
+                <ul class="tab list-inline">
+                    <li><a class="active tab-trigger" href="#tab1">@ViewBag.l2_name</a></li>
+                </ul>
+            }
+            <p class="lead">Multilayer chip beads and inductors</p>
+        </header>
 
-</section>
+        @if (ViewBag.l2_id == 1)
+        {
+            @* SMD 繞線式功率電感 *@
+            <ul id="tab1" class="pro">
+                @foreach (var i in Model.p_data)
+                {
+                    if (i.product_type == 1)
+                    {
+                        if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
+                        {
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <article class="pro-content">
+                                        <header><h4 class="title">@i.product_name</h4></header>
+                                        <section class="editor">
+                                            @Html.Raw(i.product_content)
+                                        </section>
+                                    </article>
+                                    <ul class="pro-img">
+                                        @foreach (var img in i.imgsrcs)
+                                        {
+                                            <li><img src="@img" alt=""></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <figure>
+                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                        <figcaption>@i.product_name</figcaption>
+                                    </a>
+                                </figure>
+
+                            </li>
+                        }
+                        else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
+                        {
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <ul class="pro-img">
+                                        @foreach (var img in i.imgsrcs)
+                                        {
+                                            <li><img src="@img" alt=""></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <figure>
+                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                    </a>
+                                </figure>
+
+                            </li>
+                        }
+                        else if (i.imgsrcs == null)
+                        {
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <article class="pro-content full">
+                                        <header><h4 class="title">@i.product_name</h4></header>
+                                        <section class="editor">
+                                            @Html.Raw(i.product_content)
+                                        </section>
+                                    </article>
+                                </div>
+                                <figure>
+                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                        <figcaption>@i.product_name</figcaption>
+                                    </a>
+                                </figure>
+                            </li>
+                        }
+                    }
+                }
+
+            </ul>
+
+            @* 一體式電感 *@
+            <ul id="tab2" class="pro">
+
+                @foreach (var i in Model.p_data)
+                {
+                    if (i.product_type == 2)
+                    {
+                        if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
+                        {
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <article class="pro-content">
+                                        <header><h4 class="title">@i.product_name</h4></header>
+                                        <section class="editor">
+                                            @Html.Raw(i.product_content)
+                                        </section>
+                                    </article>
+                                    <ul class="pro-img">
+                                        @foreach (var img in i.imgsrcs)
+                                        {
+                                            <li><img src="@img" alt=""></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <figure>
+                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                        <figcaption>@i.product_name</figcaption>
+                                    </a>
+                                </figure>
+
+                            </li>
+                        }
+                        else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
+                        {
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <ul class="pro-img">
+                                        @foreach (var img in i.imgsrcs)
+                                        {
+                                            <li><img src="@img" alt=""></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <figure>
+                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                    </a>
+                                </figure>
+
+                            </li>
+                        }
+                        else if (i.imgsrcs == null)
+                        {
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <article class="pro-content full">
+                                        <header><h4 class="title">@i.product_name</h4></header>
+                                        <section class="editor">
+                                            @Html.Raw(i.product_content)
+                                        </section>
+                                    </article>
+                                </div>
+                                <figure>
+                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                        <figcaption>@i.product_name</figcaption>
+                                    </a>
+                                </figure>
+                            </li>
+                        }
+                    }
+                }
+
+            </ul>
+        }
+        else
+        {
+            <ul id="tab1" class="pro">
+                @foreach (var i in Model.p_data)
+                {
+                    if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
+                    {
+                <li>
+                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                        <article class="pro-content">
+                            <header><h4 class="title">@i.product_name</h4></header>
+                            <section class="editor">
+                                @Html.Raw(i.product_content)
+                            </section>
+                        </article>
+                        <ul class="pro-img">
+                            @foreach (var img in i.imgsrcs)
+                                    {
+                                    <li><img src="@img" alt=""></li>
+                                    }
+                        </ul>
+                    </div>
+                    <figure>
+                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                            <img src="@i.imgsrc" alt="">
+                            <figcaption>@i.product_name</figcaption>
+                        </a>
+                    </figure>
+
+                </li>
+                    }
+                    else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
+                    {
+                <li>
+                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                        <ul class="pro-img">
+                            @foreach (var img in i.imgsrcs)
+                                    {
+                                    <li><img src="@img" alt=""></li>
+                                    }
+                        </ul>
+                    </div>
+                    <figure>
+                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                            <img src="@i.imgsrc" alt="">
+                        </a>
+                    </figure>
+
+                </li>
+                    }
+                    else if (i.imgsrcs == null)
+                    {
+                <li>
+                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                        <article class="pro-content full">
+                            <header><h4 class="title">@i.product_name</h4></header>
+                            <section class="editor">
+                                @Html.Raw(i.product_content)
+                            </section>
+                        </article>
+                    </div>
+                    <figure>
+                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                            <img src="@i.imgsrc" alt="">
+                            <figcaption>@i.product_name</figcaption>
+                        </a>
+                    </figure>
+                </li>
+                    }
+                }
+            </ul>
+        }
+
+
+    </section>
 
 </div>

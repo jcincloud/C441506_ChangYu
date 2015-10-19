@@ -57,7 +57,7 @@ namespace DotWeb.Api
                     l1_name = x.Product_Category_L1.l1_name,
                     l2_name = x.Product_Category_L2.l2_name,
                     product_name = x.product_name,
-                    sort=x.sort,
+                    sort = x.sort,
                     i_Hide = x.i_Hide
                 });
 
@@ -88,10 +88,13 @@ namespace DotWeb.Api
                 item = await db0.Product.FindAsync(md.product_id);
                 item.l1_id = md.l1_id;
                 item.l2_id = md.l2_id;
+                item.product_type = md.product_type;
                 item.product_name = md.product_name;
                 item.product_content = md.product_content;
                 item.sort = md.sort;
                 item.i_Hide = md.i_Hide;
+                if (md.l2_id != 1)
+                    item.product_type = null;
 
                 item.i_UpdateUserID = this.UserId;
                 item.i_UpdateDateTime = DateTime.Now;
@@ -128,7 +131,8 @@ namespace DotWeb.Api
             {
                 #region working a
                 db0 = getDB0();
-
+                if (md.l2_id != 1)
+                    md.product_type = null;
 
                 md.i_InsertUserID = this.UserId;
                 md.i_InsertDateTime = DateTime.Now;
