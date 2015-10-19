@@ -31,9 +31,7 @@ $banner-height:         770px;
 
 // main
 // ----------------------------------------------------------------------
-@include media(max-960) {
-    #main { padding: 0; }
-}
+#main { padding: 0; }
 
 #banner {
     width: 100%;

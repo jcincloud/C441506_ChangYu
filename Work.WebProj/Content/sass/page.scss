@@ -34,6 +34,20 @@ $btn-font-size:    17px;
 
 // elements
 // ----------------------------------------------------------------------
+h5.title {
+    color:darken($brand-secondary,5%);
+    font-weight: bold;
+    font-size: em(20px);
+}
+
+
+// editor
+// ----------------------------------------------------------------------
+.editor {
+    ul, ol {
+        margin-left: 1em;
+    }
+}
 
 
 // header
@@ -231,13 +245,12 @@ $btn-font-size:    17px;
 }
 
 // == product
-
 .pro-intro {
+    @extend .row;
+    margin:0;
 
     article {
-        float:left;
-
-        width:33.33%;
+        @extend .col-4;
 
         position: relative;
         padding:0 0 0 18px;
@@ -417,40 +430,68 @@ $btn-font-size:    17px;
 }
 
 .pro-detail {
+    @extend .row;
 
+    // 產品說明文字 - 旁邊有圖
+    .pro-content {
+        @extend .col-7;
+        float:right;
+
+        color:#eee;
+
+        .title {
+            color:#fff;
+            font-size: em(32px);
+
+            margin:0 40px 20px 0;
+
+            &::after {
+                @extend %hr;
+
+                content:" ";
+                display: block;
+                border-bottom:none;
+
+                margin-top:15px;
+            }
+        }
+
+        // 產品說明文字 - 旁邊沒圖
+        &.full {@extend .col-12;}
+    }
+
+    // 產品說明插圖 - 旁邊沒字
     .pro-img {
         @extend %list-inline;
         @extend %list-unstyled;
+        @extend .col-12;
 
-        width:40%;
-
-        float:left;
-        padding:0 20px;
+        text-align: center;
+        margin-top: 80px;
 
         li {
-            width: 100%;
-            text-align: center;
+            @extend %half;
+
+            display: inline-block;
 
             margin-bottom: 15px;
 
             img {
                 max-width:100%;
-                border:3px solid #444;
             }
         }
     }
 
-    .pro-content {
-        width:60%;
+    // 產品說明插圖 - 旁邊有字
+    .pro-content + .pro-img {
+        @extend .col-5;
 
-        color:#eee;
+        text-align: left;
+        margin-top: 0;
 
-        float:right;
-
-        .title {
-            color:#fff;
-            font-size: em(32px);
-            margin:0;
+        li {
+            @extend %full;
+            display: block;
         }
     }
 }
@@ -459,7 +500,7 @@ $btn-font-size:    17px;
 body.fixed {overflow:hidden;}
 
 #lb-overlay {
-    background:hsla(0,0,0,0.85);
+    background:hsla(199,64%,8%,0.9);
 
     width:100%;
     min-height:100%;
@@ -483,18 +524,17 @@ body.fixed {overflow:hidden;}
 
     .close {
         position: absolute;
-        right:10px;
+        right:0;
         top:-10px;
 
         color:#fff;
         font-size: em(50px);
-        text-shadow: 0 2px 2px hsla(0,0,0,0.2);
 
-        background:none;
+        background: $brand-primary;
         border:none;
         opacity: 0.8;
 
-        padding:0;
+        padding:0 5px;
 
         &:hover {opacity:1;}
     }
@@ -502,4 +542,27 @@ body.fixed {overflow:hidden;}
 .lb-content {
     height: 100%;
     overflow: auto;
+}
+
+// == inquire
+.inquire-form {
+    @extend .col-7;
+
+    label {
+
+        em {
+            color:$error;
+
+            margin-right:$gutter/2;
+        }
+    }
+}
+.inquire-pic {
+    @extend .col-4;
+    @extend .col-offset-1;
+
+    img {
+        max-width: 100%;
+        border-radius:4px;
+    }
 }

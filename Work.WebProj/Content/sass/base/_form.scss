@@ -37,7 +37,7 @@ label {
 }
 
 #{text-inputs(radio checkbox)} {
-    margin: 4px 0 0;
+    margin-top: 4px;
     margin-top: 1px \9; // IE8-9
     line-height: normal;
 }
@@ -61,7 +61,6 @@ select[size] {
     height: auto;
 }
 
-
 // 調整輸出元素
 output {
     display: block;
@@ -74,7 +73,6 @@ output {
 .form-element {
     display: block;
     width: 100%;
-    height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
     padding: nth($padding-vertical,1) nth($padding-horizontal,2);
     color: color(input-color);
     background-color: color(input-bg);
@@ -101,8 +99,19 @@ output {
     }
 }
 
+.form-element-inline {
+    margin-left: $gutter/2;
+
+     &:first-child {
+        margin-left:0;
+     }
+}
+
 input:not([type]), #{text-inputs(all)} {
     @extend .form-element;
+}
+#{text-inputs(input)} {
+    height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
 }
 
 // iOS 的時間欄位垂直對齊 - safari
