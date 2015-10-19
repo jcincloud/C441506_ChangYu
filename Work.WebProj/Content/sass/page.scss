@@ -44,7 +44,9 @@ h5.title {
 // editor
 // ----------------------------------------------------------------------
 .editor {
-
+    ul, ol {
+        margin-left: 1em;
+    }
 }
 
 
@@ -430,24 +432,10 @@ h5.title {
 .pro-detail {
     @extend .row;
 
-    .pro-img {
-        @extend %list-inline;
-        @extend %list-unstyled;
-        @extend .col-5;
-
-        li {
-            width: 100%;
-
-            margin-bottom: 15px;
-
-            img {
-                max-width:100%;
-            }
-        }
-    }
-
+    // 產品說明文字 - 旁邊有圖
     .pro-content {
         @extend .col-7;
+        float:right;
 
         color:#eee;
 
@@ -466,6 +454,44 @@ h5.title {
 
                 margin-top:15px;
             }
+        }
+
+        // 產品說明文字 - 旁邊沒圖
+        &.full {@extend .col-12;}
+    }
+
+    // 產品說明插圖 - 旁邊沒字
+    .pro-img {
+        @extend %list-inline;
+        @extend %list-unstyled;
+        @extend .col-12;
+
+        text-align: center;
+        margin-top: 80px;
+
+        li {
+            @extend %half;
+
+            display: inline-block;
+
+            margin-bottom: 15px;
+
+            img {
+                max-width:100%;
+            }
+        }
+    }
+
+    // 產品說明插圖 - 旁邊有字
+    .pro-content + .pro-img {
+        @extend .col-5;
+
+        text-align: left;
+        margin-top: 0;
+
+        li {
+            @extend %full;
+            display: block;
         }
     }
 }

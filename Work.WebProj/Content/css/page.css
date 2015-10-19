@@ -561,12 +561,12 @@ caption {
   clear: both;
 }
 
-.full {
+.full, .pro-detail .pro-content + .pro-img li {
   width: 100%;
   max-width: 100%;
 }
 
-.half {
+.half, .pro-detail .pro-img li {
   width: 46.9%;
 }
 
@@ -703,7 +703,7 @@ form .row, form .pro-intro, form .pro-detail {
   padding-right: 5px;
 }
 
-.col-5, .pro-detail .pro-img {
+.col-5, .pro-detail .pro-content + .pro-img {
   width: 41.66667%;
   float: left;
   padding-left: 5px;
@@ -752,7 +752,7 @@ form .row, form .pro-intro, form .pro-detail {
   padding-right: 5px;
 }
 
-.col-12 {
+.col-12, .pro-detail .pro-content.full, .pro-detail .pro-img {
   width: 100%;
   float: left;
   padding-left: 5px;
@@ -1485,6 +1485,10 @@ h5.title {
   font-size: 1.25em;
 }
 
+.editor ul, .editor ol {
+  margin-left: 1em;
+}
+
 #sidebar {
   width: 245px;
   float: left;
@@ -1771,14 +1775,8 @@ h5.title {
   opacity: 1;
 }
 
-.pro-detail .pro-img li {
-  width: 100%;
-  margin-bottom: 15px;
-}
-.pro-detail .pro-img li img {
-  max-width: 100%;
-}
 .pro-detail .pro-content {
+  float: right;
   color: #eee;
 }
 .pro-detail .pro-content .title {
@@ -1791,6 +1789,24 @@ h5.title {
   display: block;
   border-bottom: none;
   margin-top: 15px;
+}
+.pro-detail .pro-img {
+  text-align: center;
+  margin-top: 80px;
+}
+.pro-detail .pro-img li {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.pro-detail .pro-img li img {
+  max-width: 100%;
+}
+.pro-detail .pro-content + .pro-img {
+  text-align: left;
+  margin-top: 0;
+}
+.pro-detail .pro-content + .pro-img li {
+  display: block;
 }
 
 body.fixed {

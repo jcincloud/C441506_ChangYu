@@ -90,15 +90,15 @@
     </header>
 
     <ul class="pro">
+
         <li>
             @* 彈出視窗 *@
             <div id="pro1" class="pro-detail lb-content">
-                <ul class="pro-img">
-                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
-                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
-                </ul>
+
+                @* 產品說明 *@
                 <article class="pro-content">
                     <header><h4 class="title">一體成形大電流電感 High current Inductors</h4></header>
+
                     @* 編輯器 *@
                     <section class="editor">
                         <h1>A.產品簡介</h1>
@@ -135,33 +135,94 @@
                         </ol>
                     </section>
                     @* 編輯器 end *@
+
                 </article>
+                @* 產品說明 end *@
+
+                @* 產品說明插圖: 最多2張圖 *@
+                <ul class="pro-img">
+                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
+                    <li><img src="~/Content/images/Products/test2.png" alt=""></li>
+                </ul>
+                @* 產品說明插圖 end *@
+
             </div>
             @* 彈出視窗 end *@
 
+            @* 產品縮圖(有產品名稱): 最多1張圖 *@
             <figure>
                 <a class="fancy-inline lb-trigger" href="#pro1">
                     <img src="~/Content/images/pro-test.jpg" alt="">
                     <figcaption>一體成形大電流電感</figcaption>
                 </a>
-            </figure>@* 產品縮圖: 有產品名稱、說明 *@
-
+            </figure>
+            @* 產品縮圖: 有產品名稱 end *@
         </li>
-        <li class="pic">
+
+        <li>
             @* 彈出視窗 *@
             <div id="pro2" class="pro-detail lb-content">
+
+                @* 產品說明(只有插圖沒有文字): 最多2張圖 *@
                 <ul class="pro-img">
-                    <li><img src="~/Content/images/pro-test.jpg" alt=""></li>
-                    <li><img src="~/Content/images/index/banner1.jpg" alt=""></li>
+                    <li><img src="~/Content/images/Products/test1.png" alt=""></li>
+                    <li><img src="~/Content/images/Products/test2.png" alt=""></li>
                 </ul>
+                @* 產品說明(只有插圖沒有文字): 最多2張圖 end *@
+
             </div>
             @* 彈出視窗 end *@
+
+            @* 產品縮圖(沒有產品名稱): 最多1張圖 *@
             <figure>
                 <a class="zoom lb-trigger" href="#pro2">
                     <img src="~/Content/images/pro-test.jpg" alt="">
                 </a>
-            </figure>@* 產品縮圖: 沒有產品名稱、說明 *@
+            </figure>
+            @* 產品縮圖(沒有產品名稱): 最多1張圖 end *@
         </li>
+
+        <li>
+            @* 彈出視窗 *@
+            <div id="pro3" class="pro-detail lb-content">
+
+                @* 產品說明(只有文字沒有插圖) *@
+                <article class="pro-content full">
+                    <header><h4 class="title">EMI 共模濾波器 Chip common mode choke coil</h4></header>
+
+                    @* 編輯器 *@
+                    <section class="editor">
+                        <h1>FEATURES</h1>
+                        <ul>
+                            <li>This common mode filter is characterized by  its small sized.</li>
+                            <li>Highly effective in noise suppression. High common-mode impedance at noise band and low differential-mode impedance at signal band.</li>
+                            <li>Due to the low differential-mode impedance with high coupling factor, there is almost no distortion on high speed signal.</li>
+                            <li>This series is micro-produced by auto machines for its huge productivity and accuracy with all-day CCD inspection.</li>
+                        </ul>
+                        <p>其次，一體化粉末合金電感器還具有優秀的磁性能穩定性和溫度穩定性。在生產工藝上獨有的其他任何軟磁材料不具備的特性。就是具有良好的性能可控制性和形狀可控制性，可由控制和改變合金粉末的合理調配等生產工藝條件，生產出各種具有獨特性能的電感器。</p>
+                        <h1>APPLICATIONS</h1>
+                        <ul>
+                            <li>Used for noise suppression in any electronic devices such as personal computer and peripheral equipment (USB),   amusement equipment (IEEE 1394), LCD panels (LVDS) etc.</li>
+                        </ul>
+                    </section>
+                    @* 編輯器 end *@
+
+                </article>
+                @* 產品說明(只有文字沒有插圖) end *@
+
+            </div>
+            @* 彈出視窗 end *@
+
+            @* 產品縮圖(有產品名稱): 最多1張圖 *@
+            <figure>
+                <a class="fancy-inline lb-trigger" href="#pro3">
+                    <img src="~/Content/images/pro-test.jpg" alt="">
+                    <figcaption>EMI 共模濾波器</figcaption>
+                </a>
+            </figure>
+            @* 產品縮圖: 有產品名稱 end *@
+        </li>
+
     </ul>
 
 </section>
