@@ -41,6 +41,12 @@ h5.title {
 }
 
 
+// editor
+// ----------------------------------------------------------------------
+.editor {
+
+}
+
 
 // header
 // ----------------------------------------------------------------------
@@ -238,11 +244,11 @@ h5.title {
 
 // == product
 .pro-intro {
+    @extend .row;
+    margin:0;
 
     article {
-        float:left;
-
-        width:33.33%;
+        @extend .col-4;
 
         position: relative;
         padding:0 0 0 18px;
@@ -422,40 +428,44 @@ h5.title {
 }
 
 .pro-detail {
+    @extend .row;
 
     .pro-img {
         @extend %list-inline;
         @extend %list-unstyled;
-
-        width:40%;
-
-        float:left;
-        padding:0 20px;
+        @extend .col-5;
 
         li {
             width: 100%;
-            text-align: center;
 
             margin-bottom: 15px;
 
             img {
                 max-width:100%;
-                border:3px solid #444;
             }
         }
     }
 
     .pro-content {
-        width:60%;
+        @extend .col-7;
 
         color:#eee;
-
-        float:right;
 
         .title {
             color:#fff;
             font-size: em(32px);
-            margin:0;
+
+            margin:0 40px 20px 0;
+
+            &::after {
+                @extend %hr;
+
+                content:" ";
+                display: block;
+                border-bottom:none;
+
+                margin-top:15px;
+            }
         }
     }
 }
@@ -464,7 +474,7 @@ h5.title {
 body.fixed {overflow:hidden;}
 
 #lb-overlay {
-    background:hsla(0,0,0,0.85);
+    background:hsla(199,64%,8%,0.9);
 
     width:100%;
     min-height:100%;
@@ -488,18 +498,17 @@ body.fixed {overflow:hidden;}
 
     .close {
         position: absolute;
-        right:10px;
+        right:0;
         top:-10px;
 
         color:#fff;
         font-size: em(50px);
-        text-shadow: 0 2px 2px hsla(0,0,0,0.2);
 
-        background:none;
+        background: $brand-primary;
         border:none;
         opacity: 0.8;
 
-        padding:0;
+        padding:0 5px;
 
         &:hover {opacity:1;}
     }
@@ -511,6 +520,7 @@ body.fixed {overflow:hidden;}
 
 // == inquire
 .inquire-form {
+    @extend .col-7;
 
     label {
 
@@ -522,6 +532,9 @@ body.fixed {overflow:hidden;}
     }
 }
 .inquire-pic {
+    @extend .col-4;
+    @extend .col-offset-1;
+
     img {
         max-width: 100%;
         border-radius:4px;

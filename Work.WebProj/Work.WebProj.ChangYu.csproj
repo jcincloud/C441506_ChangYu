@@ -356,6 +356,8 @@
     <Content Include="Content\images\Inquire\pic.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\pro-test.jpg" />
+    <Content Include="Content\images\Products\test1.png" />
+    <Content Include="Content\images\Products\test2.png" />
     <Content Include="Content\sass\base\basic\_normalize.scss" />
     <Content Include="Content\sass\base\basic\_print.scss" />
     <Content Include="Content\sass\base\_basic.scss" />
@@ -368,7 +370,6 @@
     <Content Include="Content\sass\component\_label.scss" />
     <Content Include="Content\sass\component\_magnific.scss" />
     <Content Include="Content\sass\component\_tooltip.scss" />
-    <Content Include="Content\sass\helper\mixins\_arrow.scss" />
     <Content Include="Content\sass\helper\mixins\_form.scss" />
     <Content Include="Content\sass\helper\mixins\_grid.scss" />
     <Content Include="Content\sass\helper\mixins\_map-get.scss" />
@@ -377,7 +378,6 @@
     <Content Include="Content\sass\helper\mixins\_prefix-animation.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix-gradient.scss" />
     <Content Include="Content\sass\helper\mixins\_prefix.scss" />
-    <Content Include="Content\sass\helper\mixins\_size.scss" />
     <Content Include="Content\sass\helper\mixins\_state.scss" />
     <Content Include="Content\sass\helper\mixins\_tab-focus.scss" />
     <Content Include="Content\sass\helper\mixins\_table.scss" />

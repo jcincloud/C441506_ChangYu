@@ -12,6 +12,9 @@ $one_col: 100% / $cols;
 // }
 @mixin cols($num) {
     width: ($one_col * $num);
+    float: left;
+    padding-left: $gutter/2;
+    padding-right: $gutter/2;
 }
 
 @mixin make-cols($class: md) {
@@ -56,17 +59,15 @@ $one_col: 100% / $cols;
     }
 }
 
-[class*="col-"] {
-    float: left;
-    padding-left: $gutter/2;
-    padding-right: $gutter/2;
+// [class*="col-"] {
+//     float: left;
 
-    // margin-left: $gutter;
+//     margin-left: $gutter;
 
-    // &:first-child, .row &:first-child {
-    //     margin-left: 0;
-    // }
-}
+//     &:first-child, .row &:first-child {
+//         margin-left: 0;
+//     }
+// }
 
 @include make-cols; // 預設: md
 @include media(sm) { @include make-cols(sm); }
