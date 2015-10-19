@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/Manage/RLayout.cshtml";
 }
 @section breadCrumb {
-    <li><a href="~/Active/ProductData"><i class="fa-list-alt"></i> @ViewBag.MenuName</a></li>
+    <li><a href="~/Active/Need/DietaryNeed"><i class="fa-cogs"></i> @ViewBag.MenuName</a></li>
     <li>@ViewBag.Caption</li>
 }
 @section IncludeCSS{
@@ -10,20 +10,13 @@
 }
 @section IncludeScript{
     @Html.Partial("Manage/JSGlobalVar")
-    <script>
-        var a = '@Html.Lang("customer_name")';
-    </script>
-    <script src="~/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/build/comminc.js"></script>
-    <script src="~/Scripts/app/datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Scripts/app/Sortable.min.js"></script>
     <script src="~/Scripts/app/react-sortable-mixin.js"></script>
-    <script src="~/Scripts/app/SimpleAjaxUploader.js"></script>
-    <script src="~/Scripts/build/func/inc/c-ImgFileSort.js"></script>
-    <script src="~/Scripts/build/func/m-Product.js"></script>
+    <script src="~/Scripts/build/func/m-Menu.js"></script>
     <script>
         var getRootDOM = document.getElementById('page_content');
-        var rootParm = { MenuName: '@ViewBag.MenuName', Caption: '@ViewBag.Caption' };
+        var rootParm = { MenuName: '@ViewBag.MenuName', Caption: '@ViewBag.Caption', IconClass: 'fa-cogs' };
         var compObject = React.render(React.createElement(GirdForm, rootParm), getRootDOM);
     </script>
 }

@@ -91,8 +91,10 @@ namespace DotWeb.Areas.Active.Controllers
             #region
             try
             {
-                if (filekind == "File1")
-                    handleFileSave(filename, id, ImageFileUpParm.NewsBasicSingle, filekind, "News", "News");
+                if (filekind == "Photo1")
+                    handleImageSave(filename, id, ImageFileUpParm.ProductIndex, filekind, "ProductData", "Photo");
+                if (filekind == "Photo2")
+                    handleImageSave(filename, id, ImageFileUpParm.ProductImgs, filekind, "ProductData", "Photo");
 
                 r.result = true;
                 r.file_name = filename;
@@ -116,16 +118,25 @@ namespace DotWeb.Areas.Active.Controllers
         {
             SerializeFileList r = new SerializeFileList();
 
-            r.files = listDocFiles(id, filekind, "News", "News");
+            r.files = listImgFiles(id, filekind, "ProductData", "Photo");
             r.result = true;
             return defJSON(r);
         }
+        [HttpPost]
+        public string axFSort(int id, string filekind, IList<JsonFileInfo> file_object)
+        {
+            ResultInfo r = new ResultInfo();
 
+            rewriteJsonFile(id, filekind, "ProductData", "Photo", file_object);
+
+            r.result = true;
+            return defJSON(r);
+        }
         [HttpPost]
         public string axFDelete(int id, string filekind, string filename)
         {
             ResultInfo r = new ResultInfo();
-            DeleteSysFile(id, filekind, filename, ImageFileUpParm.NewsBasicSingle, "News", "News");
+            DeleteSysFile(id, filekind, filename, ImageFileUpParm.NewsBasicSingle, "ProductData", "Photo");
             r.result = true;
             return defJSON(r);
         }
@@ -134,7 +145,7 @@ namespace DotWeb.Areas.Active.Controllers
         [HttpGet]
         public FileResult axFDown(int id, string filekind, string filename)
         {
-            string path_tpl = string.Format(upload_path_tpl_o, "News", "News", id, filekind, filename);
+            string path_tpl = string.Format(upload_path_tpl_o, "ProductData", "Photo", id, filekind, filename);
             string server_path = Server.MapPath(path_tpl);
             FileInfo file_info = new FileInfo(server_path);
             FileStream file_stream = new FileStream(server_path, FileMode.Open, FileAccess.Read);

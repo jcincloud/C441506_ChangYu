@@ -143,7 +143,8 @@
           <Property Name="product_id" Type="int" Nullable="false" />
           <Property Name="l1_id" Type="int" />
           <Property Name="l2_id" Type="int" />
-          <Property Name="product_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="product_content" Type="text" />
           <Property Name="sort" Type="int" />
           <Property Name="i_Hide" Type="bit" Nullable="false" />
           <Property Name="i_InsertUserID" Type="nvarchar" MaxLength="128" />
@@ -521,7 +522,7 @@
             <End Role="Product_Category_L2" EntitySet="Product_Category_L2" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Product_Category_L1">
           <Key>
             <PropertyRef Name="product_category_l1_id" />
@@ -580,7 +581,8 @@
           <Property Name="product_id" Type="Int32" Nullable="false" />
           <Property Name="l1_id" Type="Int32" />
           <Property Name="l2_id" Type="Int32" />
-          <Property Name="product_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="product_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sort" Type="Int32" />
           <Property Name="i_Hide" Type="Boolean" Nullable="false" />
           <Property Name="i_InsertUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -617,7 +619,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -813,6 +815,7 @@
                 <ScalarProperty Name="i_InsertUserID" ColumnName="i_InsertUserID" />
                 <ScalarProperty Name="i_Hide" ColumnName="i_Hide" />
                 <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="product_content" ColumnName="product_content" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
                 <ScalarProperty Name="l2_id" ColumnName="l2_id" />
                 <ScalarProperty Name="l1_id" ColumnName="l1_id" />
