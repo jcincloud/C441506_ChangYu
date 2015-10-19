@@ -38,6 +38,13 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 
     @extend %clearfix;
 
+    // RWD - w1400以下的桌機
+    @media (min-width: 992px) and (max-width: ($max-width)-1) {
+        padding: 0 $gutter;
+        min-width: auto;
+        width: 100%;
+    }
+
     // RWD - 小平板以下寬度滿版
     @include media(max-960) {
         padding: 0 $gutter;
@@ -61,7 +68,11 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     @extend %center;
     @extend %contain;
     @extend .text-left;
+<<<<<<< HEAD
 }
+=======
+    }
+>>>>>>> origin/master
 
 #header, #main, #footer {
     @extend %container;
