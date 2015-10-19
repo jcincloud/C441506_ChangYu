@@ -19,6 +19,7 @@ namespace ProcCore.Business.DB0
         public Nullable<int> l1_id { get; set; }
         public Nullable<int> l2_id { get; set; }
         public string product_name { get; set; }
+        public string product_content { get; set; }
         public Nullable<int> sort { get; set; }
         public bool i_Hide { get; set; }
         public string i_InsertUserID { get; set; }
