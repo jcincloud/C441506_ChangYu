@@ -509,12 +509,17 @@ address {
   background: url(../images/bg.jpg) center 0 repeat-y fixed;
 }
 
+@media (min-width: 993px) and (max-width: 1679px) {
+  #header, #main, #footer {
+    padding: 0 15px;
+  }
+}
+
 #main {
   z-index: 1;
 }
 
 #header {
-  padding: 0;
   height: 228px;
   z-index: 2;
 }
@@ -609,8 +614,21 @@ address {
   top: -15px;
   left: 0;
 }
-#footer dt {
+#footer dl {
+  margin-top: 35px;
+  float: left;
   color: #fff;
+}
+#footer dl:first-child {
+  width: 29%;
+}
+#footer dl.product {
+  width: 32%;
+}
+#footer dl.contact {
+  width: 37%;
+}
+#footer dt {
   font-size: 1.4375em;
   letter-spacing: 0.03em;
   margin-bottom: 45px;
@@ -642,25 +660,6 @@ address {
 #footer dd a:hover {
   color: #fff;
 }
-#footer dl {
-  margin-top: 35px;
-  float: left;
-}
-#footer dl:first-child {
-  width: 29%;
-  margin-left: 15px;
-}
-@media (max-width: 960px) {
-  #footer dl:first-child {
-    margin-left: 0;
-  }
-}
-#footer dl.product {
-  width: 32%;
-}
-#footer dl.contact {
-  width: 37%;
-}
 #footer .product dt, #footer .contact dt {
   margin-bottom: 0;
 }
@@ -683,27 +682,26 @@ address {
   padding-left: 38px;
   height: 23px;
   font-size: 0.875em;
-  color: #bfbcbe;
 }
-#footer .contact dd:nth-child(1) {
+#footer .contact dd:nth-of-type(1) {
   background-position: 0 0px;
 }
-#footer .contact dd:nth-child(2) {
+#footer .contact dd:nth-of-type(2) {
   background-position: 0 -105px;
 }
-#footer .contact dd:nth-child(3) {
+#footer .contact dd:nth-of-type(3) {
   background-position: 0 -207px;
 }
-#footer .contact dd:nth-child(4) {
+#footer .contact dd:nth-of-type(4) {
   background-position: 0 -310px;
 }
-#footer .contact dd:nth-child(1), #footer .contact dd:nth-child(2) {
+#footer .contact dd:nth-of-type(1), #footer .contact dd:nth-of-type(2) {
   float: left;
 }
-#footer .contact dd:nth-child(1) {
+#footer .contact dd:nth-of-type(1) {
   margin-right: 40px;
 }
-#footer .contact dd:nth-child(3) {
+#footer .contact dd:nth-of-type(3) {
   clear: both;
 }
 #footer .contact dd span {
@@ -718,8 +716,8 @@ address {
   font-size: 0.75em;
   font-family: "AvantGardeITCbyBT-Book", "Microsoft Jhenghei", \5FAE\8EDF\6B63\9ED1\9AD4, "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: absolute;
-  left: 0;
   top: 235px;
+  left: 0;
 }
 .copyright span {
   font-size: 1.33333em;
@@ -746,11 +744,10 @@ address {
   opacity: 1;
 }
 
-@media (max-width: 960px) {
-  #main {
-    padding: 0;
-  }
+#main {
+  padding: 0;
 }
+
 #banner {
   width: 100%;
   margin-top: -228px;

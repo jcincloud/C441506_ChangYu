@@ -68,15 +68,18 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     @extend %center;
     @extend %contain;
     @extend .text-left;
-    }
+}
 
 #header, #main, #footer {
     @extend %container;
     @extend %contain;
+    @include media('(min-width: 993px) and (max-width: 1679px)') {
+        padding: 0 ($gutter + 5); 
+    }
 }
 
 #main {
-    @extend %text-left;
+    @extend .text-left;
 
     z-index: z(main);
 }
@@ -85,7 +88,6 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 // header
 // ----------------------------------------------------------------------
 #header {
-    padding: 0;
     height: $header-height;
     z-index: z(header);
 
@@ -120,6 +122,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     z-index: z(menu);
 
     @extend %clearfix;
+
     @each $attr, $value in $menu {
         #{$attr}: $value;
     }
@@ -203,8 +206,16 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         @include absolute(left 0 top -15px);
     }
 
-    dt {
+    dl {
+        margin-top: 35px;
+        float: left;
         color: #fff;
+
+        &:first-child { width: cp(290px); }
+        &.product { width: cp(320px); }
+        &.contact { width: cp(370px); }
+    }
+    dt {
         font-size: em(23px);
         letter-spacing: 0.03em;
         margin-bottom: 45px;
@@ -226,8 +237,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
                 em { color: #fff; }
             }            
         }
-    }
-    
+    }    
     dd {
         font-size: em(18px);
         margin: 20px 0;
@@ -236,21 +246,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
             color: #bfbcbe;
 
             &:hover {color: #fff; }
-                }
-            }
-
-    dl {
-        margin-top: 35px;
-        float: left;
-
-        &:first-child { 
-            width: cp(290px); 
-            margin-left: 15px;
-
-            @include media(max-960) { margin-left: 0; }
         }
-        &.product { width: cp(320px); }
-        &.contact { width: cp(370px); }
     }
 
     .product dt, .contact dt { margin-bottom: 0; }
@@ -274,18 +270,17 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         height: 23px;
 
         font-size: em(14px);
-        color: #bfbcbe;
 
         @for $i from 1 through 4 {
             $icon-y: 0px -105px -207px -310px;
-            &:nth-child(#{$i}) {
+            &:nth-of-type(#{$i}) {
                 background-position: 0 nth($icon-y, $i);
             }
         }
 
-        &:nth-child(1),  &:nth-child(2) { float: left; }
-        &:nth-child(1) { margin-right: 40px; }
-        &:nth-child(3) { clear: both; }
+        &:nth-of-type(1),  &:nth-of-type(2) { float: left; }
+        &:nth-of-type(1) { margin-right: 40px; }
+        &:nth-of-type(3) { clear: both; }
 
         span { display: none }
         strong { font-size: em(18px, 14px); }            
@@ -293,13 +288,11 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 }
 
 .copyright {
-    color:$brand-secondary;
+    color: $brand-secondary;
     font-size: em(12px);
     font-family: $font-family-slogan;
 
-    position: absolute;
-    left:0;
-    top:235px;
+    @include absolute(left 0 top 235px);
 
     span {
         font-size: em(16px, 12px);
