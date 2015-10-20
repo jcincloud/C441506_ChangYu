@@ -761,6 +761,7 @@ namespace DotWeb.Controller
 
                 ViewBag.VisitCount = visitCount;
                 ViewBag.IsFirstPage = false; //是否為首頁，請在首頁的Action此值設為True
+                ajax_GetSidebarData();
 
                 this.isTablet = (new WebInfo()).isTablet();
             }
@@ -772,6 +773,28 @@ namespace DotWeb.Controller
         public int GetNewId()
         {
             return GetNewId(ProcCore.Business.CodeTable.Base);
+        }
+        public void ajax_GetSidebarData()
+        {
+            List<L1> l1s = new List<L1>();
+            using (var db = getDB0())
+            {
+                l1s = db.Product_Category_L1.Where(x => !x.i_Hide).OrderByDescending(x => x.l1_sort)
+                                .Select(x => new L1()
+                                {
+                                    l1_id = x.product_category_l1_id,
+                                    l1_name = x.l1_name
+                                }).ToList();
+
+                foreach (var i in l1s)
+                {
+                    var l2 = db.Product_Category_L2.Where(x => !x.i_Hide & x.l1_id == i.l1_id).OrderByDescending(x => x.l2_sort).FirstOrDefault();
+                    i.first_l2_id = l2 != null ? l2.product_category_l2_id : 0;
+                }
+
+            }
+            ViewBag.Sidebar = l1s;
+
         }
         public int GetNewId(ProcCore.Business.CodeTable tab)
         {
@@ -963,6 +986,63 @@ namespace DotWeb.Controller
                 r.Add(s);
             }
             return r;
+        }
+        public string GetImg(int id, string file_kind, string category1, string category2)
+        {
+            string tpl_path = "~/_Code/SysUpFiles/" + category1 + "/" + category2 + "/" + id + "/" + file_kind;
+            string img_folder = Server.MapPath(tpl_path);
+
+            if (Directory.Exists(img_folder))
+            {
+                var get_files = Directory.EnumerateFiles(img_folder)
+                    .Where(x => x.EndsWith("jpg") || x.EndsWith("jpeg") || x.EndsWith("png") || x.EndsWith("gif") || x.EndsWith("JPG") || x.EndsWith("JPEG") || x.EndsWith("PNG") || x.EndsWith("GIF"))
+                    .FirstOrDefault();
+
+                if (get_files != null)
+                {
+                    FileInfo file_info = new FileInfo(get_files);
+                    return Url.Content(tpl_path + "\\" + file_info.Name);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string[] GetImgs(int id, string file_kind, string category1, string category2)
+        {
+            string tpl_path = "~/_Code/SysUpFiles/" + category1 + "/" + category2 + "/" + id + "/" + file_kind;
+            string web_folder = Url.Content(tpl_path);
+            string server_folder = System.Web.HttpContext.Current.Server.MapPath(tpl_path);
+            string file_json_server_path = server_folder + "//file.json";
+
+            if (System.IO.File.Exists(file_json_server_path))
+            {
+                var read_json = System.IO.File.ReadAllText(file_json_server_path);
+                var f = JsonConvert.DeserializeObject<IList<JsonFileInfo>>(read_json).OrderBy(x => x.sort);
+                IList<string> image_path = new List<string>();
+                foreach (var fobj in f)
+                {
+                    image_path.Add(web_folder + "//" + fobj.fileName);
+                }
+                if (image_path.Count() > 0)
+                {
+                    return image_path.ToArray();
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            else
+            {
+                return null;
+            }
         }
     }
     #endregion

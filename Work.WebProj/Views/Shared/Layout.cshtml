@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+
+    var sidebar = (List<ProcCore.Business.DB0.L1>)ViewBag.Sidebar;
+
+}
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +22,9 @@
     @if (ViewBag.IsFirstPage)
     {
         <link href="~/Content/css/index.css" rel="stylesheet">
-    } else {
+    }
+    else
+    {
         <link href="~/Content/css/page.css" rel="stylesheet">
     }
     @RenderSection("css", false)
@@ -35,14 +42,14 @@
                 <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
             </ul>
         </div><!-- wrap //-->
-        <nav id="menu">
-            <header class="hidden"><h2>主選單</h2></header>
-            <a href="~/index">HOME</a>
-            <a href="~/AboutUs">公司簡介</a>
-            <a href="~/Products/list">產品介紹</a>
-            <a href="~/Inquire">線上諮詢</a>
-            <a href="~/ContactUs">聯絡我們</a>
-        </nav>
+            <nav id="menu">
+                <header class="hidden"><h2>主選單</h2></header>
+                <a href="~/index">HOME</a>
+                <a href="~/AboutUs">公司簡介</a>
+                <a href="~/Products/list">產品介紹</a>
+                <a href="~/Inquire">線上諮詢</a>
+                <a href="~/ContactUs">聯絡我們</a>
+            </nav>
     </header><!-- header //-->
 
     <main id="main">
@@ -60,9 +67,11 @@
 
         <dl class="product">
             <dt>產品介紹<em>PRODUCTS</em></dt>
-            <dd><a href="">被動元件</a></dd>
-            <dd><a href="">線材組</a></dd>
-            <dd><a href="">Magnet 永久磁鐵</a></dd>
+                @foreach (var i in sidebar)
+                {
+                    <dd><a href="~/Products/content?l2_id=@i.first_l2_id">@i.l1_name</a></dd>
+                }
+
         </dl>
 
         <dl class="contact">

@@ -195,7 +195,7 @@ var GirdForm = React.createClass({
 	insertType:function(){
 		var defaultL1=this.state.category_l1;
 		var defaultL2=defaultL1[0].l2_list;
-		this.setState({edit_type:1,fieldData:{l1_id:defaultL1[0].l1_id,l2_id:defaultL2[0].l2_id}});
+		this.setState({edit_type:1,fieldData:{l1_id:defaultL1[0].l1_id,l2_id:defaultL2[0].l2_id,product_type:1}});
 	},
 	updateType:function(id){
 		jqGet(this.props.apiPathName,{id:id})
@@ -272,6 +272,10 @@ var GirdForm = React.createClass({
 
 		obj['l1_id'] = select.attr('data-l1');
 		obj['l2_id'] = e.target.value;
+		if(e.target.value==1){
+			if(obj['product_type']==undefined)
+				obj['product_type']=1;
+		}
 		this.setState({fieldData:obj});
     },
 	render: function() {
@@ -389,7 +393,22 @@ var GirdForm = React.createClass({
 		else if(this.state.edit_type==1 || this.state.edit_type==2)
 		{
 			var fieldData = this.state.fieldData;
-
+			var product_type_html=null;
+			if(fieldData.l2_id==1){
+				product_type_html=
+					<div className="form-group">
+						<label className="col-xs-2 control-label">電感分類</label>
+						<div className="col-xs-4">
+							<select className="form-control" 
+							value={fieldData.product_type}
+							onChange={this.changeFDValue.bind(this,'product_type')}>
+							<option value="1">SMD 繞線式功率電感</option>
+							<option value="2">一體式電感</option>
+							</select>
+						</div>
+						<small className="help-inline col-xs-6 text-danger">(必填)</small>
+					</div>;
+			}
 			outHtml=(
 			<div>
                 <h3 className="title">{this.props.Caption} 編輯</h3>
@@ -419,6 +438,7 @@ var GirdForm = React.createClass({
 						</div>
 						<small className="help-inline col-xs-6 text-danger">(必填)</small>
 					</div>
+					{product_type_html}
 					<div className="form-group">
                         <label className="col-xs-2 control-label">代表圖</label>
                         <div className="col-xs-4">
@@ -457,10 +477,8 @@ var GirdForm = React.createClass({
 							className="form-control"	
 							value={fieldData.product_name}
 							onChange={this.changeFDValue.bind(this,'product_name')}
-							maxLength="64"
-							required />
+							maxLength="64" />
 						</div>
-						<small className="help-inline col-xs-6">最多64個字<span className="text-danger">(必填)</span></small>
 					</div>
 					<div className="form-group">
 						<label className="col-xs-2 control-label">排序</label>

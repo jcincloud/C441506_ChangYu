@@ -141,8 +141,9 @@
             <PropertyRef Name="product_id" />
           </Key>
           <Property Name="product_id" Type="int" Nullable="false" />
-          <Property Name="l1_id" Type="int" />
-          <Property Name="l2_id" Type="int" />
+          <Property Name="l1_id" Type="int" Nullable="false" />
+          <Property Name="l2_id" Type="int" Nullable="false" />
+          <Property Name="product_type" Type="int" />
           <Property Name="product_name" Type="nvarchar" MaxLength="100" />
           <Property Name="product_content" Type="text" />
           <Property Name="sort" Type="int" />
@@ -267,7 +268,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Product_Category_L1">
-          <End Role="Product_Category_L1" Type="Self.Product_Category_L1" Multiplicity="0..1" />
+          <End Role="Product_Category_L1" Type="Self.Product_Category_L1" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product_Category_L1">
@@ -279,7 +280,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Product_Category_L2">
-          <End Role="Product_Category_L2" Type="Self.Product_Category_L2" Multiplicity="0..1" />
+          <End Role="Product_Category_L2" Type="Self.Product_Category_L2" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product_Category_L2">
@@ -579,8 +580,9 @@
             <PropertyRef Name="product_id" />
           </Key>
           <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="l1_id" Type="Int32" />
-          <Property Name="l2_id" Type="Int32" />
+          <Property Name="l1_id" Type="Int32" Nullable="false" />
+          <Property Name="l2_id" Type="Int32" Nullable="false" />
+          <Property Name="product_type" Type="Int32" />
           <Property Name="product_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="product_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sort" Type="Int32" />
@@ -596,7 +598,7 @@
           <NavigationProperty Name="Product_Category_L2" Relationship="C44A0_ChangYuModel.FK_Product_Product_Category_L2" FromRole="Product" ToRole="Product_Category_L2" />
         </EntityType>
         <Association Name="FK_Product_Product_Category_L1">
-          <End Type="C44A0_ChangYuModel.Product_Category_L1" Role="Product_Category_L1" Multiplicity="0..1" />
+          <End Type="C44A0_ChangYuModel.Product_Category_L1" Role="Product_Category_L1" Multiplicity="1" />
           <End Type="C44A0_ChangYuModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product_Category_L1">
@@ -608,7 +610,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Product_Category_L2">
-          <End Type="C44A0_ChangYuModel.Product_Category_L2" Role="Product_Category_L2" Multiplicity="0..1" />
+          <End Type="C44A0_ChangYuModel.Product_Category_L2" Role="Product_Category_L2" Multiplicity="1" />
           <End Type="C44A0_ChangYuModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product_Category_L2">
@@ -817,6 +819,7 @@
                 <ScalarProperty Name="sort" ColumnName="sort" />
                 <ScalarProperty Name="product_content" ColumnName="product_content" />
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
                 <ScalarProperty Name="l2_id" ColumnName="l2_id" />
                 <ScalarProperty Name="l1_id" ColumnName="l1_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
