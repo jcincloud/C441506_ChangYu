@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 $font-size-h3:     25px;
-$heading-color:    #412401;
 $btn-font-size:    17px;
 
 // import
@@ -34,15 +33,48 @@ $btn-font-size:    17px;
 
 // elements
 // ----------------------------------------------------------------------
-h5.title {
-    color:darken($brand-secondary,5%);
+.title {
     font-weight: bold;
-    font-size: em(20px);
+}
+
+// == grid elements
+.grid-circle {
+    @include circle(20%,false,block);
+    background:#2E98B8;
 }
 
 
-// editor
-// ----------------------------------------------------------------------
+// == 頁籤切換
+.tab {
+        float:left;
+
+        margin-top:15px;
+
+        li {
+            margin-bottom:12px;
+
+            a {
+                display: inline-block;
+                background:#EEEFEF;
+                border-radius:10px;
+                box-shadow: 1px 1px 2px #ADADAD;
+
+                color:#485754;
+                font-size: em(15px);
+
+                padding:8px 14px;
+
+                &:hover, &.active {
+                    background:#fff;
+
+                    color:#2E98B8;
+                    box-shadow: -1px -1px 2px #BCB8B5;
+                }
+            }
+        }
+    }
+
+// == editor
 .editor {
     ul, ol {
         margin-left: 1em;
@@ -194,35 +226,6 @@ h5.title {
         }
     }
 
-    .tab {
-        float:left;
-
-        margin-top:15px;
-
-        li {
-            margin-bottom:12px;
-
-            a {
-                display: inline-block;
-                background:#EEEFEF;
-                border-radius:10px;
-                box-shadow: 1px 1px 2px #ADADAD;
-
-                color:#485754;
-                font-size: em(15px);
-
-                padding:8px 14px;
-
-                &:hover, &.active {
-                    background:#fff;
-
-                    color:#2E98B8;
-                    box-shadow: -1px -1px 2px #BCB8B5;
-                }
-            }
-        }
-    }
-
     p {
         background:url(#{$img-path}/iconQuote.png) no-repeat 0 0;
 
@@ -243,6 +246,10 @@ h5.title {
         }
     }
 }
+
+// == About Us
+
+
 
 // == product
 .pro-intro {

@@ -301,7 +301,7 @@ img {
 h2, h3, h4, h5, h6 {
   font-weight: 500;
   line-height: 1.1;
-  color: #412401;
+  color: #0E303F;
 }
 h2 small, h3 small, h4 small, h5 small, h6 small {
   font-weight: normal;
@@ -604,7 +604,7 @@ caption {
   display: none;
 }
 
-.circle, #footer .product dd::before, .pro-intro article h4 em, .pro-intro article ul li::before {
+.circle, #footer .product dd::before, .grid-circle, .pro-intro article h4 em, .pro-intro article ul li::before {
   border-radius: 50%;
 }
 
@@ -1211,7 +1211,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
 }
 /*      layout
 -----------------------------------------------------------------------*/
-#wrapper, .wrap, #header, #footer, #main {
+#wrapper, .wrap, #header, #main, #footer {
   position: relative;
 }
 
@@ -1227,13 +1227,13 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
 }
 
 @media (min-width: 992px) {
-  #header, #footer {
+  #header, #main, #footer {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 @media (max-width: 1399px) {
-  #header, #footer {
+  #header, #main, #footer {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -1468,10 +1468,37 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   opacity: 1;
 }
 
-h5.title {
-  color: #b3890b;
+.title {
   font-weight: bold;
-  font-size: 1.25em;
+}
+
+.grid-circle {
+  display: block;
+  width: 20%;
+  height: 20%;
+  background: #2E98B8;
+}
+
+.tab {
+  float: left;
+  margin-top: 15px;
+}
+.tab li {
+  margin-bottom: 12px;
+}
+.tab li a {
+  display: inline-block;
+  background: #EEEFEF;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px #ADADAD;
+  color: #485754;
+  font-size: 0.9375em;
+  padding: 8px 14px;
+}
+.tab li a:hover, .tab li a.active {
+  background: #fff;
+  color: #2E98B8;
+  box-shadow: -1px -1px 2px #BCB8B5;
 }
 
 .editor ul, .editor ol {
@@ -1582,27 +1609,6 @@ h5.title {
   position: absolute;
   left: 0;
   top: 70px;
-}
-.intro .tab {
-  float: left;
-  margin-top: 15px;
-}
-.intro .tab li {
-  margin-bottom: 12px;
-}
-.intro .tab li a {
-  display: inline-block;
-  background: #EEEFEF;
-  border-radius: 10px;
-  box-shadow: 1px 1px 2px #ADADAD;
-  color: #485754;
-  font-size: 0.9375em;
-  padding: 8px 14px;
-}
-.intro .tab li a:hover, .intro .tab li a.active {
-  background: #fff;
-  color: #2E98B8;
-  box-shadow: -1px -1px 2px #BCB8B5;
 }
 .intro p {
   background: url(../images/iconQuote.png) no-repeat 0 0;

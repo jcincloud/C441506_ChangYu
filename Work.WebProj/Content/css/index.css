@@ -301,7 +301,7 @@ img {
 h2, h3, h4, h5, h6 {
   font-weight: 500;
   line-height: 1.1;
-  color: #254202;
+  color: #0E303F;
 }
 h2 small, h3 small, h4 small, h5 small, h6 small {
   font-weight: normal;
@@ -476,7 +476,7 @@ address {
 
 /*      layout
 -----------------------------------------------------------------------*/
-#wrapper, .wrap, #header, #footer, #main {
+#wrapper, .wrap, #header, #main, #footer {
   position: relative;
 }
 
@@ -492,13 +492,13 @@ address {
 }
 
 @media (min-width: 992px) {
-  #header, #footer {
+  #header, #main, #footer {
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 @media (max-width: 1399px) {
-  #header, #footer {
+  #header, #main, #footer {
     padding-left: 10px;
     padding-right: 10px;
   }
