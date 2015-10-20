@@ -44,25 +44,26 @@
             $("body").removeClass("fixed");
         });
     </script>
-    @if(ViewBag.l2_id == 1){
-    <script>
-        // 次次分類 頁籤切換
-        var tabShow = $(".tab-trigger.active").attr("href");
-        $("ul.pro").hide();
-        $(tabShow).show();
+    @if (ViewBag.l2_id == 1)
+    {
+        <script>
+            // 次次分類 頁籤切換
+            var tabShow = $(".tab-trigger.active").attr("href");
+            $("ul.pro").hide();
+            $(tabShow).show();
 
-        $('.tab-trigger').click(function (event) {
+            $('.tab-trigger').click(function (event) {
 
-            $(this).addClass("active");
-            $(".tab-trigger").not(this).removeClass("active");
+                $(this).addClass("active");
+                $(".tab-trigger").not(this).removeClass("active");
 
-            var tab = $(this).attr("href");
-            $(tab).fadeIn().siblings('ul.pro').hide();
+                var tab = $(this).attr("href");
+                $(tab).fadeIn().siblings('ul.pro').hide();
 
-            event.preventDefault();
+                event.preventDefault();
 
-        });
-    </script>
+            });
+        </script>
     }
 }
 
@@ -167,7 +168,7 @@
 
                             </li>
                         }
-                        else if (i.imgsrcs == null)
+                        else if (i.imgsrcs == null & (i.product_name != null || i.product_content != null))
                         {
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail lb-content">
@@ -178,12 +179,23 @@
                                         </section>
                                     </article>
                                 </div>
-                                <figure>
-                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
-                                        <figcaption>@i.product_name</figcaption>
-                                    </a>
-                                </figure>
+                                @if (i.product_name == null)
+                            {
+                                    <figure>
+                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                            <img src="@i.imgsrc" alt="">
+                                        </a>
+                                    </figure>
+                                }
+                                else
+                                {
+                                    <figure>
+                                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                            <img src="@i.imgsrc" alt="">
+                                            <figcaption>@i.product_name</figcaption>
+                                        </a>
+                                    </figure>
+                                }
                             </li>
                         }
                     }
@@ -243,7 +255,7 @@
 
                             </li>
                         }
-                        else if (i.imgsrcs == null)
+                        else if (i.imgsrcs == null & (i.product_name != null || i.product_content != null))
                         {
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail lb-content">
@@ -254,12 +266,23 @@
                                         </section>
                                     </article>
                                 </div>
-                                <figure>
-                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
-                                        <figcaption>@i.product_name</figcaption>
-                                    </a>
-                                </figure>
+                                @if (i.product_name == null)
+                            {
+                                    <figure>
+                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                            <img src="@i.imgsrc" alt="">
+                                        </a>
+                                    </figure>
+                                }
+                                else
+                                {
+                                    <figure>
+                                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                            <img src="@i.imgsrc" alt="">
+                                            <figcaption>@i.product_name</figcaption>
+                                        </a>
+                                    </figure>
+                                }
                             </li>
                         }
                     }
@@ -274,67 +297,79 @@
                 {
                     if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
                     {
-                        <li>
-                            <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                <article class="pro-content">
-                                    <header><h4 class="title">@i.product_name</h4></header>
-                                    <section class="editor">
-                                        @Html.Raw(i.product_content)
-                                    </section>
-                                </article>
-                                <ul class="pro-img">
-                                    @foreach (var img in i.imgsrcs)
+                <li>
+                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                        <article class="pro-content">
+                            <header><h4 class="title">@i.product_name</h4></header>
+                            <section class="editor">
+                                @Html.Raw(i.product_content)
+                            </section>
+                        </article>
+                        <ul class="pro-img">
+                            @foreach (var img in i.imgsrcs)
                                     {
-                                        <li><img src="@img" alt=""></li>
+                                    <li><img src="@img" alt=""></li>
                                     }
-                                </ul>
-                            </div>
-                            <figure>
-                                <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                    <img src="@i.imgsrc" alt="">
-                                    <figcaption>@i.product_name</figcaption>
-                                </a>
-                            </figure>
+                        </ul>
+                    </div>
+                    <figure>
+                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                            <img src="@i.imgsrc" alt="">
+                            <figcaption>@i.product_name</figcaption>
+                        </a>
+                    </figure>
 
-                        </li>
+                </li>
                     }
                     else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
                     {
-                        <li>
-                            <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                <ul class="pro-img">
-                                    @foreach (var img in i.imgsrcs)
+                <li>
+                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                        <ul class="pro-img">
+                            @foreach (var img in i.imgsrcs)
                                     {
-                                        <li><img src="@img" alt=""></li>
+                                    <li><img src="@img" alt=""></li>
                                     }
-                                </ul>
-                            </div>
+                        </ul>
+                    </div>
+                    <figure>
+                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                            <img src="@i.imgsrc" alt="">
+                        </a>
+                    </figure>
+
+                </li>
+                    }
+                    else if (i.imgsrcs == null & (i.product_name != null || i.product_content != null))
+                    {
+                <li>
+                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                        <article class="pro-content full">
+                            <header><h4 class="title">@i.product_name</h4></header>
+                            <section class="editor">
+                                @Html.Raw(i.product_content)
+                            </section>
+                        </article>
+                    </div>
+                    @if (i.product_name == null)
+                            {
                             <figure>
                                 <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
                                     <img src="@i.imgsrc" alt="">
                                 </a>
                             </figure>
-
-                        </li>
-                    }
-                    else if (i.imgsrcs == null)
-                    {
-                        <li>
-                            <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                <article class="pro-content full">
-                                    <header><h4 class="title">@i.product_name</h4></header>
-                                    <section class="editor">
-                                        @Html.Raw(i.product_content)
-                                    </section>
-                                </article>
-                            </div>
+                            }
+                            else
+                            {
                             <figure>
                                 <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
                                     <img src="@i.imgsrc" alt="">
                                     <figcaption>@i.product_name</figcaption>
                                 </a>
                             </figure>
-                        </li>
+                            }
+
+                </li>
                     }
                 }
             </ul>

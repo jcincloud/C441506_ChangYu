@@ -98,9 +98,9 @@ namespace DotWeb.Areas.Base.Controllers
             }
 
             getLoginResult.vildate = Session["CheckCode"].Equals(model.validate) ? true : false;
-#if DEBUG
-            getLoginResult.vildate = true;
-#endif
+//#if DEBUG
+//            getLoginResult.vildate = true;
+//#endif
             if (!getLoginResult.vildate)
             {
                 Session["CheckCode"] = Guid.NewGuid(); //只要有錯先隨意產生唯一碼 以防暴力破解，新的CheckCode會在Validate產生。
