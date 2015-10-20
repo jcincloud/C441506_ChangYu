@@ -306,7 +306,7 @@ h2, h3, h4, h5, h6 {
 h2 small, h3 small, h4 small, h5 small, h6 small {
   font-weight: normal;
   line-height: 1;
-  color: #75c4dc;
+  color: #458ca1;
 }
 
 h2, h3 {
@@ -360,9 +360,9 @@ mark {
 }
 
 hr {
-  height: 2px;
+  height: 0;
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #F9F9F9;
+  border-bottom: 1px solid #f9f9f9;
 }
 
 ul, ol {
@@ -481,7 +481,7 @@ address {
 }
 
 .wrap {
-  max-width: 1366px;
+  max-width: max-width(xl);
   margin: 0 auto;
 }
 
@@ -493,14 +493,14 @@ address {
 
 @media (min-width: 992px) {
   #header, #main, #footer {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 @media (max-width: 1399px) {
   #header, #main, #footer {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 

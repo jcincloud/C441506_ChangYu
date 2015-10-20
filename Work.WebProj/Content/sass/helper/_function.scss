@@ -14,7 +14,7 @@
 }
 
 // 算寬度百分比
-@function cp($target, $container: max-width(lg)) {
+@function cp($target, $container: wrap-width(lg)) {
     @return ceil(($target / $container) * 100%);
 }
 
@@ -51,8 +51,8 @@
 }
 
 // max-widths
-@function max-width($key) {
-    @return map-get($max-widths, $key);
+@function wrap-width($key) {
+    @return map-get($wrap-widths, $key);
 }
 
 // 取多層值

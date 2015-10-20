@@ -306,7 +306,7 @@ h2, h3, h4, h5, h6 {
 h2 small, h3 small, h4 small, h5 small, h6 small {
   font-weight: normal;
   line-height: 1;
-  color: #75c4dc;
+  color: #458ca1;
 }
 
 h2, h3 {
@@ -330,11 +330,11 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5625em;
+  font-size: 1.75em;
 }
 
 h4 {
-  font-size: 1.125em;
+  font-size: 1.5em;
 }
 
 h5 {
@@ -360,9 +360,13 @@ mark {
 }
 
 hr, .intro h2::after, .intro h3::after, .pro-detail .pro-content .title::after {
-  height: 2px;
+  height: 0;
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #F9F9F9;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.intro h2::after, .intro h3::after, .pro-detail .pro-content .title::after {
+  height: 2px;
 }
 
 ul, ol {
@@ -475,7 +479,7 @@ output {
 }
 
 .form-element-inline {
-  margin-left: 5px;
+  margin-left: 7.5px;
 }
 .form-element-inline:first-child {
   margin-left: 0;
@@ -550,13 +554,13 @@ caption {
   word-break: break-all;
 }
 
-.row::before, .pro-intro::before, .pro::before, .pro-detail::before, .wrap::before, #menu::before, .intro::before, .row::after, .pro-intro::after, .pro::after, .pro-detail::after, .wrap::after, #menu::after, .intro::after,
+.row::before, .philosophy::before, .quality ul::before, .environment ul::before, .pro-intro::before, .pro::before, .pro-detail::before, .contact-info::before, .wrap::before, #menu::before, .intro::before, .row::after, .philosophy::after, .quality ul::after, .environment ul::after, .pro-intro::after, .pro::after, .pro-detail::after, .contact-info::after, .wrap::after, #menu::after, .intro::after,
 .clearfix::before,
 .clearfix::after {
   content: " ";
   display: table;
 }
-.row::after, .pro-intro::after, .pro::after, .pro-detail::after, .wrap::after, #menu::after, .intro::after,
+.row::after, .philosophy::after, .quality ul::after, .environment ul::after, .pro-intro::after, .pro::after, .pro-detail::after, .contact-info::after, .wrap::after, #menu::after, .intro::after,
 .clearfix::after {
   clear: both;
 }
@@ -604,7 +608,7 @@ caption {
   display: none;
 }
 
-.circle, #footer .product dd::before, .grid-circle, .pro-intro article h4 em, .pro-intro article ul li::before {
+.circle, #footer .product dd::before, .pro-intro .grid h4 em, .pro-intro .grid ul li::before {
   border-radius: 50%;
 }
 
@@ -621,7 +625,7 @@ caption {
 }
 
 .breadcrumb,
-.list-inline, #sidebar .submenu, .pro-intro article ul li, .pro, .pro-detail .pro-img,
+.list-inline, #sidebar .submenu, .pro-intro .grid ul li, .pro, .pro-detail .pro-img,
 .list-unstyled {
   list-style: none;
 }
@@ -667,351 +671,351 @@ caption {
   opacity: .65;
 }
 
-.row, .pro-intro, .pro, .pro-detail {
-  margin-left: -5px;
-  margin-right: -5px;
+.row, .philosophy, .quality ul, .environment ul, .pro-intro, .pro, .pro-detail, .contact-info {
+  margin-left: -7.5px;
+  margin-right: -7.5px;
 }
-form .row, form .pro-intro, form .pro, form .pro-detail {
-  margin-bottom: 10px;
+form .row, form .philosophy, form .quality ul, .quality form ul, form .environment ul, .environment form ul, form .pro-intro, form .pro, form .pro-detail, form .contact-info {
+  margin-bottom: 15px;
 }
 
 .col-1 {
   width: 8.33333%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
 .col-2 {
   width: 16.66667%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
-.col-3 {
+.col-3, .philosophy .grid {
   width: 25%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
-.col-4, .pro-intro article, .pro li, .inquire-pic {
+.col-4, .about-pic, .pro-intro .grid, .pro li, .inquire-pic {
   width: 33.33333%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
-.col-5, .pro-detail .pro-content + .pro-img {
+.col-5, .pro-detail .pro-content + .pro-img, .contact-info .info {
   width: 41.66667%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
-.col-6 {
+.col-6, .milestone, .operation, .quality, .environment, .quality ul li, .environment ul li {
   width: 50%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
-.col-7, .pro-detail .pro-content, .inquire-form {
+.col-7, .pro-detail .pro-content, .inquire-form, .contact-info .map {
   width: 58.33333%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
 .col-8 {
   width: 66.66667%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
 .col-9 {
   width: 75%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
 .col-10 {
   width: 83.33333%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
 .col-11 {
   width: 91.66667%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
-.col-12, .pro-detail .pro-content.full, .pro-detail .pro-img {
+.col-12, .philosophy h3.title, .pro-detail .pro-content.full, .pro-detail .pro-img {
   width: 100%;
   float: left;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
 }
 
 @media (max-width: 767px) {
   .col-sm-1 {
     width: 8.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-2 {
     width: 16.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-3 {
     width: 25%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-4 {
     width: 33.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-5 {
     width: 41.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-6 {
     width: 50%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-7 {
     width: 58.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-8 {
     width: 66.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-9 {
     width: 75%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-10 {
     width: 83.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-11 {
     width: 91.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-sm-12 {
     width: 100%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 }
 @media (max-width: 543px) {
   .col-xs-1 {
     width: 8.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-2 {
     width: 16.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-3 {
     width: 25%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-4 {
     width: 33.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-5 {
     width: 41.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-6 {
     width: 50%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-7 {
     width: 58.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-8 {
     width: 66.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-9 {
     width: 75%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-10 {
     width: 83.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-11 {
     width: 91.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-xs-12 {
     width: 100%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 }
 @media (max-width: 1399px) {
   .col-lg-1 {
     width: 8.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-2 {
     width: 16.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-3 {
     width: 25%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-4 {
     width: 33.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-5 {
     width: 41.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-6 {
     width: 50%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-7 {
     width: 58.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-8 {
     width: 66.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-9 {
     width: 75%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-10 {
     width: 83.33333%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-11 {
     width: 91.66667%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 
   .col-lg-12 {
     width: 100%;
     float: left;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
   }
 }
 .col-offset-1, .inquire-pic {
@@ -1216,7 +1220,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
 }
 
 .wrap {
-  max-width: 1366px;
+  max-width: max-width(xl);
   margin: 0 auto;
 }
 
@@ -1228,14 +1232,14 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
 
 @media (min-width: 992px) {
   #header, #main, #footer {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 @media (max-width: 1399px) {
   #header, #main, #footer {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -1472,11 +1476,60 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   font-weight: bold;
 }
 
-.grid-circle {
+h3.title small {
+  font-size: 1em;
+  margin-left: 15px;
+}
+
+h4.title {
+  color: #3D7671;
+}
+
+.intro {
+  position: relative;
+  margin-bottom: 60px;
+}
+.intro h2 {
+  color: #3D7671;
+  font-size: 3.125em;
+  font-family: "AvantGardeITCbyBT-Book", "Microsoft Jhenghei", \5FAE\8EDF\6B63\9ED1\9AD4, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+.intro h2::after {
+  content: " ";
   display: block;
-  width: 20%;
-  height: 20%;
-  background: #2E98B8;
+  margin-top: 10px;
+}
+.intro h3 {
+  color: #AC6C28;
+  font-size: 1.9375em;
+  float: left;
+  margin-top: 0.48387em;
+  margin-bottom: 0.87097em;
+  margin-right: 20px;
+}
+.intro h3::after {
+  content: " ";
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 70px;
+}
+.intro p {
+  background: url(../images/iconQuote.png) no-repeat 0 0;
+  font-size: 0.875em;
+  margin-bottom: 0;
+  padding-left: 45px;
+}
+.intro p.lead {
+  background: none;
+  color: #BFBCBE;
+  font-size: 1.125em;
+  text-align: right;
+  padding: 0;
+  clear: both;
 }
 
 .tab {
@@ -1578,67 +1631,119 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   margin-left: 1px;
 }
 
-.intro {
+.AboutUs .intro {
+  margin-bottom: 0;
+}
+.AboutUs h3.title {
+  margin-top: 0;
+}
+
+.philosophy {
+  margin-bottom: 30px;
+}
+.philosophy .grid img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+.philosophy .grid .title {
+  color: #fefefe;
+  margin-top: -65px;
+  padding-left: 15px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.philosophy .grid .title small {
+  display: block;
+  font-size: 1em;
+  color: #fefefe;
+  margin-top: 5px;
+}
+
+.milestone {
+  margin-bottom: 30px;
+}
+.milestone ul {
+  border-top: 1px solid #fff;
+}
+.milestone ul li {
   position: relative;
-  margin-bottom: 60px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid #fff;
+  border-top: 0;
+  padding: 7.5px;
+  padding-left: 10em;
 }
-.intro h2 {
-  color: #3D7671;
-  font-size: 3.125em;
-  font-family: "AvantGardeITCbyBT-Book", "Microsoft Jhenghei", \5FAE\8EDF\6B63\9ED1\9AD4, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-.intro h2::after {
-  content: " ";
+.milestone ul li em {
   display: block;
-  margin-top: 10px;
-}
-.intro h3 {
-  color: #AC6C28;
-  font-size: 1.9375em;
-  float: left;
-  margin-top: 0.48387em;
-  margin-bottom: 0.87097em;
-  margin-right: 20px;
-}
-.intro h3::after {
-  content: " ";
-  display: block;
-  width: 100%;
+  width: 9.5em;
+  background: #3C90A8;
+  border-right: 1px solid #fff;
   position: absolute;
   left: 0;
-  top: 70px;
-}
-.intro p {
-  background: url(../images/iconQuote.png) no-repeat 0 0;
-  font-size: 0.875em;
-  margin-bottom: 0;
-  padding-left: 45px;
-}
-.intro p.lead {
-  background: none;
-  color: #BFBCBE;
-  font-size: 1.125em;
+  top: 0;
+  bottom: 0;
+  font-style: normal;
+  font-weight: bold;
+  color: #fff;
   text-align: right;
-  padding: 0;
-  clear: both;
+  padding: 7.5px;
+}
+.milestone ul li:nth-of-type(even) {
+  background: rgba(255, 255, 255, 0.4);
+}
+.milestone ul li:nth-of-type(even) em {
+  background: #276A86;
+}
+
+.operation {
+  margin-bottom: 30px;
+}
+.operation ol li {
+  border-bottom: 1px dotted #fff;
+  margin-bottom: 15px;
+  padding-left: 16px;
+  padding-bottom: 15px;
+}
+.operation ol li::before {
+  display: inline-block;
+  border: 5px solid transparent;
+  width: 0;
+  height: 0;
+  border-left-color: #3C90A8;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  content: " ";
+  margin-left: -16px;
+}
+
+.quality ul li img, .environment ul li img {
+  max-width: 100%;
+}
+.quality ul li figcaption, .environment ul li figcaption {
+  text-align: center;
+  color: #3D7671;
+  font-size: 1.25em;
+  margin-top: 15px;
+}
+
+.about-pic img {
+  max-width: 100%;
+  border-radius: 15px;
 }
 
 .pro-intro {
   margin: 0;
 }
-.pro-intro article {
+.pro-intro .grid {
   position: relative;
   padding: 0 0 0 18px;
 }
-.pro-intro article:nth-of-type(1) {
+.pro-intro .grid:nth-of-type(1) {
   padding: 0;
 }
-.pro-intro article:last-child::after {
+.pro-intro .grid:last-child::after {
   display: none;
 }
-.pro-intro article::after {
+.pro-intro .grid::after {
   content: " ";
   display: block;
   width: 2px;
@@ -1649,12 +1754,12 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   border-left: 1px solid #B3B3B3;
   border-right: 1px solid #fff;
 }
-.pro-intro article h4 {
+.pro-intro .grid h4 {
   color: #3D7671;
   font-size: 1.75em;
   line-height: 70px;
 }
-.pro-intro article h4 em {
+.pro-intro .grid h4 em {
   display: block;
   width: 70px;
   height: 70px;
@@ -1667,16 +1772,16 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   font-style: normal;
   margin-right: 20px;
 }
-.pro-intro article ul {
+.pro-intro .grid ul {
   margin-left: 90px;
 }
-.pro-intro article ul li {
+.pro-intro .grid ul li {
   font-size: 0.9375em;
   position: relative;
   margin-bottom: 15px;
   padding-left: 15px;
 }
-.pro-intro article ul li::before {
+.pro-intro .grid ul li::before {
   display: block;
   width: 5px;
   height: 5px;
@@ -1686,10 +1791,10 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   left: 0;
   top: 8px;
 }
-.pro-intro article ul li a {
+.pro-intro .grid ul li a {
   color: #333;
 }
-.pro-intro article ul li a:hover {
+.pro-intro .grid ul li a:hover {
   color: #2e98b8;
 }
 
@@ -1857,10 +1962,26 @@ body.fixed {
 
 .inquire-form label em {
   color: #E60112;
-  margin-right: 5px;
+  margin-right: 7.5px;
 }
 
 .inquire-pic img {
   max-width: 100%;
   border-radius: 4px;
+}
+
+.contact-info .info ul {
+  border-top: 3px solid #2e98b8;
+  border-bottom: 3px solid #2e98b8;
+  padding: 15px;
+}
+.contact-info .info ul li {
+  border-bottom: 1px dotted #fff;
+  margin-bottom: 7.5px;
+  padding-bottom: 7.5px;
+}
+.contact-info .info ul li:last-child {
+  border-bottom: 0;
+  margin: 0;
+  padding: 0;
 }

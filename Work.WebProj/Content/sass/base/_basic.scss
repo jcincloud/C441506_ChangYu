@@ -124,11 +124,12 @@ mark {
 }
 
 hr, %hr {
-    height:2px;
+    height:0;
 
     border-top: 1px solid #ccc;
-    border-bottom:1px solid #F9F9F9;
+    border-bottom:1px solid #f9f9f9;
 }
+%hr {height:2px;}
 
 
 // Lists
