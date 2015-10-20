@@ -47,7 +47,7 @@ namespace ProcCore.Business.LogicConect
     #region Parm Section
     public enum ParmDefine
     {
-        Open, product_cn, product_us
+        Open, receiveMails
     }
     #endregion
 
@@ -235,7 +235,8 @@ namespace ProcCore.Business.LogicConect
         public void setParmValue(ParmDefine ParmName, object value)
         {
             db0 = getDB0;
-            var item = db0.i_Parm.Where(x => x.ParmName == Enum.GetName(typeof(ParmDefine), ParmName)).FirstOrDefault();
+            string str = Enum.GetName(typeof(ParmDefine), ParmName);
+            var item = db0.i_Parm.Where(x => x.ParmName == str).FirstOrDefault();
             if (item != null)
             {
                 if (item.ParmType == "S")
@@ -260,6 +261,13 @@ namespace ProcCore.Business.LogicConect
                 }
             }
             db0.SaveChanges();
+        }
+        public string[] getReceiveMails()
+        {
+            var s =  (string)getParmValue(ParmDefine.receiveMails);
+
+            string[] r = s.Split(',');
+            return r;
         }
         public static void SetDB0EntityString(string configstring)
         {

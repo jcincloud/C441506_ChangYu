@@ -3,83 +3,131 @@
     ViewBag.BodyClass = "Inquire";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+@section Scripts {
+    <script src="~/Scripts/build/comminc.js"></script>
+    <script>
+        $("#InquireInfo").submit(function (event) {
+            event.preventDefault();
+            var company_name = $("#m_company_name").val();
+            var contact_person = $("#m_contact_person").val();
+            var job_title = $("#m_job_title").val();
+            var tel = $("#m_tel").val();
+            var tel_ex = $("#m_tel_ex").val();
+            var address = $("#m_address").val();
+            var email = $("#m_email").val();
+            var fax = $("#m_fax").val();
+            var content = $("#m_content").val();
+            //checkbox 取陣列值 By each()
+            var contact_type = [];
+            $('.contact_type:checked').each(function () {
+                contact_type.push($(this).val());
+            });
+            if (contact_type.length <= 0) {
+                alert("請勾選'我想要...'的選項!");
+                return;
+            }
+            var data = {
+                "company_name": company_name,
+                "contact_person": contact_person,
+                "job_title": job_title,
+                "tel": tel,
+                "tel_ex": tel_ex,
+                "address": address,
+                "email": email,
+                "fax": fax,
+                "contact_type":contact_type,
+                "content": content
+            };
 
+            jqPost(gb_approot + 'Inquire/sendMail', data).done(function (data, textStatus, jqXHRdata) {
+                if (!data.result) {
+                    alert(data.message);
+                }
+                else {
+                    alert('申請已送出，我們會儘快與您聯絡!');
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                showAjaxError(errorThrown);
+            });
+        });
+    </script>
+}
 <div class="wrap">
 
-<ul class="breadcrumb">
-    <li><a href="~/Index">HOME</a></li>
-    <li>線上諮詢</li>
-</ul>
+    <ul class="breadcrumb">
+        <li><a href="~/Index">HOME</a></li>
+        <li>線上諮詢</li>
+    </ul>
 
-<section id="content">
+    <section id="content">
 
-    <header class="intro">
-    	<h2>INQUIRE</h2>
-    	<p>請留下您的聯絡資料及諮詢事項，本公司收到您的E-mail後，會立刻派專人與您連絡，如您有任何意見或建議也歡迎您來信指教。</p>
-    </header>
+        <header class="intro">
+            <h2>INQUIRE</h2>
+            <p>請留下您的聯絡資料及諮詢事項，本公司收到您的E-mail後，會立刻派專人與您連絡，如您有任何意見或建議也歡迎您來信指教。</p>
+        </header>
 
-    <div class="row">
+        <div class="row">
 
-	    <article class="inquire-form">
+            <article class="inquire-form">
 
-	    	<header class="hidden"><h3>線上諮詢表單</h3></header>
+                <header class="hidden"><h3>線上諮詢表單</h3></header>
 
-	    	<form action="">
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right">公司名稱</label>
-	    			<div class="col-10"><input type="text" class="form-element"></div>
-	    		</div>
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right"><em>*</em>聯絡人</label>
-	    			<div class="col-5"><input type="text" class="form-element"></div>
-	    			<label for="" class="col-1 text-right">職稱</label>
-	    			<div class="col-4"><input type="text" class="form-element"></div>
-	    		</div>
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right"><em>*</em>聯絡電話</label>
-	    			<div class="col-5"><input type="text" class="form-element"></div>
-	    			<label for="" class="col-1 text-right">分機</label>
-	    			<div class="col-4"><input type="text" class="form-element"></div>
-	    		</div>
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right"><em>*</em>地址</label>
-	    			<div class="col-10"><input type="text" class="form-element"></div>
-	    		</div>
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right"><em>*</em>E-mail</label>
-	    			<div class="col-5"><input type="text" class="form-element"></div>
-	    			<label for="" class="col-1 text-right">傳真</label>
-	    			<div class="col-4"><input type="text" class="form-element"></div>
-	    		</div>
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right"><em>*</em>我想要</label>
-	    			<div class="col-10">
-	    				<input type="checkbox" class="form-element-inline"> 詢價
-	    				<input type="checkbox" class="form-element-inline"> 訂購產品
-	    				<input type="checkbox" class="form-element-inline"> 留言
-	    				<span>，請盡速回覆。</span>
-	    			</div>
-	    		</div>
-	    		<div class="row">
-	    			<label for="" class="col-2 text-right">諮詢內容</label>
-	    			<div class="col-10"><textarea rows="3" class="form-element" placeholder="(若要詢價/訂購產品，請詳細填寫產品規格樣式及數量，謝謝您！)"></textarea></div>
-	    		</div>
-	    		<div class="row">
-	    			<div class="col-10 col-offset-2">
-	    				<button class="btn">填寫完成，寄出</button>
-	    			</div>
-	    		</div>
-	    	</form>
+                <form action="" id="InquireInfo">
+                    <div class="row">
+                        <label for="" class="col-2 text-right">公司名稱</label>
+                        <div class="col-10"><input type="text" class="form-element" id="m_company_name"></div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-2 text-right"><em>*</em>聯絡人</label>
+                        <div class="col-5"><input type="text" class="form-element" id="m_contact_person" required></div>
+                        <label for="" class="col-1 text-right">職稱</label>
+                        <div class="col-4"><input type="text" class="form-element" id="m_job_title"></div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-2 text-right"><em>*</em>聯絡電話</label>
+                        <div class="col-5"><input type="text" class="form-element" id="m_tel" required></div>
+                        <label for="" class="col-1 text-right">分機</label>
+                        <div class="col-4"><input type="text" class="form-element" id="m_tel_ex"></div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-2 text-right"><em>*</em>地址</label>
+                        <div class="col-10"><input type="text" class="form-element" id="m_address" required></div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-2 text-right"><em>*</em>E-mail</label>
+                        <div class="col-5"><input type="email" class="form-element" id="m_email" required></div>
+                        <label for="" class="col-1 text-right">傳真</label>
+                        <div class="col-4"><input type="text" class="form-element" id="m_fax"></div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-2 text-right"><em>*</em>我想要</label>
+                        <div class="col-10">
+                            <input type="checkbox" class="form-element-inline contact_type" name="contact_type" value="1"> 詢價
+                            <input type="checkbox" class="form-element-inline contact_type" name="contact_type" value="2"> 訂購產品
+                            <input type="checkbox" class="form-element-inline contact_type" name="contact_type" value="3"> 留言
+                            <span>，請盡速回覆。</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="" class="col-2 text-right">諮詢內容</label>
+                        <div class="col-10"><textarea rows="3" class="form-element" id="m_content" placeholder="(若要詢價/訂購產品，請詳細填寫產品規格樣式及數量，謝謝您！)"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-10 col-offset-2">
+                            <button class="btn">填寫完成，寄出</button>
+                        </div>
+                    </div>
+                </form>
 
-	    </article>
+            </article>
 
-	    <aside class="inquire-pic">
-	    	<header class="hidden"><h3>感謝您的填寫</h3></header>
-	    	<img src="~/Content/images/Inquire/pic.jpg" alt="">
-	    </aside>
+            <aside class="inquire-pic">
+                <header class="hidden"><h3>感謝您的填寫</h3></header>
+                <img src="~/Content/images/Inquire/pic.jpg" alt="">
+            </aside>
 
-    </div>
+        </div>
 
-</section>
+    </section>
 
 </div>

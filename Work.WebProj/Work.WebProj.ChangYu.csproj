@@ -193,6 +193,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Active\ActiveAreaRegistration.cs" />
     <Compile Include="Areas\Active\Controllers\ProductDataController.cs" />
+    <Compile Include="Areas\Base\Controllers\ChangeParmController.cs" />
     <Compile Include="Areas\Base\Controllers\DocController.cs" />
     <Compile Include="Areas\Base\Controllers\LoginController.cs" />
     <Content Include="Areas\Active\Views\ProductData\Main.cshtml" />
@@ -218,6 +219,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Areas\Base\Views\Login\index.tablet.cshtml" />
     <Content Include="Areas\Base\Views\Menu\Main.cshtml" />
+    <Content Include="Areas\Base\Views\ChangeParm\Main.cshtml" />
     <None Include="Content\bootstrap\js\bootstrap.js" />
     <None Include="Content\bootstrap\js\bootstrap.min.js" />
     <None Include="Content\bootstrap\js\npm.js" />
@@ -932,6 +934,8 @@
     <Content Include="Views\Products\Products_list.cshtml" />
     <Content Include="Scripts\src\jsx\m-Product_Category_L2.jsx" />
     <Content Include="Scripts\src\jsx\m-Menu.jsx" />
+    <Content Include="Views\Inquire\Email.cshtml" />
+    <Content Include="Scripts\src\jsx\m-ChangeEmail.jsx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -1065,6 +1069,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Base\Views\Menu\App_LocalResources\Main.cshtml.resx" />
+    <Content Include="Areas\Base\Views\ChangeParm\App_LocalResources\Main.cshtml.resx" />
     <EmbeddedResource Include="_Code\RPTFile\MemeberLabel.rdlc" />
   </ItemGroup>
   <PropertyGroup>
