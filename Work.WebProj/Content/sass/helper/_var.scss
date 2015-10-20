@@ -37,8 +37,8 @@ $link-color:            #C1761E;             // 文字鏈結色
 $link-hover-color:      darken($link-color, 15%) !default;     // 滑鼠移過色
 
 // layout
-$min-width:             1008px !default;     // 網頁最小尺寸
-$max-width:             1400px !default;     // 網頁最寬尺寸: .wrap
+// $min-width:             1008px !default;     // 網頁最小尺寸
+// $max-width:             1400px !default;     // 網頁最寬尺寸: .wrap
 $pages:                 'index' 'AboutUs' 'Products' 'Inquire' 'ContactUs';
 
 // gird
@@ -149,13 +149,42 @@ $color: map-merge($state-type, $table-color);
 
 // == media RWD
 // ----------------------------------------------------------------------
+
+// 中斷點
+$breakpoints: (
+  xs: 0,       // Extra small screen / phone
+  sm: 544px,   // Small screen / phone
+  md: 768px,   // Medium screen / tablet
+  lg: 992px,   // Large screen / desktop
+  xl: 1400px   // Extra large screen / wide desktop
+);
+
+// 容器寬度
+$max-widths: (
+  xs: 480px,
+  sm: 720px,
+  md: 960px,
+  lg: 1008px,
+  xl: 1366px
+);
+
+// media queries
 $medias: (
-    xs:                 (max-width: 480px),    // phone
-    sm:                 (max-width: 768px),    // tablet
-    md:                 (min-width: 992px),    // desktop
-    lg:                 (min-width: 1220px),   // wide desktop
-    min-767:            (min-width: 767px),
-    max-960:            (max-width: 960px),
+    xs:       (max-width: break(sm)-1),
+
+    sm:       (max-width: break(md)-1),
+    sm-min:   (min-width: break(sm)),
+    sm-only:  (min-width: break(sm)) and (max-width: break(md)-1),
+
+    md:       (max-width: break(lg)-1),
+    md-min:   (min-width: break(md)),
+    md-only:  (min-width: break(md)) and (max-width: break(lg)-1),
+
+    lg:       (max-width: break(xl)-1),
+    lg-min:   (min-width: break(lg)),
+    lg-only:  (min-width: break(lg)) and (max-width: break(xl)-1),
+
+    xl:       (min-width: break(xl))
 );
 
 

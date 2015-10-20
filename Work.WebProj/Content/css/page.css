@@ -550,13 +550,13 @@ caption {
   word-break: break-all;
 }
 
-.row::before, .pro-intro::before, .pro::before, .pro-detail::before, .wrap::before, #header::before, #main::before, #footer::before, #menu::before, .intro::before, .row::after, .pro-intro::after, .pro::after, .pro-detail::after, .wrap::after, #header::after, #main::after, #footer::after, #menu::after, .intro::after,
+.row::before, .pro-intro::before, .pro::before, .pro-detail::before, .wrap::before, #menu::before, .intro::before, .row::after, .pro-intro::after, .pro::after, .pro-detail::after, .wrap::after, #menu::after, .intro::after,
 .clearfix::before,
 .clearfix::after {
   content: " ";
   display: table;
 }
-.row::after, .pro-intro::after, .pro::after, .pro-detail::after, .wrap::after, #header::after, #main::after, #footer::after, #menu::after, .intro::after,
+.row::after, .pro-intro::after, .pro::after, .pro-detail::after, .wrap::after, #menu::after, .intro::after,
 .clearfix::after {
   clear: both;
 }
@@ -759,7 +759,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   padding-right: 5px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .col-sm-1 {
     width: 8.33333%;
     float: left;
@@ -844,7 +844,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
     padding-right: 5px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 543px) {
   .col-xs-1 {
     width: 8.33333%;
     float: left;
@@ -929,7 +929,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
     padding-right: 5px;
   }
 }
-@media (min-width: 1220px) {
+@media (max-width: 1399px) {
   .col-lg-1 {
     width: 8.33333%;
     float: left;
@@ -1062,7 +1062,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   margin-left: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .col-sm-offset-1 {
     margin-left: 8.33333%;
   }
@@ -1111,7 +1111,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
     margin-left: 100%;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 543px) {
   .col-xs-offset-1 {
     margin-left: 8.33333%;
   }
@@ -1160,7 +1160,7 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
     margin-left: 100%;
   }
 }
-@media (min-width: 1220px) {
+@media (max-width: 1399px) {
   .col-lg-offset-1 {
     margin-left: 8.33333%;
   }
@@ -1211,31 +1211,13 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
 }
 /*      layout
 -----------------------------------------------------------------------*/
-#wrapper, .wrap, #header, #main, #footer {
+#wrapper, .wrap, #header, #footer, #main {
   position: relative;
 }
 
 .wrap {
-  max-width: 1400px;
+  max-width: 1366px;
   margin: 0 auto;
-}
-
-.wrap, #header, #main, #footer {
-  min-width: 1008px;
-}
-@media (min-width: 992px) and (max-width: 1399px) {
-  .wrap, #header, #main, #footer {
-    padding: 0 10px;
-    min-width: auto;
-    width: 100%;
-  }
-}
-@media (max-width: 960px) {
-  .wrap, #header, #main, #footer {
-    padding: 0 10px;
-    min-width: auto;
-    width: 100%;
-  }
 }
 
 #wrapper {
@@ -1244,9 +1226,16 @@ form .row, form .pro-intro, form .pro, form .pro-detail {
   background: url(../images/bg.jpg) center 0 repeat-y fixed;
 }
 
-@media (min-width: 993px) and (max-width: 1679px) {
-  #header, #main, #footer {
-    padding: 0 15px;
+@media (min-width: 992px) {
+  #header, #footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media (max-width: 1399px) {
+  #header, #footer {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 

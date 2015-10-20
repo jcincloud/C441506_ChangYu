@@ -390,13 +390,13 @@ address {
   line-height: 1.25;
 }
 
-.wrap::before, #header::before, #main::before, #footer::before, #menu::before, .wrap::after, #header::after, #main::after, #footer::after, #menu::after,
+.wrap::before, #menu::before, .wrap::after, #menu::after,
 .clearfix::before,
 .clearfix::after {
   content: " ";
   display: table;
 }
-.wrap::after, #header::after, #main::after, #footer::after, #menu::after,
+.wrap::after, #menu::after,
 .clearfix::after {
   clear: both;
 }
@@ -476,31 +476,13 @@ address {
 
 /*      layout
 -----------------------------------------------------------------------*/
-#wrapper, .wrap, #header, #main, #footer {
+#wrapper, .wrap, #header, #footer, #main {
   position: relative;
 }
 
 .wrap {
-  max-width: 1400px;
+  max-width: 1366px;
   margin: 0 auto;
-}
-
-.wrap, #header, #main, #footer {
-  min-width: 1008px;
-}
-@media (min-width: 992px) and (max-width: 1399px) {
-  .wrap, #header, #main, #footer {
-    padding: 0 10px;
-    min-width: auto;
-    width: 100%;
-  }
-}
-@media (max-width: 960px) {
-  .wrap, #header, #main, #footer {
-    padding: 0 10px;
-    min-width: auto;
-    width: 100%;
-  }
 }
 
 #wrapper {
@@ -509,9 +491,16 @@ address {
   background: url(../images/bg.jpg) center 0 repeat-y fixed;
 }
 
-@media (min-width: 993px) and (max-width: 1679px) {
-  #header, #main, #footer {
-    padding: 0 15px;
+@media (min-width: 992px) {
+  #header, #footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media (max-width: 1399px) {
+  #header, #footer {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
