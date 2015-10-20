@@ -36,7 +36,7 @@ var MasterImageUpload = React.createClass({
 	},
 	componentWillUnmount:function(){
 		console.log('MasterFileUpload','destroy');
-		if(this.props.uploader!=null || this.props.ParentEditType==1){
+		if(this.props.uploader!=null){
 			this.props.uploader.destroy();
 		}
 	},
