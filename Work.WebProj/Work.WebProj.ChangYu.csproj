@@ -690,6 +690,7 @@
     <Content Include="Scripts\build\comminc.js" />
     <Content Include="Scripts\build\func\inc\c-Comm.js" />
     <Content Include="Scripts\build\func\inc\c-ImgFileSort.js" />
+    <Content Include="Scripts\build\func\m-ChangeEmail.js" />
     <Content Include="Scripts\build\func\m-ChangePassword.js" />
     <Content Include="Scripts\build\func\m-login.js" />
     <Content Include="Scripts\build\func\m-Menu.js" />
