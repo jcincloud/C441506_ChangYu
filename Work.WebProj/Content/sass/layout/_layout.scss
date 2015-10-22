@@ -27,9 +27,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     position: relative;
 }
 
-// 最大寬度限制 (非滿版)
 %center {
-    max-width: wrap-width(xl);
+    max-width: wrap-width(xl); // 最大寬度限制 (非滿版才需要)
     margin: 0 auto;
 }
 
