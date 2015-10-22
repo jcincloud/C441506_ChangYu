@@ -502,33 +502,34 @@ var GirdForm = React.createClass({
 						</div>
 					</div>
 
-					<div className="bg-warning">
+					<h4 className="title row">
+						<span className="col-xs-2 text-right">產品說明</span>
+						<small className="col-xs-10">可不填，有填寫才會顯示</small>
+					</h4>
 
-	                    <div className="form-group">
-	                        <label className="col-xs-2 control-label">產品說明插圖</label>
-	                        <div className="col-xs-4">
-	                            <MasterImageUpload
-	                            FileKind="Photo2"
-	                            MainId={fieldData.product_id}
-	                            ParentEditType={this.state.edit_type}
-	                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
-	                            url_list={gb_approot+'Active/ProductData/axFList'}
-	                            url_delete={gb_approot+'Active/ProductData/axFDelete'}
-	                            url_sort={gb_approot+'Active/ProductData/axFSort'}
-	                            />
-	                        </div>
-	                        <small className="help-inline col-xs-5 text-danger">限 2 張圖片，檔案大小不可超過4.8MB</small>
-	                    </div>
-						<div className="form-group">
-							<label className="col-xs-2 control-label">產品說明</label>
-							<div className="col-xs-10">
-								<textarea col="30" rows="3" className="form-control" id="editor1"
-								value={fieldData.product_content}
-								onChange={this.changeFDValue.bind(this,'product_content')}
-								maxLength="256"></textarea>
-							</div>
+                    <div className="form-group">
+                        <label className="col-xs-2 control-label">產品說明插圖</label>
+                        <div className="col-xs-4">
+                            <MasterImageUpload
+                            FileKind="Photo2"
+                            MainId={fieldData.product_id}
+                            ParentEditType={this.state.edit_type}
+                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+                            url_list={gb_approot+'Active/ProductData/axFList'}
+                            url_delete={gb_approot+'Active/ProductData/axFDelete'}
+                            url_sort={gb_approot+'Active/ProductData/axFSort'}
+                            />
+                        </div>
+                        <small className="help-inline col-xs-5 text-danger">限 2 張圖片，每張圖片檔案大小不可超過4.8MB</small>
+                    </div>
+					<div className="form-group">
+						<label className="col-xs-2 control-label">產品說明</label>
+						<div className="col-xs-10">
+							<textarea col="30" rows="3" className="form-control" id="editor1"
+							value={fieldData.product_content}
+							onChange={this.changeFDValue.bind(this,'product_content')}
+							maxLength="256"></textarea>
 						</div>
-
 					</div>
 
 					<div className="form-action text-right">
