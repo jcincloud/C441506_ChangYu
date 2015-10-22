@@ -502,16 +502,16 @@ body::after, #header::after, #main::after, #footer::after, .wrap::after, #menu::
   }
 }
 
-@media (min-width: 992px) {
-  #header, #main, #footer {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
 @media (max-width: 1399px) {
   #header, #main, #footer {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+@media (min-width: 992px) {
+  #header, #main, #footer {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 

@@ -71,14 +71,14 @@ body {@extend %contain;}
     @extend %container;
     @extend %contain;
 
-    @include media(lg-min) {
-        padding-left: $gutter+5 ;
-        padding-right: $gutter+5 ;
-    }
-
     @include media(lg) {
         padding-left: ($gutter)-5px;
         padding-right: ($gutter)-5px;
+    }
+
+    @include media(lg-min) {
+        padding-left: $gutter+5 ;
+        padding-right: $gutter+5 ;
     }
 }
 

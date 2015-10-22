@@ -175,15 +175,12 @@ $medias: (
 
     sm:       (max-width: break(md)-1),
     sm-min:   (min-width: break(sm)),
-    sm-only:  (min-width: break(sm)) and (max-width: break(md)-1),
 
     md:       (max-width: break(lg)-1),
     md-min:   (min-width: break(md)),
-    md-only:  (min-width: break(md)) and (max-width: break(lg)-1),
 
     lg:       (max-width: break(xl)-1),
     lg-min:   (min-width: break(lg)),
-    lg-only:  (min-width: break(lg)) and (max-width: break(xl)-1),
 
     xl:       (min-width: break(xl))
 );

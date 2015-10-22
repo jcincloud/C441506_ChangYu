@@ -14,3 +14,10 @@
         }
     }
 }
+@mixin media-only($screen) {
+    @include media(#{$screen}-min) {
+        @include media ($screen) {
+            @content;
+        }
+    }
+}

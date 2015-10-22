@@ -1405,16 +1405,16 @@ form .row, form .philosophy, form .quality ul, .quality form ul, form .environme
   }
 }
 
-@media (min-width: 992px) {
-  #header, #main, #footer {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
 @media (max-width: 1399px) {
   #header, #main, #footer {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+@media (min-width: 992px) {
+  #header, #main, #footer {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -2154,11 +2154,12 @@ h4.title {
   font-size: 1.25em;
   color: #3D7671;
 }
-@media (max-width: 1399px) {
+@media (min-width: 992px) and (max-width: 1399px) {
   .philosophy .grid .title small {
     font-size: 0.75em;
   }
 }
+
 @media (max-width: 767px) {
   .philosophy .grid {
     margin-bottom: 0;
@@ -2377,7 +2378,7 @@ h4.title {
 .pro-intro .grid ul li a:hover {
   color: #2e98b8;
 }
-@media (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .pro-intro .grid::after {
     display: none;
   }
@@ -2398,6 +2399,7 @@ h4.title {
     margin-left: 50px;
   }
 }
+
 @media (max-width: 767px) {
   .pro-intro .grid {
     margin-bottom: 10px;
