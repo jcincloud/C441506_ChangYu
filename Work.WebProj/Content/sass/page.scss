@@ -313,6 +313,8 @@ h4.title {
         }
     }
 
+    @include media(lg-min) {display:block !important;} // fix for toggled sidebar in mobile
+
     @include media(md) {
         display: none;
         float: none;
@@ -948,7 +950,7 @@ body.fixed {
     overflow: hidden !important;
 
     @include media(md) {
-        // fixed for mobile browsers
+        // fix for overflow bug in mobile
         width: 100%;
         height: 100%;
         position: fixed;

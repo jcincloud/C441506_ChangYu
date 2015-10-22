@@ -115,16 +115,35 @@
             </li>
         </ul> -->
         <div class="copyright"><span>t-POWER</span>&copy; 2015</div>
+        <a href="#header" class="goTop">TOP</a>
     </div>
 </footer><!-- footer -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-    $(".menu-trigger").click(function(event){
+    // 回頂端
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.goTop').fadeIn();
+        } else {
+            $('.goTop').fadeOut();
+        }
+    });
+    $('.goTop').click(function (event) {
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 1000);
+        event.preventDefault();
+    });
+
+    // 行動裝置的主選單
+    $(".menu-trigger").click(function (event){
         $("body").toggleClass("toggled");
         event.preventDefault();
     });
-    $(".submenu-trigger .btn").click(function(event){
+
+    // 行動裝置的產品左選單
+    $(".submenu-trigger .btn").click(function (event){
         $("#sidebar").slideToggle();
         event.preventDefault();
     });

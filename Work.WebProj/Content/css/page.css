@@ -618,7 +618,7 @@ caption {
   display: none;
 }
 
-.circle, #footer .product dd::before, .pro-intro .grid h4 em, .pro-intro .grid ul li::before {
+.circle, #footer .product dd::before, .goTop, .pro-intro .grid h4 em, .pro-intro .grid ul li::before {
   border-radius: 50%;
 }
 
@@ -1808,22 +1808,31 @@ form .row, form .philosophy, form .quality ul, .quality form ul, form .environme
 }
 
 .goTop {
+  display: block;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
   display: none;
-  transition: all .5s ease;
   opacity: .8;
+  background: #2e98b8;
+  color: #fff;
   z-index: 70;
   position: fixed;
+  transition: none;
   bottom: 10px;
   right: 15px;
-  width: 50px;
-  height: 30px;
-  font: 0/0 a;
-  text-indent: -9999px;
-  background: url(../images/gotop.png) 0 0 no-repeat;
 }
 .goTop:hover {
-  background-image: url(../images/gotop2.png);
   opacity: 1;
+  color: #fff;
+}
+@media (max-width: 543px) {
+  .goTop {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+  }
 }
 
 .title {
