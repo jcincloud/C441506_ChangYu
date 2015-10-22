@@ -5,7 +5,8 @@
 $img-path2:             '../images/index';
 
 $content-spacing:       0;
-$banner-height:         770px;
+$content-spacing-sm:    0;
+$banner-height:         100%;
 
 
 // import
@@ -31,25 +32,90 @@ $banner-height:         770px;
 
 // main
 // ----------------------------------------------------------------------
-#main { padding: 0; }
+#wrapper { 
+    height:100%;
+    min-height: 1000px;
+
+    @include media(sm) {min-height: 650px;}
+}
+
+#main { 
+    height:100%;
+    padding: 0;
+}
 
 #banner {
     width: 100%;
+    height:100%;
     margin-top: -($header-height);
 
     ul {
+        height:100%;
         margin-bottom:0;
         list-style: none;
 
         li {
             height: $banner-height;
+            position: relative;
 
-            * { display: none; }
+            h2, p {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            h2 {
+                @include text-pic('slogan1.png',628px,66px);
+                top:347px;
+            }
+
+            p {
+                @include text-pic('slogan2.png',535px,103px);
+                top:457px;
+            }
+        }
+    }
+
+    @include media(sm) {
+        margin-top:-149px;
+
+        ul {
+            li {
+                h2, p {background-size:100%;}
+                h2 {
+                    width:468px;
+                    height:51px;
+                    top:188px;
+                }
+                p {
+                    width:399px;
+                    height:78px;
+                    top:270px;
+                }
+            }
+        }
+    }
+
+    @include media(xs) {
+        ul {
+            li {
+                h2 {
+                    width:300px;
+                    height:35px;
+                    top:188px;
+                }
+                p {
+                    width:300px;
+                    height:61px;
+                    top:270px;
+                }
+            }
         }
     }
 }
 @for $i from 1 through 3 {
     #banner .i#{$i} {
         background: url(#{$img-path2}/banner#{$i}.jpg) no-repeat center top;
+        background-size:cover;
     }
 }

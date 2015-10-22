@@ -34,7 +34,7 @@ $one_col: 100% / $cols;
 }
 
 @mixin make-cols-offset($class: md) {
-    @for $i from 1 through $cols {
+    @for $i from 0 through $cols {
         @if($class == md) {
             .col-offset-#{$i} { @include cols-offset($i); }
         }
@@ -69,12 +69,14 @@ $one_col: 100% / $cols;
 //     }
 // }
 
-@include make-cols; // 預設: md
-@include media(sm) { @include make-cols(sm); }
-@include media(xs) { @include make-cols(xs); }
-@include media(lg) { @include make-cols(lg); }
+@include make-cols(md); // 預設: md
+@include media(xl)     { @include make-cols(xl); }
+@include media(lg-min) { @include make-cols(lg); }
+@include media(sm)     { @include make-cols(sm); }
+@include media(xs)     { @include make-cols(xs); }
 
-@include make-cols-offset; // 預設: md
-@include media(sm) { @include make-cols-offset(sm); }
-@include media(xs) { @include make-cols-offset(xs); }
-@include media(lg) { @include make-cols-offset(lg); }
+@include make-cols-offset(md); // 預設: md
+@include media(xl)     { @include make-cols-offset(xl); }
+@include media(lg-min) { @include make-cols-offset(lg); }
+@include media(sm)     { @include make-cols-offset(sm); }
+@include media(xs)     { @include make-cols-offset(xs); }

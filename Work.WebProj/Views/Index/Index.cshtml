@@ -5,25 +5,32 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
+@section css {
+<link href="~/Content/css/swiper.min.css" rel="stylesheet">
+}
+
 @section Scripts {
 <script src="~/Content/js/swiper/swiper.min.js"></script>
 <script>
 var swiper = new Swiper('.swiper-container', {
-    pagination: '.swiper-pagination',
-    slidesPerView: 2,
-    paginationClickable: true,
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    spaceBetween: 70,
-    autoplay: 2500
+    slidesPerView: 1,
+    autoplay: 2500,
+    loop: true
 });
 </script>
 }
 
-<div id="banner">
+<div id="banner" class="swiper-container">
 
-    <ul>
-        <li class="i1">
+    <ul class="swiper-wrapper">
+        <li class="i1 swiper-slide">
+            <h2>Organization Attitude</h2>
+            <p>
+                <em>Moderate Hardheaded Growth</em>
+                穩健、踏實、高速成長
+            </p>
+        </li>
+        <li class="i2 swiper-slide">
             <h2>Organization Attitude</h2>
             <p>
                 <em>Moderate Hardheaded Growth</em>

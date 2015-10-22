@@ -8,8 +8,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    @* <meta name="keywords" content="@Resources.ResWeb.keywords">
-    <meta name="description" content="@Resources.ResWeb.description"> *@
+    <meta name="keywords" content="積層晶片電感, 積層晶片變壓器, 積層晶片濾波器, 積層電阻式電感, 電子組件製造, 電子組件加工, 桃園, 楊梅, 倡譽, 倡譽興業">
+    <meta name="description" content="倡譽興業有限公司公司於民國97年成立於桃園縣，經營項目包括：各種電子組件之製造加工及買賣、積層晶片電感、積層晶片變壓器、 積層晶片濾波器之製造加工及買賣、積層電阻式電感之製造加工及買賣、前項產品之買賣及進出口貿易。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title:@Resources.Res.System_Name</title>
     <!--[if lt IE 9]>
     <script src="//ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -18,7 +19,6 @@
     <script>
         var gb_approot = '@Url.Content("~")';
     </script>
-    <link href="~/Content/css/swiper.min.css" rel="stylesheet">
     @if (ViewBag.IsFirstPage)
     {
         <link href="~/Content/css/index.css" rel="stylesheet">
@@ -41,15 +41,24 @@
                 <li><strong>Quality Assurance</strong>ISO 9001　TS 16949</li>
                 <li><strong>Environment Quality Policy</strong>ISO 14001　SGS Test Report</li>
             </ul>
-        </div><!-- wrap //-->
+            <button class="menu-trigger"></button>
             <nav id="menu">
-                <header class="hidden"><h2>主選單</h2></header>
+                <header class="toggle">
+                    <h2>MENU</h2>
+                </header>
                 <a href="~/index">HOME</a>
                 <a href="~/AboutUs">公司簡介</a>
-                <a href="~/Products/list">產品介紹</a>
+                <a class="sub-title" href="~/Products/list">產品介紹</a>
+                <ul class="sub">
+                    @foreach (var i in sidebar)
+                    {
+                    <li><a href="~/Products/content?l2_id=@i.first_l2_id">@i.l1_name</a></li>
+                    }
+                </ul>
                 <a href="~/Inquire">線上諮詢</a>
                 <a href="~/ContactUs">聯絡我們</a>
             </nav>
+        </div><!-- wrap //-->
     </header><!-- header //-->
 
     <main id="main">
@@ -110,6 +119,16 @@
 </footer><!-- footer -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+    $(".menu-trigger").click(function(event){
+        $("body").toggleClass("toggled");
+        event.preventDefault();
+    });
+    $(".submenu-trigger .btn").click(function(event){
+        $("#sidebar").slideToggle();
+        event.preventDefault();
+    });
+</script>
 @RenderSection("Scripts", required: false)
 
 </body>

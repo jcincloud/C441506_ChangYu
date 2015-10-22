@@ -29,6 +29,8 @@ label {
     max-width: 100%; // 強制 IE8 能容納長元素
     margin-bottom: 5px;
     font-weight: bold;
+
+    &[class*="col-"] {margin-bottom:0;}
 }
 
 // Normalize form controls
@@ -101,8 +103,12 @@ output {
 
 .form-element-inline {
     margin-left: $gutter/2;
+    font-weight: normal;
 
-     &:first-child {
+     &:first-child {margin-left:0;}
+
+     @include media(xs) {
+        display:block;
         margin-left:0;
      }
 }

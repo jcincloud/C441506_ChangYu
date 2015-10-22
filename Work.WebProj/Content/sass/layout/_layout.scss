@@ -2,18 +2,20 @@
 // wrapper
 $wrapper-bg:            url(#{$img-path}/bg.jpg) center 0 repeat-y fixed;
 $content-spacing:       90px !default;
+$content-spacing-sm:    52px !default;
 
 // header
 $header-bg:             url(#{$img-path}/bgHeader.png) center 0 repeat-x;
 $header-height:         228px;
 
-$menu:                  (top, 158px), (left, 0);
-$menu-height:           70px; 
+$menu-height:           70px;
+$menu-height-sm:        100%;
 $menu-link:             transparent;
 $menu-link-hover:       $brand-secondary;
 
 // footer
 $footer-height:         298px !default;
+$footer-height-sm:      225px !default;
 $footer-bg:             #113a4d;
 $goTop:                 (bottom, 10px), (right, 15px) !default;
 
@@ -25,9 +27,9 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     position: relative;
 }
 
-// 有最大寬度限制，非滿版
+// 最大寬度限制 (非滿版)
 %center {
-    max-width: max-width(xl);
+    max-width: wrap-width(xl);
     margin: 0 auto;
 }
 
@@ -35,9 +37,16 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 %contain {
     @extend %clearfix;
 
-    // 無 RWD - 有最小寬度限制 (至少 lg 的寬度)
+    // 最小寬度限制 (無 RWD - 至少 lg 的寬度)
     // min-width: wrap-width(lg); 
+
+    // 最小寬度限制 (有 RWD - 至少 xxs 的寬度)
+    @include media(xs) {
+        min-width: wrap-width(xxs);
+    }
 }
+
+body {@extend %contain;}
 
 #wrapper {
     @extend %container;
@@ -47,17 +56,20 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     min-height: 100%;
     padding-bottom: $footer-height + $content-spacing; // 內容與footer間距
     background: $wrapper-bg;
+
+    @include media(sm) {padding-bottom: $footer-height-sm + $content-spacing-sm;}
 }
 
 .wrap {
     @extend %container;
     @extend %center;
-    @extend %contain;
     @extend .text-left;
+    @extend %clearfix;
 }
 
 #header, #main, #footer {
     @extend %container;
+    @extend %contain;
 
     @include media(lg-min) {
         padding-left: $gutter+5 ;
@@ -65,8 +77,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     }
 
     @include media(lg) {
-        padding-left: $gutter;
-        padding-right: $gutter;
+        padding-left: ($gutter)-5px;
+        padding-right: ($gutter)-5px;
     }
 }
 
@@ -83,8 +95,6 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     height: $header-height;
     z-index: z(header);
 
-    //background: $header-bg;
-
     &::before {
         content:" ";
         display: block;
@@ -93,6 +103,13 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         
         @include size (100%, $menu-height);
         @include absolute(top 158px left 0);
+    }
+
+    @include media(sm) {
+        height: 149px;
+        border-bottom: 5px solid $brand-primary;
+
+        &::before {display: none;}
     }
 }
 
@@ -107,19 +124,48 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     z-index: z(logo);
 
     @include text-pic('logo.png', 340px, 135px);
+
+    @include media(sm) {
+        width: 300px;
+        height: 117px;
+        background-size:100%;
+
+        position: static;
+        margin:15px auto;
+    }
 }
 
-#menu {
-    width: 100%;
-    z-index: z(menu);
+// == 行動版主選單 開關
+.menu-trigger {
+    display: none;
 
+    width:45px;
+    height: 43px;
+
+    background:$brand-primary url(#{$img-path}/iconMenu.gif) no-repeat center center;
+    border:none;
+
+    @include absolute(left -10px top 0);
+
+    &:hover {background-color:darken($brand-primary,10%);}
+
+    .toggled & {background-image:url(#{$img-path}/iconMenuClose.gif);}
+
+    @include media(sm) {display:block;}
+}
+#menu {
     @extend %clearfix;
 
-    @each $attr, $value in $menu {
-        #{$attr}: $value;
-    }
+    width: 100%;
+    height: $menu-height;
 
-    a {
+    top: 158px;
+    left: 0;
+    z-index: z(menu);
+
+    .toggle {display: none;}
+
+    > a {
         background: $menu-link;
         color: #fff;
         font-size: em(22px);
@@ -144,6 +190,115 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
             background: $menu-link-hover;
         }
     }
+
+    .sub {display:none;}
+
+    @include media(sm) {
+        width:168px;
+        height:$menu-height-sm;
+        background:$brand-primary;
+
+        position: fixed;
+        left:-168px; top:0;
+        z-index: z(overlay);
+        overflow-y: auto;
+
+        .toggle {
+            display: block;
+            border-bottom:1px solid #69A6B8;
+
+            h2 {
+                width:95px;
+                background:$brand-primary url(#{$img-path}/iconMenu.gif) no-repeat left center;
+                background-size: 19px;
+
+                color:#fff;
+                font-size: em(20px);
+                letter-spacing: 0.1em;
+
+                text-align: right;
+
+                margin:20px auto;
+            }
+        }
+
+        .toggled & {left:0;}
+
+        > a {
+            border-bottom:1px solid #69A6B8;
+
+            float:none;
+            width:100%;
+
+            font-size: em(18px);
+            font-weight: normal;
+            letter-spacing: 0.03em;
+            line-height: 100%;
+            text-align: left;
+
+            padding:13px 10px;
+
+            $selector: ();
+            @each $item in $pages {
+                $i: index($pages, $item);
+
+                $selector: append($selector, unquote(".#{$item} &:nth-of-type(#{$i})"), comma);
+            }
+            &:hover,
+            #{$selector} {
+                background:none;
+                color:lighten($brand-secondary,10%);
+            }
+
+            &.sub-title {
+                position: relative;
+
+                border-bottom:0;
+                padding-bottom:3px;
+
+                &::after {
+                    content: " ";
+                    display: block;
+                    width:11px;
+                    height:6px;
+
+                    background: $brand-primary url(#{$img-path}/iconSubmenu.gif) no-repeat right center;
+
+                    @include absolute(left 5.5em top 1.2em);
+                }
+            }
+        }
+
+        .sub {
+            display: block;
+            border-bottom:1px solid #69A6B8;
+
+            margin-bottom: 0;
+            padding-bottom: 13px;
+
+            li {
+                margin-top:7px;
+                padding:0 16px;
+
+                a {
+                    font-size: em(15px);
+                    color:#E6E6E6;
+
+                    &:hover {color:lighten($brand-secondary,10%);}
+                }
+            }
+
+        }
+    }
+}
+
+@include media(sm) {
+    body.toggled {
+        margin-left:168px;
+        overflow:hidden; 
+
+        #wrapper, #footer {width:calc(100% + 168px)}
+    }
 }
 
 .award {
@@ -153,6 +308,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 
     li {
         background:url(#{$img-path}/iconAward.png) no-repeat;
+        height:40px;
 
         font-size: em(13px);
         color:#789bb3;
@@ -172,6 +328,20 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 
             font-size: em(15px,13px);
             color:#2c5871;
+        }
+    }
+
+    @include media(sm) {
+        top:10px;
+        margin-top: -1em; // fixed for hidden text
+
+        li {
+            @include text-hide;
+
+            width:40px;
+            margin-right:10px;
+            padding:0;
+            &:last-child {margin-right:0;}
         }
     }
 }
@@ -203,12 +373,14 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         float: left;
         color: #fff;
 
-        &:first-child { width: cp(290px); }
+        width: cp(290px);
+
         &.product { width: cp(320px); }
         &.contact { width: cp(370px); }
     }
     dt {
         font-size: em(23px);
+        font-weight:normal; 
         letter-spacing: 0.03em;
         margin-bottom: 45px;
 
@@ -232,7 +404,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
     }    
     dd {
         font-size: em(18px);
-        margin: 20px 0;
+        margin-bottom: 20px;
+        color: #BFBCBE;
 
         a { 
             color: #bfbcbe;
@@ -241,7 +414,7 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         }
     }
 
-    .product dt, .contact dt { margin-bottom: 0; }
+    .product dt, .contact dt { margin-bottom: 30px; }
 
     .product dd {
         position: relative;
@@ -275,7 +448,28 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
         &:nth-of-type(3) { clear: both; }
 
         span { display: none }
-        strong { font-size: em(18px, 14px); }            
+        strong {
+            font-size: em(18px, 14px);
+            letter-spacing: 0.05em;
+        }            
+    }
+
+    @include media(sm) {
+        margin-top: -($footer-height-sm);
+        height: $footer-height-sm;
+
+        dl {
+            display: none;
+
+            &.contact {
+                display: block;
+                width:100%;
+                margin:60px 0 0 0;
+            }
+
+            dt {display:none;}
+            dd {margin-bottom:18px;}
+        }
     }
 }
 
@@ -292,6 +486,8 @@ $goTop:                 (bottom, 10px), (right, 15px) !default;
 
         margin-right:10px;
     }
+
+    @include media(sm) {left: 5px; top: 25px;}
 }
 
 .goTop {

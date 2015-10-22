@@ -1,7 +1,7 @@
 ﻿@model ProcCore.Business.DB0.ProductContentInfo
 @{
     ViewBag.Title = "產品介紹";
-    ViewBag.BodyClass = "Products";
+    ViewBag.BodyClass = "Products p2";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
@@ -73,13 +73,14 @@
         <li><a href="~/Index">HOME</a></li>
         <li><a href="~/Products/list">產品介紹</a></li>
         <li>Inductance 電感</li>
+        <li class="submenu-trigger"><button class="btn">產品分類 ▼</button></li>
     </ul>
 
     <aside id="sidebar">
         <h3>產品 Products</h3>
         @foreach (var i in Model.p_list)
         {
-            <article>
+            <article class="pro-cat">
                 <h4>@i.l1_name</h4>
                 <ul class="submenu">
                     @foreach (var j in i.l2_list)
@@ -98,7 +99,7 @@
         }
     </aside>
 
-    <section id="content" class="float-r hidden">
+    <section id="content" class="hidden">
 
         <header class="intro">
             <h3>@ViewBag.l2_name</h3>

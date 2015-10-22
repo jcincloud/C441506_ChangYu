@@ -390,13 +390,13 @@ address {
   line-height: 1.25;
 }
 
-.wrap::before, #menu::before, .wrap::after, #menu::after,
+body::before, #header::before, #main::before, #footer::before, .wrap::before, #menu::before, body::after, #header::after, #main::after, #footer::after, .wrap::after, #menu::after,
 .clearfix::before,
 .clearfix::after {
   content: " ";
   display: table;
 }
-.wrap::after, #menu::after,
+body::after, #header::after, #main::after, #footer::after, .wrap::after, #menu::after,
 .clearfix::after {
   clear: both;
 }
@@ -481,14 +481,25 @@ address {
 }
 
 .wrap {
-  max-width: max-width(xl);
+  max-width: 1400px;
   margin: 0 auto;
+}
+
+@media (max-width: 543px) {
+  body, #header, #main, #footer {
+    min-width: 320px;
+  }
 }
 
 #wrapper {
   min-height: 100%;
   padding-bottom: 298px;
   background: url(../images/bg.jpg) center 0 repeat-y fixed;
+}
+@media (max-width: 767px) {
+  #wrapper {
+    padding-bottom: 225px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -499,8 +510,8 @@ address {
 }
 @media (max-width: 1399px) {
   #header, #main, #footer {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -522,6 +533,15 @@ address {
   top: 158px;
   left: 0;
 }
+@media (max-width: 767px) {
+  #header {
+    height: 149px;
+    border-bottom: 5px solid #2e98b8;
+  }
+  #header::before {
+    display: none;
+  }
+}
 
 .logo, #menu, .award {
   position: absolute;
@@ -539,14 +559,49 @@ address {
   text-indent: -9999px;
   background: url(../images/logo.png) 0 0 no-repeat;
 }
+@media (max-width: 767px) {
+  .logo {
+    width: 300px;
+    height: 117px;
+    background-size: 100%;
+    position: static;
+    margin: 15px auto;
+  }
+}
+
+.menu-trigger {
+  display: none;
+  width: 45px;
+  height: 43px;
+  background: #2e98b8 url(../images/iconMenu.gif) no-repeat center center;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: -10px;
+}
+.menu-trigger:hover {
+  background-color: #24768f;
+}
+.toggled .menu-trigger {
+  background-image: url(../images/iconMenuClose.gif);
+}
+@media (max-width: 767px) {
+  .menu-trigger {
+    display: block;
+  }
+}
 
 #menu {
   width: 100%;
-  z-index: 60;
+  height: 70px;
   top: 158px;
   left: 0;
+  z-index: 60;
 }
-#menu a {
+#menu .toggle {
+  display: none;
+}
+#menu > a {
   background: transparent;
   color: #fff;
   font-size: 1.375em;
@@ -557,10 +612,98 @@ address {
   float: left;
   width: 20%;
 }
-#menu a:hover, .index #menu a:nth-of-type(1), .AboutUs #menu a:nth-of-type(2), .Products #menu a:nth-of-type(3), .Inquire #menu a:nth-of-type(4), .ContactUs #menu a:nth-of-type(5) {
+#menu > a:hover, .index #menu > a:nth-of-type(1), .AboutUs #menu > a:nth-of-type(2), .Products #menu > a:nth-of-type(3), .Inquire #menu > a:nth-of-type(4), .ContactUs #menu > a:nth-of-type(5) {
   background: #cb9b0c;
 }
+#menu .sub {
+  display: none;
+}
+@media (max-width: 767px) {
+  #menu {
+    width: 168px;
+    height: 100%;
+    background: #2e98b8;
+    position: fixed;
+    left: -168px;
+    top: 0;
+    z-index: 1001;
+    overflow-y: auto;
+  }
+  #menu .toggle {
+    display: block;
+    border-bottom: 1px solid #69A6B8;
+  }
+  #menu .toggle h2 {
+    width: 95px;
+    background: #2e98b8 url(../images/iconMenu.gif) no-repeat left center;
+    background-size: 19px;
+    color: #fff;
+    font-size: 1.25em;
+    letter-spacing: 0.1em;
+    text-align: right;
+    margin: 20px auto;
+  }
+  .toggled #menu {
+    left: 0;
+  }
+  #menu > a {
+    border-bottom: 1px solid #69A6B8;
+    float: none;
+    width: 100%;
+    font-size: 1.125em;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+    line-height: 100%;
+    text-align: left;
+    padding: 13px 10px;
+  }
+  #menu > a:hover, .index #menu > a:nth-of-type(1), .AboutUs #menu > a:nth-of-type(2), .Products #menu > a:nth-of-type(3), .Inquire #menu > a:nth-of-type(4), .ContactUs #menu > a:nth-of-type(5) {
+    background: none;
+    color: #f1bb19;
+  }
+  #menu > a.sub-title {
+    position: relative;
+    border-bottom: 0;
+    padding-bottom: 3px;
+  }
+  #menu > a.sub-title::after {
+    content: " ";
+    display: block;
+    width: 11px;
+    height: 6px;
+    background: #2e98b8 url(../images/iconSubmenu.gif) no-repeat right center;
+    position: absolute;
+    top: 1.2em;
+    left: 5.5em;
+  }
+  #menu .sub {
+    display: block;
+    border-bottom: 1px solid #69A6B8;
+    margin-bottom: 0;
+    padding-bottom: 13px;
+  }
+  #menu .sub li {
+    margin-top: 7px;
+    padding: 0 16px;
+  }
+  #menu .sub li a {
+    font-size: 0.9375em;
+    color: #E6E6E6;
+  }
+  #menu .sub li a:hover {
+    color: #f1bb19;
+  }
+}
 
+@media (max-width: 767px) {
+  body.toggled {
+    margin-left: 168px;
+    overflow: hidden;
+  }
+  body.toggled #wrapper, body.toggled #footer {
+    width: calc(100% + 168px);
+  }
+}
 .award {
   right: 0;
   top: 16px;
@@ -568,6 +711,7 @@ address {
 }
 .award li {
   background: url(../images/iconAward.png) no-repeat;
+  height: 40px;
   font-size: 0.8125em;
   color: #789bb3;
   margin-right: 30px;
@@ -583,6 +727,22 @@ address {
   display: block;
   font-size: 1.15385em;
   color: #2c5871;
+}
+@media (max-width: 767px) {
+  .award {
+    top: 10px;
+    margin-top: -1em;
+  }
+  .award li {
+    font: 0/0 a;
+    text-indent: -9999px;
+    width: 40px;
+    margin-right: 10px;
+    padding: 0;
+  }
+  .award li:last-child {
+    margin-right: 0;
+  }
 }
 
 #footer {
@@ -607,8 +767,6 @@ address {
   margin-top: 35px;
   float: left;
   color: #fff;
-}
-#footer dl:first-child {
   width: 29%;
 }
 #footer dl.product {
@@ -619,6 +777,7 @@ address {
 }
 #footer dt {
   font-size: 1.4375em;
+  font-weight: normal;
   letter-spacing: 0.03em;
   margin-bottom: 45px;
 }
@@ -641,7 +800,8 @@ address {
 }
 #footer dd {
   font-size: 1.125em;
-  margin: 20px 0;
+  margin-bottom: 20px;
+  color: #BFBCBE;
 }
 #footer dd a {
   color: #bfbcbe;
@@ -650,7 +810,7 @@ address {
   color: #fff;
 }
 #footer .product dt, #footer .contact dt {
-  margin-bottom: 0;
+  margin-bottom: 30px;
 }
 #footer .product dd {
   position: relative;
@@ -698,6 +858,27 @@ address {
 }
 #footer .contact dd strong {
   font-size: 1.28571em;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 767px) {
+  #footer {
+    margin-top: -225px;
+    height: 225px;
+  }
+  #footer dl {
+    display: none;
+  }
+  #footer dl.contact {
+    display: block;
+    width: 100%;
+    margin: 60px 0 0 0;
+  }
+  #footer dl dt {
+    display: none;
+  }
+  #footer dl dd {
+    margin-bottom: 18px;
+  }
 }
 
 .copyright {
@@ -712,6 +893,12 @@ address {
   font-size: 1.33333em;
   letter-spacing: 0.1em;
   margin-right: 10px;
+}
+@media (max-width: 767px) {
+  .copyright {
+    left: 5px;
+    top: 25px;
+  }
 }
 
 .goTop {
@@ -733,33 +920,98 @@ address {
   opacity: 1;
 }
 
+#wrapper {
+  height: 100%;
+  min-height: 1000px;
+}
+@media (max-width: 767px) {
+  #wrapper {
+    min-height: 650px;
+  }
+}
+
 #main {
+  height: 100%;
   padding: 0;
 }
 
 #banner {
   width: 100%;
+  height: 100%;
   margin-top: -228px;
 }
 #banner ul {
+  height: 100%;
   margin-bottom: 0;
   list-style: none;
 }
 #banner ul li {
-  height: 770px;
+  height: 100%;
+  position: relative;
 }
-#banner ul li * {
-  display: none;
+#banner ul li h2, #banner ul li p {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#banner ul li h2 {
+  width: 628px;
+  height: 66px;
+  font: 0/0 a;
+  text-indent: -9999px;
+  background: url(../images/slogan1.png) 0 0 no-repeat;
+  top: 347px;
+}
+#banner ul li p {
+  width: 535px;
+  height: 103px;
+  font: 0/0 a;
+  text-indent: -9999px;
+  background: url(../images/slogan2.png) 0 0 no-repeat;
+  top: 457px;
+}
+@media (max-width: 767px) {
+  #banner {
+    margin-top: -149px;
+  }
+  #banner ul li h2, #banner ul li p {
+    background-size: 100%;
+  }
+  #banner ul li h2 {
+    width: 468px;
+    height: 51px;
+    top: 188px;
+  }
+  #banner ul li p {
+    width: 399px;
+    height: 78px;
+    top: 270px;
+  }
+}
+@media (max-width: 543px) {
+  #banner ul li h2 {
+    width: 300px;
+    height: 35px;
+    top: 188px;
+  }
+  #banner ul li p {
+    width: 300px;
+    height: 61px;
+    top: 270px;
+  }
 }
 
 #banner .i1 {
   background: url(../images/index/banner1.jpg) no-repeat center top;
+  background-size: cover;
 }
 
 #banner .i2 {
   background: url(../images/index/banner2.jpg) no-repeat center top;
+  background-size: cover;
 }
 
 #banner .i3 {
   background: url(../images/index/banner3.jpg) no-repeat center top;
+  background-size: cover;
 }
