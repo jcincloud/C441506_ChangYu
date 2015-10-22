@@ -2042,6 +2042,11 @@ h4.title {
 #sidebar .submenu li a:hover::before, #sidebar .submenu li a.active::before {
   border-left-color: #C1761E;
 }
+@media (min-width: 992px) {
+  #sidebar {
+    display: block !important;
+  }
+}
 @media (max-width: 991px) {
   #sidebar {
     display: none;
