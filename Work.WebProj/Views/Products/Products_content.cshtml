@@ -102,15 +102,19 @@
     <section id="content" class="hidden">
 
         <header class="intro">
-            <h3>@ViewBag.l2_name</h3>
 
             @* 只有 分類 1-1 才有頁籤切換 *@
             @if (ViewBag.l2_id == 1)
             {
+                <h3 class="float-l">@ViewBag.l2_name</h3>
+
                 <ul class="tab list-inline">
                     <li><a class="active tab-trigger" href="#tab1">SMD 繞線式功率電感</a></li>
                     <li><a class="tab-trigger" href="#tab2">一體式電感</a></li>
                 </ul>
+            }
+            else {
+                <h3>@ViewBag.l2_name</h3>
             }
 
             <p class="lead">Multilayer chip beads and inductors</p>

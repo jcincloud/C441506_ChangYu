@@ -359,13 +359,13 @@ mark {
   padding: .2em;
 }
 
-hr, .intro h2::after, .intro h3::after, .pro-detail .pro-content .title::after {
+hr, .intro h2::after, .intro h3::after, .intro h3.float-l::after, .pro-detail .pro-content .title::after {
   height: 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #f9f9f9;
 }
 
-.intro h2::after, .intro h3::after, .pro-detail .pro-content .title::after {
+.intro h2::after, .intro h3::after, .intro h3.float-l::after, .pro-detail .pro-content .title::after {
   height: 2px;
 }
 
@@ -1601,7 +1601,10 @@ form .row, form .philosophy, form .quality ul, .quality form ul, form .environme
 @media (max-width: 767px) {
   body.toggled {
     margin-left: 168px;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+    position: fixed;
   }
   body.toggled #wrapper, body.toggled #footer {
     width: calc(100% + 168px);
@@ -1855,13 +1858,20 @@ h4.title {
 .intro h3 {
   color: #AC6C28;
   font-size: 1.9375em;
-  float: left;
   margin: 15px 20px 0 0;
 }
 .intro h3::after {
   content: " ";
   display: block;
   width: 100%;
+  margin-top: 10px;
+}
+.intro h3.float-l {
+  float: left;
+  position: static;
+  margin: 15px 20px 0 0;
+}
+.intro h3.float-l::after {
   position: absolute;
   bottom: 33px;
   left: 0;
@@ -1893,7 +1903,7 @@ h4.title {
     margin-top: 0;
     margin-bottom: 0;
   }
-  .intro h3::after {
+  .intro h3.float-l::after {
     bottom: 0;
   }
   .intro p {
@@ -2043,19 +2053,6 @@ h4.title {
     margin-bottom: 30px;
     padding: 0;
     overflow: hidden;
-  }
-  #sidebar::before {
-    display: inline-block;
-    border: 6px solid transparent;
-    width: 0;
-    height: 0;
-    border-bottom-color: #24768f;
-    border-bottom-width: block;
-    border-top-width: 12px-block;
-    position: absolute;
-    top: -12px;
-    right: 12px;
-    content: " ";
   }
   #sidebar h3 {
     background: #24768f;
@@ -2544,7 +2541,10 @@ h4.title {
 }
 
 body.fixed {
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  position: fixed;
 }
 
 #lb-overlay {
