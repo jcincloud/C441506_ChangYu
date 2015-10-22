@@ -349,6 +349,14 @@
     <Content Include="Content\css\swiper.min.css" />
     <Content Include="Content\css\toastr.css" />
     <Content Include="Content\font\AvantGardeITCbyBT-Book.svg" />
+    <Content Include="Content\images\AboutUs\iso14001.jpg" />
+    <Content Include="Content\images\AboutUs\iso9001.jpg" />
+    <Content Include="Content\images\AboutUs\phil1.jpg" />
+    <Content Include="Content\images\AboutUs\phil2.jpg" />
+    <Content Include="Content\images\AboutUs\phil3.jpg" />
+    <Content Include="Content\images\AboutUs\phil4.jpg" />
+    <Content Include="Content\images\AboutUs\sgs.jpg" />
+    <Content Include="Content\images\AboutUs\ts16949.jpg" />
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bgFooter.png" />
     <Content Include="Content\images\iconArrow.png" />
