@@ -440,7 +440,17 @@ var GirdForm = React.createClass({
 					</div>
 					{product_type_html}
 					<div className="form-group">
-                        <label className="col-xs-2 control-label">代表圖</label>
+						<label className="col-xs-2 control-label">產品名稱</label>
+						<div className="col-xs-4">
+							<input type="text" 							
+							className="form-control"	
+							value={fieldData.product_name}
+							onChange={this.changeFDValue.bind(this,'product_name')}
+							maxLength="64" />
+						</div>
+					</div>
+					<div className="form-group">
+                        <label className="col-xs-2 control-label">產品列表圖</label>
                         <div className="col-xs-4">
                             <MasterImageUpload
                             FileKind="Photo1"
@@ -452,34 +462,8 @@ var GirdForm = React.createClass({
                             url_sort={gb_approot+'Active/ProductData/axFSort'}
                             />
                         </div>
-                        <small className="help-inline col-xs-5 text-danger">限 1 張圖片</small>
+                        <small className="help-inline col-xs-5 text-danger">限 1 張圖片，檔案大小不可超過4.8MB</small>
                     </div>
-
-                    <div className="form-group">
-                        <label className="col-xs-2 control-label">內頁圖片</label>
-                        <div className="col-xs-4">
-                            <MasterImageUpload
-                            FileKind="Photo2"
-                            MainId={fieldData.product_id}
-                            ParentEditType={this.state.edit_type}
-                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
-                            url_list={gb_approot+'Active/ProductData/axFList'}
-                            url_delete={gb_approot+'Active/ProductData/axFDelete'}
-                            url_sort={gb_approot+'Active/ProductData/axFSort'}
-                            />
-                        </div>
-                        <small className="help-inline col-xs-5 text-danger">限 2 張圖片</small>
-                    </div>
-					<div className="form-group">
-						<label className="col-xs-2 control-label">產品名稱</label>
-						<div className="col-xs-4">
-							<input type="text" 							
-							className="form-control"	
-							value={fieldData.product_name}
-							onChange={this.changeFDValue.bind(this,'product_name')}
-							maxLength="64" />
-						</div>
-					</div>
 					<div className="form-group">
 						<label className="col-xs-2 control-label">排序</label>
 						<div className="col-xs-4">
@@ -517,14 +501,34 @@ var GirdForm = React.createClass({
 							</div>
 						</div>
 					</div>
-					<div className="form-group">
-						<label className="col-xs-2 control-label">產品說明</label>
-						<div className="col-xs-10">
-							<textarea col="30" rows="3" className="form-control" id="editor1"
-							value={fieldData.product_content}
-							onChange={this.changeFDValue.bind(this,'product_content')}
-							maxLength="256"></textarea>
+
+					<div className="bg-warning">
+
+	                    <div className="form-group">
+	                        <label className="col-xs-2 control-label">產品說明插圖</label>
+	                        <div className="col-xs-4">
+	                            <MasterImageUpload
+	                            FileKind="Photo2"
+	                            MainId={fieldData.product_id}
+	                            ParentEditType={this.state.edit_type}
+	                            url_upload={gb_approot + 'Active/ProductData/axFUpload'}
+	                            url_list={gb_approot+'Active/ProductData/axFList'}
+	                            url_delete={gb_approot+'Active/ProductData/axFDelete'}
+	                            url_sort={gb_approot+'Active/ProductData/axFSort'}
+	                            />
+	                        </div>
+	                        <small className="help-inline col-xs-5 text-danger">限 2 張圖片，檔案大小不可超過4.8MB</small>
+	                    </div>
+						<div className="form-group">
+							<label className="col-xs-2 control-label">產品說明</label>
+							<div className="col-xs-10">
+								<textarea col="30" rows="3" className="form-control" id="editor1"
+								value={fieldData.product_content}
+								onChange={this.changeFDValue.bind(this,'product_content')}
+								maxLength="256"></textarea>
+							</div>
 						</div>
+
 					</div>
 
 					<div className="form-action text-right">

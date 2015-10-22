@@ -140,6 +140,7 @@
                                         </section>
                                     </article>
                                     <ul class="pro-img">
+                                        <li><img src="@i.imgsrc" alt=""></li>
                                         @foreach (var img in i.imgsrcs)
                                         {
                                             <li><img src="@img" alt=""></li>
@@ -160,6 +161,7 @@
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail lb-content">
                                     <ul class="pro-img">
+                                        <li><img src="@i.imgsrc" alt=""></li>
                                         @foreach (var img in i.imgsrcs)
                                         {
                                             <li><img src="@img" alt=""></li>
@@ -179,8 +181,8 @@
                             <li>
                                 @if (i.product_name == null)
                             {
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <article class="pro-content full">
+                                    <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                        <article class="pro-content">
                                             <section class="editor">
                                                 @Html.Raw(i.product_content)
                                             </section>
@@ -194,8 +196,8 @@
                                 }
                                 else
                                 {
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <article class="pro-content full">
+                                    <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                        <article class="pro-content">
                                             <header><h4 class="title">@i.product_name</h4></header>
                                             <section class="editor">
                                                 @Html.Raw(i.product_content)
@@ -213,6 +215,21 @@
                         }
                     }
                 }
+
+                @* 沒標題沒說明文字沒插圖 - show 產品列表圖 *@
+                <li>
+                    <div id="test" class="pro-detail full lb-content">
+                        <ul class="pro-img">
+                            <li><img src="~/Content/images/pro-test.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                    <figure>
+                        <a class="zoom lb-trigger" href="#test">
+                            <img src="~/Content/images/pro-test.jpg" alt="">
+                        </a>
+                    </figure>
+
+                </li>
 
             </ul>
 
@@ -273,8 +290,8 @@
                             <li>
                                 @if (i.product_name == null)
                             {
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <article class="pro-content full">
+                                    <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                        <article class="pro-content">
                                             <section class="editor">
                                                 @Html.Raw(i.product_content)
                                             </section>
@@ -288,8 +305,8 @@
                                 }
                                 else
                                 {
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <article class="pro-content full">
+                                    <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                        <article class="pro-content">
                                             <header><h4 class="title">@i.product_name</h4></header>
                                             <section class="editor">
                                                 @Html.Raw(i.product_content)
@@ -365,8 +382,8 @@
                 <li>
                     @if (i.product_name == null)
                             {
-                            <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                <article class="pro-content full">
+                            <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                <article class="pro-content">
                                     <section class="editor">
                                         @Html.Raw(i.product_content)
                                     </section>
@@ -380,8 +397,8 @@
                             }
                             else
                             {
-                            <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                <article class="pro-content full">
+                            <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                <article class="pro-content">
                                     <header><h4 class="title">@i.product_name</h4></header>
                                     <section class="editor">
                                         @Html.Raw(i.product_content)
