@@ -1006,12 +1006,12 @@ namespace DotWeb.Controller
                 }
                 else
                 {
-                    return null;
+                    return Url.Content("../../Content/images/no-pic.jpg");
                 }
             }
             else
             {
-                return null;
+                return Url.Content("../../Content/images/no-pic.jpg");
             }
         }
         public string[] GetImgs(int id, string file_kind, string category1, string category2)

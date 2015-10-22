@@ -374,6 +374,7 @@
     <Content Include="Content\images\Index\slogan2.png" />
     <Content Include="Content\images\Inquire\pic.jpg" />
     <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\no-pic.jpg" />
     <Content Include="Content\images\pro-test.jpg" />
     <Content Include="Content\images\Products\test1.png" />
     <Content Include="Content\images\Products\test2.png" />
