@@ -462,7 +462,7 @@ var GirdForm = React.createClass({
                             url_sort={gb_approot+'Active/ProductData/axFSort'}
                             />
                         </div>
-                        <small className="help-inline col-xs-5 text-danger">限 1 張圖片，檔案大小不可超過4.8MB</small>
+                        <small className="help-inline col-xs-5 text-danger">限 1 張圖片，檔案大小不可超過4.8MB (建議尺寸 800 x 400)</small>
                     </div>
 					<div className="form-group">
 						<label className="col-xs-2 control-label">排序</label>
@@ -520,7 +520,7 @@ var GirdForm = React.createClass({
                             url_sort={gb_approot+'Active/ProductData/axFSort'}
                             />
                         </div>
-                        <small className="help-inline col-xs-5 text-danger">限 2 張圖片，每張圖片檔案大小不可超過4.8MB</small>
+                        <small className="help-inline col-xs-5 text-danger">最多 2 張圖片，每張圖片檔案大小不可超過4.8MB (建議尺寸 800 x 400)</small>
                     </div>
 					<div className="form-group">
 						<label className="col-xs-2 control-label">產品說明</label>

@@ -133,15 +133,24 @@
                         {//有文字,插圖不一定有
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    @if (i.product_content != null && i.product_name != null)
+                                    {
                                     <article class="pro-content">
-                                        @if (i.product_name != null)
-                                        {
-                                            <header><h4 class="title">@i.product_name</h4></header>
-                                        }
+                                        <header><h4 class="title">@i.product_name</h4></header>
                                         <section class="editor">
                                             @Html.Raw(i.product_content)
                                         </section>
                                     </article>
+                                    }
+
+                                    @if (i.product_content != null && i.product_name == null)
+                                    {
+                                    <article class="pro-content">
+                                        <section class="editor">
+                                            @Html.Raw(i.product_content)
+                                        </section>
+                                    </article>
+                                    }
 
                                     <ul class="pro-img">
                                         @if (i.imgsrc != null)
@@ -230,7 +239,7 @@
                         }
                         else
                         {
-                            @* 沒標題沒說明文字沒插圖 - show 產品列表圖 *@
+                            //沒說明文字沒插圖 - show 產品列表圖 *@
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
                                     <ul class="pro-img">
@@ -243,6 +252,7 @@
                                             <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
                                         }
                                     </ul>
+
                                 </div>
                                 <figure>
                                     @if (i.imgsrc != null)
