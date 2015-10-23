@@ -129,39 +129,84 @@
                 {
                     if (i.product_type == 1)
                     {
-                        if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
-                        {
+                        if (i.product_content != null || i.product_name != null)
+                        {//有文字,插圖不一定有
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail lb-content">
                                     <article class="pro-content">
-                                        <header><h4 class="title">@i.product_name</h4></header>
+                                        @if (i.product_name != null)
+                                        {
+                                            <header><h4 class="title">@i.product_name</h4></header>
+                                        }
                                         <section class="editor">
                                             @Html.Raw(i.product_content)
                                         </section>
                                     </article>
+
                                     <ul class="pro-img">
-                                        <li><img src="@i.imgsrc" alt=""></li>
-                                        @foreach (var img in i.imgsrcs)
+                                        @if (i.imgsrc != null)
                                         {
-                                            <li><img src="@img" alt=""></li>
+                                            <li><img src="@i.imgsrc" alt=""></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                        }
+                                        @if (i.imgsrcs != null)
+                                        {
+                                            foreach (var img in i.imgsrcs)
+                                            {
+                                                <li><img src="@img" alt=""></li>
+                                            }
                                         }
                                     </ul>
                                 </div>
-                                <figure>
-                                    <a class="lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
-                                        <figcaption>@i.product_name</figcaption>
-                                    </a>
-                                </figure>
-
+                                @if (i.product_name == null)
+                                {
+                                    <figure>
+                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                            @if (i.imgsrc != null)
+                                            {
+                                                <img src="@i.imgsrc" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                            }
+                                        </a>
+                                    </figure>
+                                }
+                                else
+                                {
+                                    <figure>
+                                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                            @if (i.imgsrc != null)
+                                            {
+                                                <img src="@i.imgsrc" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                            }
+                                            <figcaption>@i.product_name</figcaption>
+                                        </a>
+                                    </figure>
+                                }
                             </li>
                         }
                         else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
-                        {
+                        {//沒文字,只有插圖
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail lb-content">
                                     <ul class="pro-img">
-                                        <li><img src="@i.imgsrc" alt=""></li>
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <li><img src="@i.imgsrc" alt=""></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                        }
                                         @foreach (var img in i.imgsrcs)
                                         {
                                             <li><img src="@img" alt=""></li>
@@ -170,53 +215,17 @@
                                 </div>
                                 <figure>
                                     <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <img src="@i.imgsrc" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                        }
                                     </a>
                                 </figure>
 
-                            </li>
-                        }
-                        else if (i.imgsrcs == null & (i.product_name != null || i.product_content != null))
-                        {
-                            <li>
-                                @if (i.product_name == null)
-                            {
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <article class="pro-content">
-                                            <section class="editor">
-                                                @Html.Raw(i.product_content)
-                                            </section>
-                                        </article>
-                                        @if (i.imgsrc != null)
-                                        {
-                                            <ul class="pro-img">
-                                                <li><img src="@i.imgsrc" alt=""></li>
-                                            </ul>
-                                        }
-                                    </div>
-                                    <figure>
-                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                            <img src="@i.imgsrc" alt="">
-                                        </a>
-                                    </figure>
-                                }
-                                else
-                                {
-                                    <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
-                                        <article class="pro-content">
-                                            <header><h4 class="title">@i.product_name</h4></header>
-                                            <section class="editor">
-                                                @Html.Raw(i.product_content)
-                                            </section>
-                                        </article>
-                                    </div>
-                                    <figure>
-                                        <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                            <img src="@i.imgsrc" alt="">
-                                            <figcaption>@i.product_name</figcaption>
-                                        </a>
-                                    </figure>
-                                }
                             </li>
                         }
                         else
@@ -225,13 +234,27 @@
                             <li>
                                 <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
                                     <ul class="pro-img">
-                                        <li><img src="@i.imgsrc" alt=""></li>
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <li><img src="@i.imgsrc" alt=""></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                        }
                                     </ul>
                                 </div>
                                 <figure>
-                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
-                                    </a>
+                                    @if (i.imgsrc != null)
+                                    {
+                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                            <img src="@i.imgsrc" alt="">
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                    }
                                 </figure>
 
                             </li>
@@ -243,159 +266,231 @@
 
             </ul>
 
-                @* 一體式電感 *@
-                <ul id="tab2" class="pro">
+            @* 一體式電感 *@
+            <ul id="tab2" class="pro">
 
-                    @foreach (var i in Model.p_data)
+                @foreach (var i in Model.p_data)
                 {
                     if (i.product_type == 2)
                     {
-                        if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
-                        {
-                                <li>
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <article class="pro-content">
+                        if (i.product_content != null || i.product_name != null)
+                        {//有文字,插圖不一定有
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <article class="pro-content">
+                                        @if (i.product_name != null)
+                                        {
                                             <header><h4 class="title">@i.product_name</h4></header>
-                                            <section class="editor">
-                                                @Html.Raw(i.product_content)
-                                            </section>
-                                        </article>
-                                        <ul class="pro-img">
-                                            @foreach (var img in i.imgsrcs)
+                                        }
+                                        <section class="editor">
+                                            @Html.Raw(i.product_content)
+                                        </section>
+                                    </article>
+
+                                    <ul class="pro-img">
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <li><img src="@i.imgsrc" alt=""></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                        }
+                                        @if (i.imgsrcs != null)
+                                        {
+                                            foreach (var img in i.imgsrcs)
                                             {
                                                 <li><img src="@img" alt=""></li>
                                             }
-                                        </ul>
-                                    </div>
+                                        }
+                                    </ul>
+                                </div>
+                                @if (i.product_name == null)
+                                {
+                                    <figure>
+                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                            @if (i.imgsrc != null)
+                                            {
+                                                <img src="@i.imgsrc" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                            }
+                                        </a>
+                                    </figure>
+                                }
+                                else
+                                {
                                     <figure>
                                         <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                            <img src="@i.imgsrc" alt="">
+                                            @if (i.imgsrc != null)
+                                            {
+                                                <img src="@i.imgsrc" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                            }
                                             <figcaption>@i.product_name</figcaption>
                                         </a>
                                     </figure>
+                                }
+                            </li>
+                        }
+                        else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
+                        {//沒文字,只有插圖
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
+                                    <ul class="pro-img">
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <li><img src="@i.imgsrc" alt=""></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                        }
+                                        @foreach (var img in i.imgsrcs)
+                                        {
+                                            <li><img src="@img" alt=""></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <figure>
+                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <img src="@i.imgsrc" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                        }
+                                    </a>
+                                </figure>
 
-                                </li>
-                            }
-                            else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
-                            {
-                                <li>
-                                    <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                        <ul class="pro-img">
-                                            @foreach (var img in i.imgsrcs)
-                                            {
-                                                <li><img src="@img" alt=""></li>
-                                            }
-                                        </ul>
-                                    </div>
-                                    <figure>
+                            </li>
+                        }
+                        else
+                        {
+                            @* 沒標題沒說明文字沒插圖 - show 產品列表圖 *@
+                            <li>
+                                <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
+                                    <ul class="pro-img">
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <li><img src="@i.imgsrc" alt=""></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                        }
+                                    </ul>
+                                </div>
+                                <figure>
+                                    @if (i.imgsrc != null)
+                                    {
                                         <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
                                             <img src="@i.imgsrc" alt="">
                                         </a>
-                                    </figure>
-
-                                </li>
-                            }
-                            else if (i.imgsrcs == null & (i.product_name != null || i.product_content != null))
-                            {
-                                <li>
-                                    @if (i.product_name == null)
-                            {
-                                        <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                            <article class="pro-content">
-                                                <section class="editor">
-                                                    @Html.Raw(i.product_content)
-                                                </section>
-                                            </article>
-                                            @if (i.imgsrc != null)
-                                            {
-                                                <ul class="pro-img">
-                                                    <li><img src="@i.imgsrc" alt=""></li>
-                                                </ul>
-                                            }
-                                        </div>
-                                        <figure>
-                                            <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                                <img src="@i.imgsrc" alt="">
-                                            </a>
-                                        </figure>
                                     }
                                     else
                                     {
-                                        <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
-                                            <article class="pro-content">
-                                                <header><h4 class="title">@i.product_name</h4></header>
-                                                <section class="editor">
-                                                    @Html.Raw(i.product_content)
-                                                </section>
-                                            </article>
-                                        </div>
-                                        <figure>
-                                            <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                                <img src="@i.imgsrc" alt="">
-                                                <figcaption>@i.product_name</figcaption>
-                                            </a>
-                                        </figure>
+                                        <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
                                     }
-                                </li>
-                            }
-                            else
-                            {
-                                @* 沒標題沒說明文字沒插圖 - show 產品列表圖 *@
-                                <li>
-                                    <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
-                                        <ul class="pro-img">
-                                            <li><img src="@i.imgsrc" alt=""></li>
-                                        </ul>
-                                    </div>
-                                    <figure>
-                                        <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                            <img src="@i.imgsrc" alt="">
-                                        </a>
-                                    </figure>
+                                </figure>
 
-                                </li>
-                            }
+                            </li>
                         }
                     }
+                }
 
-                </ul>
+            </ul>
         }
         else
         {
             <ul id="tab1" class="pro">
                 @foreach (var i in Model.p_data)
                 {
-                    if (i.imgsrcs != null & i.product_content != null & i.product_name != null)
-                    {
+                    if (i.product_content != null || i.product_name != null)
+                    {//有文字,插圖不一定有
                         <li>
                             <div id=@("pro" + i.product_id) class="pro-detail lb-content">
                                 <article class="pro-content">
-                                    <header><h4 class="title">@i.product_name</h4></header>
+                                    @if (i.product_name != null)
+                                    {
+                                        <header><h4 class="title">@i.product_name</h4></header>
+                                    }
                                     <section class="editor">
                                         @Html.Raw(i.product_content)
                                     </section>
                                 </article>
+
                                 <ul class="pro-img">
-                                    @foreach (var img in i.imgsrcs)
+                                    @if (i.imgsrc != null)
                                     {
-                                        <li><img src="@img" alt=""></li>
+                                        <li><img src="@i.imgsrc" alt=""></li>
+                                    }
+                                    else
+                                    {
+                                        <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                    }
+                                    @if (i.imgsrcs != null)
+                                    {
+                                        foreach (var img in i.imgsrcs)
+                                        {
+                                            <li><img src="@img" alt=""></li>
+                                        }
                                     }
                                 </ul>
                             </div>
-                            <figure>
-                                <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                    <img src="@i.imgsrc" alt="">
-                                    <figcaption>@i.product_name</figcaption>
-                                </a>
-                            </figure>
-
+                            @if (i.product_name == null)
+                            {
+                                <figure>
+                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <img src="@i.imgsrc" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                        }
+                                    </a>
+                                </figure>
+                            }
+                            else
+                            {
+                                <figure>
+                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
+                                        @if (i.imgsrc != null)
+                                        {
+                                            <img src="@i.imgsrc" alt="">
+                                        }
+                                        else
+                                        {
+                                            <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                        }
+                                        <figcaption>@i.product_name</figcaption>
+                                    </a>
+                                </figure>
+                            }
                         </li>
                     }
                     else if (i.imgsrcs != null & i.product_content == null & i.product_name == null)
-                    {
+                    {//沒文字,只有插圖
                         <li>
                             <div id=@("pro" + i.product_id) class="pro-detail lb-content">
                                 <ul class="pro-img">
+                                    @if (i.imgsrc != null)
+                                    {
+                                        <li><img src="@i.imgsrc" alt=""></li>
+                                    }
+                                    else
+                                    {
+                                        <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                    }
                                     @foreach (var img in i.imgsrcs)
                                     {
                                         <li><img src="@img" alt=""></li>
@@ -404,53 +499,16 @@
                             </div>
                             <figure>
                                 <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                    <img src="@i.imgsrc" alt="">
-                                </a>
-                            </figure>
-
-                        </li>
-                    }
-                    else if (i.imgsrcs == null & (i.product_name != null || i.product_content != null))
-                    {
-                        <li>
-                            @if (i.product_name == null)
-                            {
-                                <div id=@("pro" + i.product_id) class="pro-detail lb-content">
-                                    <article class="pro-content">
-                                        <section class="editor">
-                                            @Html.Raw(i.product_content)
-                                        </section>
-                                    </article>
                                     @if (i.imgsrc != null)
                                     {
-                                        <ul class="pro-img">
-                                            <li><img src="@i.imgsrc" alt=""></li>
-                                        </ul>
+                                        <img src="@i.imgsrc" alt="">
                                     }
-                                </div>
-                                <figure>
-                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
-                                    </a>
-                                </figure>
-                            }
-                            else
-                            {
-                                <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
-                                    <article class="pro-content">
-                                        <header><h4 class="title">@i.product_name</h4></header>
-                                        <section class="editor">
-                                            @Html.Raw(i.product_content)
-                                        </section>
-                                    </article>
-                                </div>
-                                <figure>
-                                    <a class="fancy-inline lb-trigger" href=@("#pro" + i.product_id)>
-                                        <img src="@i.imgsrc" alt="">
-                                        <figcaption>@i.product_name</figcaption>
-                                    </a>
-                                </figure>
-                            }
+                                    else
+                                    {
+                                        <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                    }
+                                </a>
+                            </figure>
 
                         </li>
                     }
@@ -460,13 +518,27 @@
                         <li>
                             <div id=@("pro" + i.product_id) class="pro-detail full lb-content">
                                 <ul class="pro-img">
-                                    <li><img src="@i.imgsrc" alt=""></li>
+                                    @if (i.imgsrc != null)
+                                    {
+                                        <li><img src="@i.imgsrc" alt=""></li>
+                                    }
+                                    else
+                                    {
+                                        <li><img src="@Url.Content("../../Content/images/no-pic.jpg")" alt=""></li>
+                                    }
                                 </ul>
                             </div>
                             <figure>
-                                <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
-                                    <img src="@i.imgsrc" alt="">
-                                </a>
+                                @if (i.imgsrc != null)
+                                {
+                                    <a class="zoom lb-trigger" href=@("#pro" + i.product_id)>
+                                        <img src="@i.imgsrc" alt="">
+                                    </a>
+                                }
+                                else
+                                {
+                                    <img src="@Url.Content("../../Content/images/no-pic.jpg")" alt="">
+                                }
                             </figure>
 
                         </li>
