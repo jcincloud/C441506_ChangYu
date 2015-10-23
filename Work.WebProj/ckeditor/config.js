@@ -7,7 +7,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	 config.language = 'zh';
     // config.uiColor = '#AADC6E';
-
+	 config.extraPlugins = 'imgur';
+    // Get your client-id from https://api.imgur.com/oauth2/addclient
+	 config.imgurClientID = 'd367d585bb39d58';
     config.toolbar = [
         {
             name: "basicstyles",
@@ -27,7 +29,7 @@ CKEDITOR.editorConfig = function( config ) {
             items: ["Link", "Unlink", "Anchor"]
         }, {
             name: 'insert',
-            items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
+            items: ['Image', 'imgur', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
         }, {
             name: "colors",
             items: ["TextColor", "BGColor"]

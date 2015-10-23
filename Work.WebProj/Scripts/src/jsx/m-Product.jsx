@@ -61,7 +61,7 @@ var GirdForm = React.createClass({
         */
         //設定新增時的編輯器
         if(prevState.edit_type==0 && this.state.edit_type==1){
-            CKEDITOR.replace( 'editor1', {});
+            CKEDITOR.replace( 'editor1', {customConfig: '/ckeditor/config.js'});
         }
     },
 	getAjaxInitData:function(){
@@ -201,7 +201,7 @@ var GirdForm = React.createClass({
 		jqGet(this.props.apiPathName,{id:id})
 		.done(function(data, textStatus, jqXHRdata) {
 			this.setState({edit_type:2,fieldData:data.data});
-			CKEDITOR.replace( 'editor1', {});
+			CKEDITOR.replace( 'editor1', {customConfig: '/ckeditor/config.js'});
 		}.bind(this))
 		.fail(function( jqXHR, textStatus, errorThrown ) {
 			showAjaxError(errorThrown);
