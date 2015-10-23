@@ -123,7 +123,7 @@ var MasterImageUpload = React.createClass({
 	
 				onSizeError: function() {
 					//errBox.innerHTML = 'Files may not exceed 500K.';
-					alert("檔案大小超過500k!");
+					alert("檔案大小超過5000k!");
 				},
 				onExtError: function() {
 					//errBox.innerHTML = 'Invalid file type. Please select a PNG, JPG, GIF image.';
