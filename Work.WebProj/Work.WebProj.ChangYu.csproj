@@ -363,6 +363,7 @@
     <Content Include="Content\images\AboutUs\ts16949.jpg" />
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bgFooter.png" />
+    <Content Include="Content\images\ContactUs\pic.jpg" />
     <Content Include="Content\images\iconArrow.png" />
     <Content Include="Content\images\iconAward.png" />
     <Content Include="Content\images\iconContact.gif" />
