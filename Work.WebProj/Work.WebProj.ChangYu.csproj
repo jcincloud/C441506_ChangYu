@@ -348,6 +348,7 @@
     <Content Include="Content\bootstrap\sass\_bootstrap-mincer.scss" />
     <Content Include="Content\bootstrap\sass\_bootstrap-sprockets.scss" />
     <Content Include="Content\css\bootstrap-datetimepicker-build.css" />
+    <Content Include="Content\css\editor.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\page.css" />
     <Content Include="Content\css\swiper.min.css" />
@@ -423,6 +424,7 @@
     <Content Include="Content\sass\helper\mixins\_gradient.scss" />
     <Content Include="Content\sass\helper\mixins\_shape.scss" />
     <Content Include="Content\sass\helper\_function.scss" />
+    <Content Include="Content\sass\editor.scss" />
     <None Include="gulpfile.js" />
     <Content Include="Content\images\noIE\bg.gif" />
     <Content Include="Content\images\noIE\brow.gif" />

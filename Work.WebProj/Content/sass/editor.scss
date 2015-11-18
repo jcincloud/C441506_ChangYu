@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+// import
+// ------------------------------------------------------------
+@import "helper/function";
+@import "helper/var";
+@import "helper/mixins";
+
+@import "base/basic";
+@import "base/table";
+
+p {
+    text-align: left;
+}
+
+tbody {
+    border-left: 1px solid #fff;
+}

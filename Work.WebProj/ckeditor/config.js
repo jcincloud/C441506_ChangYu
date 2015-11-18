@@ -10,6 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
 	 config.extraPlugins = 'imgur';
     // Get your client-id from https://api.imgur.com/oauth2/addclient
 	 config.imgurClientId = '4548ca9d27ed6e6';
+     config.contentsCss = ['../Content/css/editor.css'];
     config.toolbar = [
         {
             name: "basicstyles",
@@ -22,22 +23,17 @@ CKEDITOR.editorConfig = function( config ) {
             name: "tools",
             items: ["Maximize", "-"]
         }, {
-            name: "styles",
-            items: ["Styles"]
-        }, {
             name: "links",
-            items: ["Link", "Unlink", "Anchor"]
+            items: ["Link", "Unlink"]
         }, {
             name: 'insert',
-            items: ['Image', 'Imgur', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']
+            items: ['Image', 'Table', 'Smiley', 'Iframe']
         }, {
             name: "colors",
             items: ["TextColor", "BGColor"]
-        }, { name: "editing" }, {
-            name: "document",
-            items: ["Source", "-", "DocProps"]
         }, {
             name: "clipboard",
-            items: ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "Undo", "Redo"]
+            items: ["Cut", "Copy", "Paste", "Undo", "Redo", "-", "Source"]
         }];
+
 };
