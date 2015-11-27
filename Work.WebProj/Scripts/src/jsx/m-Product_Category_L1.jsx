@@ -12,7 +12,7 @@
 	},
 	render:function(){
 		return (
-
+            
 				<tr>
 					<td className="text-center"><GridCheckDel iKey={this.props.ikey} chd={this.props.itemData.check_del} delCheck={this.delCheck} /></td>
 					<td className="text-center"><GridButtonModify modify={this.modify}/></td>
@@ -365,9 +365,11 @@ var GirdForm = React.createClass({
 						</div>
 					</div>
 
-					<div className="form-action text-right">
-						<button type="submit" className="btn-primary" name="btn-1"><i className="fa-check"></i> 儲存</button> { }
-						<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+					<div className="form-action">
+						<div className="col-xs-offset-2">
+							<button type="submit" className="btn-primary" name="btn-1"><i className="fa-check"></i> 儲存</button> { }
+							<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+						</div>
 					</div>
 				</div>
 				</form>

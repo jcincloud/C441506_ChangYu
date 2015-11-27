@@ -532,9 +532,11 @@ var GirdForm = React.createClass({
 						</div>
 					</div>
 
-					<div className="form-action text-right">
-						<button type="submit" className="btn-primary" name="btn-1"><i className="fa-check"></i> 儲存</button> { }
-						<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+					<div className="form-action">
+						<div className="col-xs-offset-2">
+							<button type="submit" className="btn-primary" name="btn-1"><i className="fa-check"></i> 儲存</button> { }
+							<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
+						</div>
 					</div>
 				</div>
 				</form>
