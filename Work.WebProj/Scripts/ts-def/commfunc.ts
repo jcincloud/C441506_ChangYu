@@ -216,7 +216,7 @@ function getBrower() {
 
 var replace_br: RegExp = /(?:\\[rn]|[\r\n]+)+/g; //將換行碼換成<br/>的樣板
 
-function checkTelReg(tel: string) {
+function checkTelReg(tel: string): Object {
   /*
     Autohr:Ajoe
     Date:2015/9/8

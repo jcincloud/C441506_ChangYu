@@ -27,7 +27,7 @@ CKEDITOR.editorConfig = function( config ) {
             items: ["Link", "Unlink"]
         }, {
             name: 'insert',
-            items: ['Image', 'Table', 'Smiley', 'Iframe']
+            items: ['Table', 'Smiley', 'Iframe']
         }, {
             name: "colors",
             items: ["TextColor", "BGColor"]

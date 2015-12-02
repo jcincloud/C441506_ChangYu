@@ -815,6 +815,7 @@
     <Content Include="Scripts\app\shadowbox\README" />
     <Content Include="_Code\CSS\css\ie9-page-blessed1.css" />
     <Content Include="_Code\CSS\css\ie9-page.css" />
+    <Content Include="_Code\CSS\css\learn.css" />
     <Content Include="_Code\CSS\css\mobile.css" />
     <Content Include="_Code\CSS\css\page.css" />
     <Content Include="_Code\CSS\css\popup.css" />
@@ -1009,6 +1010,8 @@
     <Content Include="_Code\Maindoor\body\images\login_out.gif" />
     <Content Include="_Code\Maindoor\body\images\topBg.gif" />
     <Content Include="_Code\SysDoc\Doc.xml" />
+    <Content Include="_Code\SysDoc\ProData.html" />
+    <Content Include="_Code\SysDoc\ProKind.html" />
     <Content Include="_Code\SysUpFiles\memo.txt" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />

@@ -1,8 +1,8 @@
 ﻿var GridRow = React.createClass({
-	mixins: [React.addons.LinkedStateMixin], 
-	getInitialState: function() {  
-		return { 
-		};  
+	mixins: [React.addons.LinkedStateMixin],
+	getInitialState: function() {
+		return {
+		};
 	},
 	delCheck:function(i,chd){
 		this.props.delCheck(i,chd);
@@ -28,8 +28,8 @@
 
 //主表單
 var GirdForm = React.createClass({
-	mixins: [React.addons.LinkedStateMixin], 
-	getInitialState: function() {  
+	mixins: [React.addons.LinkedStateMixin],
+	getInitialState: function() {
 		return {
 			gridData:{rows:[],page:1},
 			fieldData:{},
@@ -38,16 +38,16 @@ var GirdForm = React.createClass({
 			checkAll:false,
 			category_l1:[],
 			category_l2:[]
-		};  
+		};
 	},
 	getDefaultProps:function(){
-		return{	
+		return{
 			fdName:'fieldData',
 			gdName:'searchData',
 			apiPathName:gb_approot+'api/Product',
 			initPathName:gb_approot+'Active/ProductData/product_Init'
 		};
-	},	
+	},
 	componentDidMount:function(){
 		this.queryGridData(1);
 		this.getAjaxInitData();//載入init資料
@@ -96,7 +96,7 @@ var GirdForm = React.createClass({
 			.fail(function( jqXHR, textStatus, errorThrown ) {
 				showAjaxError(errorThrown);
 			});
-		}		
+		}
 		else if(this.state.edit_type==2){
 			jqPut(this.props.apiPathName,this.state.fieldData)
 			.done(function(data, textStatus, jqXHRdata) {
@@ -134,7 +134,7 @@ var GirdForm = React.createClass({
 			return;
 		}
 
-		jqDelete(this.props.apiPathName + '?' + ids.join('&'),{})			
+		jqDelete(this.props.apiPathName + '?' + ids.join('&'),{})
 		.done(function(data, textStatus, jqXHRdata) {
 			if(data.result){
 				tosMessage(null,'刪除完成',1);
@@ -255,7 +255,7 @@ var GirdForm = React.createClass({
 		$("#search-l2 option:first").attr("selected", true);
 		var searchData=this.state.searchData;
 		searchData.l2_id=null;
-		
+
     	var category_l1=this.state.category_l1;
         for (var i in category_l1) {
             var item = category_l1[i];
@@ -291,20 +291,20 @@ var GirdForm = React.createClass({
                 <h3 className="title">{this.props.Caption} 列表</h3>
 
 				<form onSubmit={this.handleSearch}>
-					
+
 						<div className="table-header">
 							<div className="table-filter">
 								<div className="form-inline">
 									<div className="form-group">
 
 										<label>產品名稱</label> { }
-										<input type="text" className="form-control input-sm" 
+										<input type="text" className="form-control input-sm"
 										value={searchData.name}
 										onChange={this.changeGDValue.bind(this,'name')}
 										placeholder="產品名稱..." /> { }
 
 										<label>主分類</label> { }
-										<select className="form-control input-sm" 
+										<select className="form-control input-sm"
 												value={searchData.l1_id}
 												onChange={this.onL1Change.bind(this)}>
 											<option value="">全部</option>
@@ -329,7 +329,7 @@ var GirdForm = React.createClass({
 										</select> { }
 
 										<label>狀態</label> { }
-										<select className="form-control input-sm" 
+										<select className="form-control input-sm"
 												value={searchData.i_Hide}
 												onChange={this.changeGDValue.bind(this,'i_Hide')}>
 											<option value="">全部</option>
@@ -364,19 +364,19 @@ var GirdForm = React.createClass({
 							<tbody>
 								{
 								this.state.gridData.rows.map(function(itemData,i) {
-								return <GridRow 
+								return <GridRow
 								key={i}
 								ikey={i}
-								primKey={itemData.product_id} 
-								itemData={itemData} 
+								primKey={itemData.product_id}
+								itemData={itemData}
 								delCheck={this.delCheck}
-								updateType={this.updateType}								
+								updateType={this.updateType}
 								/>;
 								}.bind(this))
 								}
 							</tbody>
 						</table>
-					<GridNavPage 
+					<GridNavPage
 					StartCount={this.state.gridData.startcount}
 					EndCount={this.state.gridData.endcount}
 					RecordCount={this.state.gridData.records}
@@ -399,7 +399,7 @@ var GirdForm = React.createClass({
 					<div className="form-group">
 						<label className="col-xs-2 control-label">電感分類</label>
 						<div className="col-xs-4">
-							<select className="form-control" 
+							<select className="form-control"
 							value={fieldData.product_type}
 							onChange={this.changeFDValue.bind(this,'product_type')}>
 							<option value="1">SMD 繞線式功率電感</option>
@@ -413,12 +413,11 @@ var GirdForm = React.createClass({
 			<div>
                 <h3 className="title">{this.props.Caption} 編輯</h3>
 
-				<form className="form-horizontal clearfix" onSubmit={this.handleSubmit}>
-				<div className="col-xs-10">
+				<form className="form-horizontal clearfix col-xs-11" onSubmit={this.handleSubmit}>
 					<div className="form-group">
 						<label className="col-xs-2 control-label">產品分類</label>
 						<div className="col-xs-4">
-							<select className="form-control" 
+							<select className="form-control"
 							value={fieldData.l2_id}
 							onChange={this.onFieldDataL2Change.bind(this)}>
 							{
@@ -442,8 +441,8 @@ var GirdForm = React.createClass({
 					<div className="form-group">
 						<label className="col-xs-2 control-label">產品名稱</label>
 						<div className="col-xs-4">
-							<input type="text" 							
-							className="form-control"	
+							<input type="text"
+							className="form-control"
 							value={fieldData.product_name}
 							onChange={this.changeFDValue.bind(this,'product_name')}
 							maxLength="64" />
@@ -467,8 +466,8 @@ var GirdForm = React.createClass({
 					<div className="form-group">
 						<label className="col-xs-2 control-label">排序</label>
 						<div className="col-xs-4">
-							<input type="number" 
-							className="form-control"	
+							<input type="number"
+							className="form-control"
 							value={fieldData.sort}
 							onChange={this.changeFDValue.bind(this,'sort')} />
 						</div>
@@ -479,10 +478,10 @@ var GirdForm = React.createClass({
 						<div className="col-xs-4">
 							<div className="radio-inline">
 								<label>
-									<input type="radio" 
+									<input type="radio"
 											name="i_Hide"
 											value={true}
-											checked={fieldData.i_Hide===true} 
+											checked={fieldData.i_Hide===true}
 											onChange={this.changeFDValue.bind(this,'i_Hide')}
 									/>
 									<span>隱藏</span>
@@ -490,10 +489,10 @@ var GirdForm = React.createClass({
 							</div>
 							<div className="radio-inline">
 								<label>
-									<input type="radio" 
+									<input type="radio"
 											name="i_Hide"
 											value={false}
-											checked={fieldData.i_Hide===false} 
+											checked={fieldData.i_Hide===false}
 											onChange={this.changeFDValue.bind(this,'i_Hide')}
 											/>
 									<span>顯示</span>
@@ -503,8 +502,8 @@ var GirdForm = React.createClass({
 					</div>
 
 					<h4 className="title row">
-						<span className="col-xs-2 text-right">產品說明</span>
-						<small className="col-xs-10">可不填，有填寫才會顯示</small>
+						<span className="col-xs-2 text-right">產品更多說明</span>
+						<small>可不填，有填寫才會顯示</small>
 					</h4>
 
                     <div className="form-group">
@@ -538,7 +537,6 @@ var GirdForm = React.createClass({
 							<button type="button" onClick={this.noneType}><i className="fa-times"></i> 回前頁</button>
 						</div>
 					</div>
-				</div>
 				</form>
 			</div>
 			);

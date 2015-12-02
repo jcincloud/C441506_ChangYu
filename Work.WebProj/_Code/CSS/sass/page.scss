@@ -351,7 +351,7 @@ div.editor {
 	ul {
 		li {
 			left: 1em;
-			margin-right: 1em; 
+			margin-right: 1em;
 			list-style: disc;
 		}
 		&[class*="cke"], &.list-no-icon {
@@ -380,7 +380,7 @@ div.editor {
 		ol {
 			li {
 				left: 2.2em;
-				margin-right: 2.2em; 
+				margin-right: 2.2em;
 				list-style: decimal;
 			}
 			&.list-styled {
@@ -439,3 +439,9 @@ div.editor {
 			border-top:1px dotted #ddd;
 		}
 	}
+
+// 產品資料編輯-產品更多說明
+form h4.row {
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
